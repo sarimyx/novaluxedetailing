@@ -8,7 +8,7 @@ import { MiscUtils } from "@/utils/misc";
 import { supabaseServerClient } from "@/utils/supabase-client-server";
 
 const sectionStyle =
-  "flex flex-col p-4 bg-slate-100 dark:bg-slate-800 rounded-lg md:h-max lg:w-60 mb-8 justify-between";
+  "flex flex-col p-4 bg-slate-200 dark:bg-slate-800 rounded-lg md:h-max lg:w-60 mb-8 justify-between";
 const serviceHeadingStyle = "md:text-2xl text-3xl font-bold truncate";
 const priceLabelStyle = `text-4xl font-bold ${Styling.Chromatic}`;
 

@@ -11,6 +11,8 @@ import { LoadingIcon } from "@/components/ui/loading-icon";
 import { Suspense } from "react";
 import { Identity } from "@/constants/identity";
 
+export const runtime = "edge";
+
 export const metadata: Metadata = {
   metadataBase: new URL(
     process.env.APP_URL

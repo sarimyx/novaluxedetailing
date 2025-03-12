@@ -8,7 +8,7 @@ import { MiscUtils } from "@/utils/misc";
 import { supabaseServerClient } from "@/utils/supabase-client-server";
 
 const sectionStyle =
-  "flex flex-col p-4 bg-slate-200 dark:bg-slate-800 rounded-lg md:h-max lg:w-60 mb-8 justify-between";
+  "flex flex-col p-4 bg-slate-100 dark:bg-slate-900 rounded-lg md:h-max lg:w-60 mb-8 justify-between";
 const serviceHeadingStyle = "md:text-2xl text-3xl font-bold truncate";
 const priceLabelStyle = `text-4xl font-bold ${Styling.Chromatic}`;
 
@@ -19,14 +19,16 @@ export default async function Pricing() {
   if (!services) return <p>Failed to load services.</p>;
 
   // Group services by type (interior, exterior, etc.)
-  const groupedServices = services.reduce(
-    (acc, service) => {
-      if (!acc[service.type]) acc[service.type] = [];
-      acc[service.type].push(service);
-      return acc;
-    },
-    {} as Record<string, typeof services>,
-  );
+  const groupedServices = services
+    .sort((a, b) => a.price - b.price)
+    .reduce(
+      (acc, service) => {
+        if (!acc[service.type]) acc[service.type] = [];
+        acc[service.type].push(service);
+        return acc;
+      },
+      {} as Record<string, typeof services>,
+    );
 
   // Define tab order (others will default after these)
   const order: Record<string, number> = { interior: 0, exterior: 1 };

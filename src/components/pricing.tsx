@@ -110,9 +110,18 @@ export default async function Pricing() {
 
                           {/* Features List */}
                           {featureList.map((feature) => (
-                            <div key={feature} className="flex items-center">
-                              <CheckCircle2 className="h-4 w-4 mr-1" />
-                              <span>{feature}</span>
+                            <div
+                              key={feature}
+                              className="flex items-center mb-2"
+                            >
+                              <CheckCircle2
+                                className={`h-4 w-4 mr-1${feature.includes("Everything") ? " text-orange-500" : ""}`}
+                              />
+                              <span
+                                className={`${feature.includes("Everything") ? "font-bold text-orange-500" : ""}`}
+                              >
+                                {feature}
+                              </span>
                             </div>
                           ))}
 
@@ -123,7 +132,7 @@ export default async function Pricing() {
                                 (_, index) => (
                                   <div
                                     key={`empty-${index}`}
-                                    className="h-6"
+                                    className="h-6 mb-2"
                                   ></div>
                                 ),
                               )}

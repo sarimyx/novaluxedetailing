@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Identity } from "@/constants/identity";
-import Image from "next/image";
 import Pricing from "@/components/pricing";
 import { CarFront, PhoneCall } from "lucide-react";
 import { Styling } from "@/constants/styling";

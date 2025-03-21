@@ -1,6 +1,9 @@
 export const Identity = {
   companyShortName: "Nova Luxe",
   companyName: "Nova Luxe Detailing",
-  companyPhoneNumber: "+18019798457",
-  companyPhoneNumberFormatted: "(801) 979-8457",
+  companyPhoneNumber: "+18017875307",
+  companyPhoneNumberFormatted: "(801) 787-5307",
+  socialMedia: {
+    instagram: "https://instagram.com/novaluxedetailing",
+  },
 };

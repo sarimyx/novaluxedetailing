@@ -12,6 +12,7 @@ import {
 } from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
 import { Identity } from "@/constants/identity";
+import { Fonts } from "@/constants/fonts";
 
 export function Navbar() {
   const pathname = usePathname();
@@ -23,7 +24,9 @@ export function Navbar() {
           href="/"
           className="flex justify-start items-center hover:opacity-85 transition-opacity duration-300"
         >
-          <span className="font-light tracking-widest">
+          <span
+            className={`font-light tracking-widest ${Fonts.premium.className}`}
+          >
             {Identity.companyShortName.toUpperCase()}
           </span>
           <span className="sr-only">{Identity.companyName}</span>

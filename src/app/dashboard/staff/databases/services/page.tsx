@@ -1,13 +1,4 @@
-import Link from "next/link";
 import { ContentLayout } from "@/components/admin-panel/content-layout";
-import {
-  Breadcrumb,
-  BreadcrumbItem,
-  BreadcrumbLink,
-  BreadcrumbList,
-  BreadcrumbPage,
-  BreadcrumbSeparator,
-} from "@/components/ui/breadcrumb";
 import { RedirectToSignIn } from "@clerk/nextjs";
 import { supabaseServerClient } from "@/utils/supabase-client-server";
 import { DataTable } from "./data-table";
@@ -23,32 +14,6 @@ export default async function StaffDashboardSubpage() {
     <RedirectToSignIn />
   ) : (
     <ContentLayout title="Databases">
-      <Breadcrumb>
-        <BreadcrumbList>
-          <BreadcrumbItem>
-            <BreadcrumbLink asChild>
-              <Link href="/">Home</Link>
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbLink asChild>
-              <Link href="/dashboard">Dashboard</Link>
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbLink asChild>
-              <Link href="/dashboard/staff">Staff</Link>
-            </BreadcrumbLink>
-          </BreadcrumbItem>
-          <BreadcrumbSeparator />
-          <BreadcrumbItem>
-            <BreadcrumbPage>Databases</BreadcrumbPage>
-          </BreadcrumbItem>
-        </BreadcrumbList>
-      </Breadcrumb>
-
       <div className="flex flex-col space-y-3 py-4">
         <div className="flex text-slate-700 dark:text-slate-300 font-light items-center justify-between">
           <span className="font-bold">Services</span>

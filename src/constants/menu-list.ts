@@ -37,6 +37,11 @@ export function getMenuList(pathname: string): Group[] {
         label: "Dashboard",
         icon: LayoutGrid,
         submenus: [],
+        active:
+          pathname.startsWith("/dashboard") &&
+          (pathname.endsWith("staff") ||
+            pathname.endsWith("provider") ||
+            pathname.endsWith("customer")),
       },
     ],
   };

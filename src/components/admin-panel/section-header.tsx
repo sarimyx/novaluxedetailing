@@ -33,7 +33,7 @@ export function SectionHeader({ title, hideSidebar }: SectionHeaderProps) {
   });
 
   return (
-    <header className="sticky z-10 w-full mt-4">
+    <header className="sticky z-10 w-full pt-4">
       <div className="mx-4 sm:mx-8 flex items-center">
         <Breadcrumb>
           <BreadcrumbList>
@@ -65,14 +65,13 @@ export function SectionHeader({ title, hideSidebar }: SectionHeaderProps) {
           </BreadcrumbList>
         </Breadcrumb>
       </div>
-      <div className="mx-4 sm:mx-8 flex items-center">
-        <div className="flex items-center space-x-4 lg:space-x-0">
-          {hideSidebar !== true && <SheetMenu />}
-          {/* <h1 className="font-bold">
-            {title}
-          </h1> */}
+      {hideSidebar !== true && (
+        <div className="mx-4 sm:mx-8 flex items-center pt-4">
+          <div className="flex items-center space-x-4 lg:space-x-0">
+            {<SheetMenu />}
+          </div>
         </div>
-      </div>
+      )}
     </header>
   );
 }

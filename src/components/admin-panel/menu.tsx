@@ -5,7 +5,7 @@ import { Ellipsis, LogOut } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 import { cn } from "@/lib/utils";
-import { getMenuList } from "@/lib/menu-list";
+import { getMenuList } from "@/constants/menu-list";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { CollapseMenuButton } from "@/components/admin-panel/collapse-menu-button";
@@ -62,7 +62,7 @@ export function Menu({ isOpen }: MenuProps) {
                                 (active === undefined &&
                                   pathname.startsWith(href)) ||
                                 active
-                                  ? "secondary"
+                                  ? "default"
                                   : "ghost"
                               }
                               className="w-full justify-start h-10 mb-1"

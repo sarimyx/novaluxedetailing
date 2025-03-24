@@ -6,6 +6,7 @@ import { CheckCircle2, CircleDollarSign, Clock, Star } from "lucide-react";
 import Link from "next/link";
 import { MiscUtils } from "@/utils/misc";
 import { supabaseServerClient } from "@/utils/supabase-client-server";
+import { Fonts } from "@/constants/fonts";
 
 const sectionStyle =
   "flex flex-col p-4 bg-slate-100 dark:bg-slate-900 rounded-lg md:h-max lg:w-60 mb-8 justify-between";
@@ -41,7 +42,7 @@ export default async function Pricing() {
   return (
     <div id="pricing">
       <h1
-        className={`text-4xl font-bold text-center mb-4 ${Styling.GoldChromatic}`}
+        className={`text-4xl font-bold text-center mb-4 ${Styling.GoldChromatic} ${Fonts.premium.className}`}
       >
         Choose Your Service
       </h1>

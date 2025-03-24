@@ -49,7 +49,7 @@ export default async function BookingsPage({
         </section>
         <section className="space-y-2">
           <span className="text-slate-700 dark:text-slate-300 font-light text-sm">
-            FEATURES:
+            FEATURES INCLUDE:
           </span>
           {service.data.features.split(",").map((feature) => (
             <Card

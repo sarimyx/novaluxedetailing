@@ -21,7 +21,7 @@ export default async function BookingsPage({
   return (
     <ContentLayout title="Bookings" hideSidebar>
       <div className="space-y-4">
-        <a href="/bookings">
+        <a href="/#pricing">
           <Button variant="outline" className="mt-4 w-fit">
             ← Back
           </Button>
@@ -31,7 +31,7 @@ export default async function BookingsPage({
             YOU SELECTED:
           </span>
           <div className={"text-5xl font-bold"}>
-            <span className={Styling.Chromatic}>
+            <span className={Styling.GoldChromatic}>
               {service.data.name.split(" ")[0]}
             </span>{" "}
             {service.data.name.split(" ").slice(1).join(" ")}
@@ -43,12 +43,26 @@ export default async function BookingsPage({
               ${service.data.price}
             </Card>
             <Card className="w-fit p-2 bg-slate-200 dark:bg-slate-700">
-              {service.data.features}
-            </Card>
-            <Card className="w-fit p-2 bg-slate-200 dark:bg-slate-700">
               {service.data.duration}
             </Card>
           </div>
+        </section>
+        <section className="space-y-2">
+          <span className="text-slate-700 dark:text-slate-300 font-light text-sm">
+            FEATURES:
+          </span>
+          {service.data.features.split(",").map((feature) => (
+            <Card
+              key={feature}
+              className="w-fit p-2 bg-slate-200 dark:bg-slate-700"
+            >
+              <span
+                className={feature.includes("Everything") ? `font-bold` : ""}
+              >
+                {feature}
+              </span>
+            </Card>
+          ))}
         </section>
         <hr />
         <section>

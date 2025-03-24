@@ -10,7 +10,7 @@ import { supabaseServerClient } from "@/utils/supabase-client-server";
 const sectionStyle =
   "flex flex-col p-4 bg-slate-100 dark:bg-slate-900 rounded-lg md:h-max lg:w-60 mb-8 justify-between";
 const serviceHeadingStyle = "md:text-2xl text-3xl font-bold truncate";
-const priceLabelStyle = `text-4xl font-bold ${Styling.Chromatic}`;
+const priceLabelStyle = `text-4xl font-bold ${Styling.GoldChromatic}`;
 
 export default async function Pricing() {
   const db = await supabaseServerClient();
@@ -40,7 +40,9 @@ export default async function Pricing() {
 
   return (
     <div id="pricing">
-      <h1 className="text-5xl font-bold text-center bg-gradient-to-r from-violet-700 via-purple-400 to-pink-500 bg-clip-text text-transparent mb-4">
+      <h1
+        className={`text-4xl font-bold text-center mb-4 ${Styling.GoldChromatic}`}
+      >
         Choose Your Service
       </h1>
 
@@ -78,15 +80,17 @@ export default async function Pricing() {
                       <section key={id} className={sectionStyle}>
                         <div>
                           <h1 className={serviceHeadingStyle}>
-                            <span className={Styling.Chromatic}>
+                            <span className={`font-bold`}>
                               {name.split(" ")[0]}
                             </span>{" "}
-                            {name.split(" ").slice(1).join(" ")}
+                            <span className="font-extralight">
+                              {name.split(" ").slice(1).join(" ")}
+                            </span>
                           </h1>
-                          <hr className="hidden md:block" />
+                          <hr className="hidden md:block my-1" />
                         </div>
 
-                        <div className="flex flex-col justify-center items-center text-slate-500 text-md mb-2">
+                        <div className="flex flex-col justify-center items-center text-slate-400 text-md mb-2">
                           <div className="flex gap-2 text-xs my-2">
                             <div className="flex p-1 items-center rounded-lg bg-slate-200 dark:bg-slate-700 dark:text-primary">
                               <Clock className="h-4 w-4 mr-1" />
@@ -115,10 +119,10 @@ export default async function Pricing() {
                               className="flex items-center mb-2"
                             >
                               <CheckCircle2
-                                className={`h-4 w-4 mr-1${feature.includes("Everything") ? " text-orange-500" : ""}`}
+                                className={`h-4 w-4 mr-1${feature.includes("Everything") ? " text-yellow-500" : ""}`}
                               />
                               <span
-                                className={`${feature.includes("Everything") ? "font-bold text-orange-500" : ""}`}
+                                className={`${feature.includes("Everything") ? "font-bold text-yellow-500" : ""}`}
                               >
                                 {feature}
                               </span>
@@ -175,7 +179,7 @@ export default async function Pricing() {
       <section className="flex flex-col space-y-2 justify-center items-center text-center">
         <span className="font-light text-sm text-slate-500">
           †Excluding taxes. Prices do not reflect any special offers, bundle
-          services, add-ons, or discounts that may be applicable.
+          services, or add-ons that may be applicable.
           <a href={`tel:${Identity.companyPhoneNumber}`} className="link">
             {" "}
             Call us{" "}

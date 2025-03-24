@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Identity } from "@/constants/identity";
 import Pricing from "@/components/pricing";
-import { CarFront, PhoneCall } from "lucide-react";
+import { CarFront, Map, MapPin, MapPinned, PhoneCall } from "lucide-react";
 import { Styling } from "@/constants/styling";
 import { InstagramLogoIcon } from "@radix-ui/react-icons";
 
@@ -14,13 +14,18 @@ export default function HomePage() {
           <section className="flex flex-col items-center space-y-4">
             <br />
             <h1
-              className={`text-6xl font-bold text-center ${Styling.Chromatic}`}
+              className={`text-6xl font-bold text-center ${Styling.GoldChromatic}`}
             >
               {Identity.companyName}
             </h1>
-            <span className="text-slate-600 dark:text-slate-400 text-center text-2xl font-light text-foreground">
-              <span className="font-light italic">We come to you!</span>
-            </span>
+            <div className="flex flex-col mx-4 space-y-2 text-slate-600 dark:text-slate-400 text-center text-2xl font-light text-foreground">
+              <div className="flex text-center justify-center items-center">
+                <span className="font-light">
+                  {" "}
+                  Premium Interior Car Detail{" "}
+                </span>
+              </div>
+            </div>
             <div className="flex w-full text-center justify-center">
               <Button
                 variant="default"
@@ -33,6 +38,9 @@ export default function HomePage() {
                 </Link>
               </Button>
             </div>
+            <span className="dark:text-white font-light">
+              (less than 3 clicks – we&apos;ll come to you)
+            </span>
             <div className="flex w-full text-center justify-center hover:text-violet-300">
               <Button variant="link" asChild>
                 <Link href="#pricing" rel="noopener noreferrer">
@@ -43,9 +51,19 @@ export default function HomePage() {
               <Button variant="link" asChild>
                 <Link href="tel:+18019798457" rel="noopener noreferrer">
                   <PhoneCall className="w-4 h-4 mr-2" />
-                  Call us now
+                  {Identity.companyPhoneNumberFormatted}
                 </Link>
               </Button>
+            </div>
+            <div className="flex flex-col">
+              <section className="flex items-center gap-1">
+                <MapPin className="text-orange-400" />
+                <span className="text-secondary-foreground">
+                  {" "}
+                  Proudly Serving{" "}
+                  <strong className="dark:text-white">Utah</strong>{" "}
+                </span>
+              </section>
             </div>
             {/* <br /> */}
             {/* <div className="w-full flex justify-center">
@@ -60,7 +78,7 @@ export default function HomePage() {
             </div> */}
           </section>
           <hr />
-          <section className="space-y-4">
+          <section className="space-y-4 md:mx-4 mx-12">
             <Pricing />
           </section>
           <hr />
@@ -71,14 +89,20 @@ export default function HomePage() {
           <p className="text-balance text-center leading-loose text-muted-foreground">
             Copyright © {new Date().getFullYear()} {Identity.companyName}.
           </p>
-          <a
-            href={Identity.socialMedia.instagram}
-            target="_blank"
-            className="link flex items-center gap-1"
-          >
-            <InstagramLogoIcon />
-            Instagram
-          </a>
+          <div className="flex flex-wrap gap-2">
+            <a href="/bookings" className="link flex items-center gap-1">
+              <CarFront className="w-4 h-4 mr-1" />
+              Services
+            </a>
+            <a
+              href={Identity.socialMedia.instagram}
+              target="_blank"
+              className="link flex items-center gap-1"
+            >
+              <InstagramLogoIcon />
+              Instagram
+            </a>
+          </div>
         </div>
       </footer>
     </div>

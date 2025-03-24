@@ -51,19 +51,19 @@ export default async function StaffDashboardPage() {
           </span>
         </section>
         <section className="flex flex-col space-y-4">
-          <span className={`text-5xl ${Styling.Chromatic}`}>Databases</span>
+          <span className={`text-5xl ${Styling.GoldChromatic}`}>Databases</span>
           <a href="/dashboard/staff/databases/services">
             <Button className="w-fit">Services →</Button>
           </a>
         </section>
         <section className="flex flex-col space-y-4">
-          <span className={`text-5xl ${Styling.Chromatic}`}>Bookings</span>
+          <span className={`text-5xl ${Styling.GoldChromatic}`}>Bookings</span>
           <span className="text-slate-700 dark:text-slate-300 font-light">
             Coming soon.
           </span>
         </section>
         <section className="flex flex-col space-y-4">
-          <span className={`text-5xl ${Styling.Chromatic}`}>Users</span>
+          <span className={`text-5xl ${Styling.GoldChromatic}`}>Users</span>
           <span className="text-slate-700 dark:text-slate-300 font-light">
             Coming soon.
           </span>

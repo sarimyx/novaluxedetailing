@@ -1,4 +1,4 @@
 export const Styling = {
-  Chromatic:
-    "bg-gradient-to-r from-violet-700 via-purple-400 to-pink-500 bg-clip-text text-transparent",
+  GoldChromatic:
+    "bg-gradient-to-r from-yellow-600 via-yellow-400 to-yellow-400 bg-clip-text text-transparent",
 };

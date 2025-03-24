@@ -93,7 +93,7 @@ export function Navbar() {
               <PhoneCall className="w-[1.2rem] h-[1.2rem]" />
             </Button>
           </a>
-          <ModeToggle />
+          {/* <ModeToggle /> */}
         </nav>
       </div>
     </header>

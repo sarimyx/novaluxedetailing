@@ -38,7 +38,11 @@ export default function RootLayout({
     <ClerkProvider signInUrl="/login" signUpUrl="/join">
       <html lang="en" suppressHydrationWarning>
         <body className={GeistSans.className}>
-          <ThemeProvider attribute="class" defaultTheme="light">
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark"
+            forcedTheme="dark"
+          >
             <Suspense
               fallback={
                 <div className="flex min-h-screen flex-col items-center justify-center text-center">
@@ -46,7 +50,7 @@ export default function RootLayout({
                 </div>
               }
             />
-            <div>
+            <div className="min-h-screen bg-[#000000] bg-[radial-gradient(#ffffff33_1px,#00091d_1px)] bg-[size:20px_20px]">
               <Navbar />
               {children}
             </div>

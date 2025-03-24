@@ -91,7 +91,7 @@ export default function HomePage() {
           </p>
           <div className="flex flex-wrap gap-2">
             <a href="/bookings" className="link flex items-center gap-1">
-              <CarFront className="w-4 h-4 mr-1" />
+              <CarFront className="w-4 h-4" />
               Services
             </a>
             <a

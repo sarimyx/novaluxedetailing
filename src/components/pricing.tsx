@@ -158,7 +158,9 @@ export default async function Pricing() {
                             disabled={!active}
                           >
                             {active ? (
-                              <Link href={`/bookings/checkout/${id}`}>
+                              <Link
+                                href={`/bookings/checkout/${encodeURIComponent(name)}`}
+                              >
                                 Select
                               </Link>
                             ) : (

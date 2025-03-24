@@ -12,10 +12,11 @@ export default async function BookingsPage({
 }) {
   if (!params.name) return;
   const db = await supabaseServerClient();
+  console.log(params.name);
   const service = await db
     .from("Services")
     .select("*")
-    .eq("id", parseInt(params.name, 10))
+    .eq("name", decodeURIComponent(params.name).replaceAll("-", " "))
     .single();
   if (!service.data) return;
   return (

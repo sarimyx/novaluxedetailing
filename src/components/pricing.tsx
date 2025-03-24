@@ -10,8 +10,8 @@ import { Fonts } from "@/constants/fonts";
 
 const sectionStyle =
   "flex flex-col p-4 bg-slate-100 dark:bg-slate-900 rounded-lg md:h-max lg:w-60 mb-8 justify-between";
-const serviceHeadingStyle = "md:text-2xl text-3xl font-bold truncate";
-const priceLabelStyle = `text-4xl font-bold ${Styling.GoldChromatic}`;
+const serviceHeadingStyle = `md:text-2xl text-3xl font-bold truncate ${Fonts.premium.className}`;
+const priceLabelStyle = `text-4xl font-bold ${Styling.GoldChromatic} ${Fonts.premium.className}`;
 
 export default async function Pricing() {
   const db = await supabaseServerClient();
@@ -84,7 +84,7 @@ export default async function Pricing() {
                             <span className={`font-bold`}>
                               {name.split(" ")[0]}
                             </span>{" "}
-                            <span className="font-extralight">
+                            <span className="font-extralight text-secondary-foreground">
                               {name.split(" ").slice(1).join(" ")}
                             </span>
                           </h1>
@@ -92,7 +92,7 @@ export default async function Pricing() {
                         </div>
 
                         <div className="flex flex-col justify-center items-center text-slate-400 text-md mb-2">
-                          <div className="flex gap-2 text-xs my-2">
+                          <div className="flex gap-2 text-xs mt-2 mb-4">
                             <div className="flex p-1 items-center rounded-lg bg-slate-200 dark:bg-slate-700 dark:text-primary">
                               <Clock className="h-4 w-4 mr-1" />
                               <span>{duration}</span>
@@ -117,7 +117,7 @@ export default async function Pricing() {
                           {featureList.map((feature) => (
                             <div
                               key={feature}
-                              className="flex items-center mb-2"
+                              className={`flex items-center mb-2 ${Fonts.premium.className}`}
                             >
                               <CheckCircle2
                                 className={`h-4 w-4 mr-1${feature.includes("Everything") ? " text-yellow-500" : ""}`}

@@ -1,8 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { CarFront, PhoneCall } from "lucide-react";
-import { ModeToggle } from "@/components/ui/mode-toggle";
+import { PhoneCall } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   OrganizationSwitcher,
@@ -24,8 +23,9 @@ export function Navbar() {
           href="/"
           className="flex justify-start items-center hover:opacity-85 transition-opacity duration-300"
         >
-          <CarFront className="w-5 h-5 mr-2" />
-          <span className="font-light">{Identity.companyShortName}</span>
+          <span className="font-light tracking-widest">
+            {Identity.companyShortName.toUpperCase()}
+          </span>
           <span className="sr-only">{Identity.companyName}</span>
         </Link>
         <nav className="ml-auto flex items-center gap-2">

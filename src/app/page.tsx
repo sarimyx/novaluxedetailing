@@ -68,7 +68,7 @@ export default function HomePage() {
             </div>
           </section>
           <Separator />
-          <section className="space-y-4 md:mx-4 mx-12">
+          <section className="space-y-4 mx-4">
             <Pricing />
           </section>
           <Separator />

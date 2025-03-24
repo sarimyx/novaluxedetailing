@@ -5,6 +5,7 @@ import Pricing from "@/components/pricing";
 import { CarFront, Map, MapPin, MapPinned, PhoneCall } from "lucide-react";
 import { Styling } from "@/constants/styling";
 import { InstagramLogoIcon } from "@radix-ui/react-icons";
+import { Separator } from "@/components/ui/separator";
 
 export default function HomePage() {
   return (
@@ -65,22 +66,13 @@ export default function HomePage() {
                 </span>
               </section>
             </div>
-            {/* <br /> */}
-            {/* <div className="w-full flex justify-center">
-              <Image
-                src="/branding/graphic_just-on-time.png"
-                width={700}
-                height={700}
-                alt="demo"
-                priority
-                className=""
-              />
-            </div> */}
           </section>
-          <hr />
+          <Separator />
           <section className="space-y-4 md:mx-4 mx-12">
             <Pricing />
           </section>
+          <Separator />
+          {/* Add more sections here... */}
           <hr />
         </div>
       </main>

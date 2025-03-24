@@ -6,6 +6,7 @@ import { CarFront, Map, MapPin, MapPinned, PhoneCall } from "lucide-react";
 import { Styling } from "@/constants/styling";
 import { InstagramLogoIcon } from "@radix-ui/react-icons";
 import { Separator } from "@/components/ui/separator";
+import { Fonts } from "@/constants/fonts";
 
 export default function HomePage() {
   return (
@@ -15,13 +16,13 @@ export default function HomePage() {
           <section className="flex flex-col items-center space-y-4">
             <br />
             <h1
-              className={`text-6xl font-bold text-center ${Styling.GoldChromatic}`}
+              className={`text-6xl font-bold text-center ${Styling.GoldChromatic} ${Fonts.premium.className} pb-2`}
             >
               {Identity.companyName}
             </h1>
             <div className="flex flex-col mx-4 space-y-2 text-slate-600 dark:text-slate-400 text-center text-2xl font-light text-foreground">
               <div className="flex text-center justify-center items-center">
-                <span className="font-light">
+                <span className={`font-light ${Fonts.premium.className} pb-2`}>
                   {" "}
                   Premium Interior Car Detail{" "}
                 </span>
@@ -40,7 +41,7 @@ export default function HomePage() {
               </Button>
             </div>
             <span className="dark:text-white font-light">
-              (less than 3 clicks – we&apos;ll come to you)
+              (less than 3 clicks – we&apos;ll come to you!)
             </span>
             <div className="flex w-full text-center justify-center hover:text-violet-300">
               <Button variant="link" asChild>
@@ -59,7 +60,9 @@ export default function HomePage() {
             <div className="flex flex-col">
               <section className="flex items-center gap-1">
                 <MapPin className="text-orange-400" />
-                <span className="text-secondary-foreground">
+                <span
+                  className={`text-secondary-foreground ${Fonts.premium.className}`}
+                >
                   {" "}
                   Proudly Serving{" "}
                   <strong className="dark:text-white">Utah</strong>{" "}

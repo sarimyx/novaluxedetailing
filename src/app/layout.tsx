@@ -9,25 +9,59 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { Navbar } from "@/components/navbar";
 import { LoadingIcon } from "@/components/ui/loading-icon";
 import { Suspense } from "react";
-import { Identity } from "@/constants/identity";
 
 import Script from "next/script";
 
 export const runtime = "edge";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(
-    process.env.APP_URL
-      ? `${process.env.APP_URL}`
-      : process.env.VERCEL_URL
-        ? `https://${process.env.VERCEL_URL}`
-        : `http://localhost:${process.env.PORT || 3000}`,
-  ),
-  title: Identity.companyName,
+  metadataBase: new URL("https://novaluxedetailing.com"),
+  title: {
+    default: "Nova Luxe Detailing",
+    template: "%s | Nova Luxe Detailing",
+  },
   description:
-    "Auto detailing services for Utah. We offer a variety of detailing services for your vehicle. Book an appointment today!",
+    "Premium auto detailing services in Utah. From interior deep cleans to ceramic coatings, we aim to give you the royal experience. Book your detail today, in less than 3 clicks.",
+  keywords: [
+    "auto detailing Utah",
+    "car detailing",
+    "ceramic coating",
+    "interior cleaning",
+    "mobile detailing",
+    "utah county auto detail",
+    "Nova Luxe Detailing",
+  ],
   alternates: {
-    canonical: "/",
+    canonical: "https://novaluxedetailing.com",
+  },
+  openGraph: {
+    title: "Nova Luxe Detailing | Premium Auto Detailing in Utah",
+    description:
+      "Premium detailing services in Utah. In less than 3 clicks, book your detail and get a royal experience",
+    url: "https://novaluxedetailing.com",
+    siteName: "Nova Luxe Detailing",
+    images: [
+      {
+        url: "https://novaluxedetailing.com/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Nova Luxe Detailing",
+      },
+    ],
+    locale: "en_US",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Nova Luxe Detailing",
+    description: "Top-tier mobile auto detailing services in Utah.",
+    images: ["https://novaluxedetailing.com/og-image.jpg"],
+    creator: "@NovaLuxeDetailing",
+  },
+  icons: {
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
   },
 };
 

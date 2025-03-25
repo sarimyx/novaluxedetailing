@@ -22,17 +22,6 @@ export default async function BookingsPage({
   if (!service.data) return;
   return (
     <ContentLayout title="Bookings" hideSidebar>
-      <Script
-        id="google-conversion"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-            gtag('event', 'conversion', {
-              send_to: 'AW-16947905102/CVeRCKrtwa4aEM6EspE_'
-            });
-          `,
-        }}
-      />
       <div className="space-y-4">
         <a href="/#pricing">
           <Button variant="outline" className="w-fit">

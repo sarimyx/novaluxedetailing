@@ -36,20 +36,19 @@ export function getMenuList(pathname: string): Group[] {
     target = "provider";
   } else if (pathname.startsWith("/dashboard/customer")) {
     target = "customer";
-  } else {
-    target = "customer";
   }
 
   const base = {
     groupLabel: "",
     menus: [
       {
-        href: "/dashboard",
+        href: `/dashboard/${target}`,
         label: "Dashboard",
         icon: LayoutGrid,
         submenus: [],
         active:
           pathname.startsWith("/dashboard") &&
+          // Any sub pages are appended to the end of the pathname after the target, so if the target itself is is the last word in the pathname, we are on the root dashboard page.
           (pathname.endsWith("staff") ||
             pathname.endsWith("provider") ||
             pathname.endsWith("customer")),
@@ -57,7 +56,7 @@ export function getMenuList(pathname: string): Group[] {
     ],
   };
 
-  const staff_activeServices = {
+  const staff_DatabasesSection = {
     groupLabel: "Databases",
     menus: [
       {
@@ -80,7 +79,7 @@ export function getMenuList(pathname: string): Group[] {
   };
 
   if (pathname.startsWith("/dashboard/staff")) {
-    return [base, staff_activeServices, manageProfile];
+    return [base, staff_DatabasesSection, manageProfile];
   } else if (pathname.startsWith("/dashboard/provider")) {
     return [base, manageProfile];
   } else {

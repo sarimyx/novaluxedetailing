@@ -41,7 +41,7 @@ export default function LoginPage() {
             </SignedOut>
           </div>
           <SignedOut>
-            <SignIn />
+            <SignIn forceRedirectUrl="/dashboard" />
           </SignedOut>
         </div>
       </div>

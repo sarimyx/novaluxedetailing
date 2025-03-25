@@ -35,7 +35,7 @@ export default function JoinPage() {
             </SignedOut>
           </div>
           <SignedOut>
-            <SignUp />
+            <SignUp forceRedirectUrl="/dashboard" />
           </SignedOut>
         </div>
       </div>

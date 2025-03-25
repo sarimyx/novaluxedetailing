@@ -4,7 +4,6 @@ import { Card } from "@/components/ui/card";
 import { Identity } from "@/constants/identity";
 import { Styling } from "@/constants/styling";
 import { supabaseServerClient } from "@/utils/supabase-client-server";
-import Script from "next/script";
 
 export default async function BookingsPage({
   params,
@@ -71,7 +70,7 @@ export default async function BookingsPage({
           <span className="text-slate-700 dark:text-slate-300 font-light text-lg">
             {" "}
             Book now by calling us at{" "}
-            <a href={Identity.companyPhoneNumber} className="link">
+            <a href={`tel:${Identity.companyPhoneNumber}`} className="link">
               {Identity.companyPhoneNumberFormatted}
             </a>
             .{" "}

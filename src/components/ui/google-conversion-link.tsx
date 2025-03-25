@@ -16,7 +16,7 @@ export function GoogleConversionLink({
   const router = useRouter();
 
   const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
-    e.preventDefault(); // Prevent immediate nav
+    e.preventDefault(); // Prevent immediate navigation
 
     if (
       typeof window !== "undefined" &&
@@ -27,15 +27,16 @@ export function GoogleConversionLink({
       });
     }
 
-    // Delay a little so the conversion tag fires before navigating
     setTimeout(() => {
       router.push(href);
-    }, 200); // 200ms is usually enough
+    }, 200);
   };
 
   return (
-    <Link href={href} onClick={handleClick} className={className}>
-      {children}
+    <Link href={href} passHref legacyBehavior>
+      <a onClick={handleClick} className={className}>
+        {children}
+      </a>
     </Link>
   );
 }

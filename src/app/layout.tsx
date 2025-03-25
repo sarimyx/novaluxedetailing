@@ -11,6 +11,8 @@ import { LoadingIcon } from "@/components/ui/loading-icon";
 import { Suspense } from "react";
 import { Identity } from "@/constants/identity";
 
+import Script from "next/script";
+
 export const runtime = "edge";
 
 export const metadata: Metadata = {
@@ -38,6 +40,24 @@ export default function RootLayout({
     <ClerkProvider signInUrl="/login" signUpUrl="/join">
       <html lang="en" suppressHydrationWarning>
         <body className={GeistSans.className}>
+          {/* Google Ads */}
+          <Script
+            strategy="afterInteractive"
+            src={`https://www.googletagmanager.com/gtag/js?id=AW-10986242730`}
+          />
+          <Script
+            id="google-ads"
+            strategy="afterInteractive"
+            dangerouslySetInnerHTML={{
+              __html: `
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'AW-10986242730');
+    `,
+            }}
+          />
+
           <ThemeProvider
             attribute="class"
             defaultTheme="dark"

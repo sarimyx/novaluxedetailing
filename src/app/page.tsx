@@ -51,7 +51,10 @@ export default function HomePage() {
                 </Link>
               </Button>
               <Button variant="link" asChild>
-                <Link href="tel:+18019798457" rel="noopener noreferrer">
+                <Link
+                  href={`tel:+${Identity.companyPhoneNumber}`}
+                  rel="noopener noreferrer"
+                >
                   <PhoneCall className="w-4 h-4 mr-2" />
                   {Identity.companyPhoneNumberFormatted}
                 </Link>

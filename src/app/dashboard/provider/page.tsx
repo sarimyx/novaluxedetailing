@@ -33,7 +33,7 @@ export default function ProviderDashboardPage() {
   );
 }
 
-export function Availability() {
+function Availability() {
   return (
     <div>
       <section>

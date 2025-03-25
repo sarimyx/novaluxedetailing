@@ -7,6 +7,7 @@ import {
   SignedIn,
   SignedOut,
 } from "@clerk/nextjs";
+import { dark } from "@clerk/themes";
 
 export default function SelectOrganizationPage() {
   return (
@@ -20,6 +21,7 @@ export default function SelectOrganizationPage() {
               Select your organization.
             </span>
             <OrganizationList
+              appearance={{ baseTheme: dark }}
               afterSelectOrganizationUrl={(org) =>
                 `/dashboard${org.slug ? `/${org.slug}` : ""}`
               }

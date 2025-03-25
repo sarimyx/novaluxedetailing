@@ -13,6 +13,7 @@ import {
 import { usePathname } from "next/navigation";
 import { Identity } from "@/constants/identity";
 import { Fonts } from "@/constants/fonts";
+import { dark } from "@clerk/themes";
 
 export function Navbar() {
   const pathname = usePathname();
@@ -46,8 +47,9 @@ export function Navbar() {
               </a>
             )}
             {pathname.includes("dashboard") && (
-              <span className="dark:bg-white rounded-lg">
+              <span className="dark:bg-slate-900 rounded-lg">
                 <OrganizationSwitcher
+                  appearance={{ baseTheme: dark }}
                   afterSelectPersonalUrl="/dashboard/customer"
                   afterSelectOrganizationUrl={(org) => {
                     switch (org.name?.toLowerCase()) {
@@ -66,7 +68,7 @@ export function Navbar() {
           </SignedIn>
           <header className="flex justify-end items-center gap-2 h-16">
             <SignedOut>
-              <SignInButton>
+              <SignInButton appearance={{ baseTheme: dark }}>
                 <Button
                   variant="default"
                   className="rounded-full bg-violet-600 hover:bg-violet-500"
@@ -86,7 +88,7 @@ export function Navbar() {
                             </SignUpButton> */}
             </SignedOut>
             <SignedIn>
-              <UserButton />
+              <UserButton appearance={{ baseTheme: dark }} />
             </SignedIn>
           </header>
           <a href={`tel:${Identity.companyPhoneNumber}`}>

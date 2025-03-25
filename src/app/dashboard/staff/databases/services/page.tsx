@@ -1,18 +1,13 @@
 import { ContentLayout } from "@/components/admin-panel/content-layout";
-import { RedirectToSignIn } from "@clerk/nextjs";
 import { supabaseServerClient } from "@/utils/supabase-client-server";
 import { DataTable } from "./data-table";
 import { columns } from "./columns";
-import { currentUser } from "@clerk/nextjs/server";
 
 export default async function StaffDashboardSubpage() {
   const db = await supabaseServerClient();
   const { data } = await db.from("Services").select("*");
   if (!data) return <p>Failed to load staff.</p>;
-  const user = await currentUser();
-  return !user ? (
-    <RedirectToSignIn />
-  ) : (
+  return (
     <ContentLayout title="Databases">
       <div className="flex flex-col space-y-3 py-4">
         <div className="flex text-slate-700 dark:text-slate-300 font-light items-center justify-between">

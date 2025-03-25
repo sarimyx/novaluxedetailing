@@ -1,14 +1,21 @@
+"use client";
+
 import { ContentLayout } from "@/components/admin-panel/content-layout";
-import { currentUser } from "@clerk/nextjs/server";
-import { RedirectToSignIn } from "@clerk/nextjs";
 import { Styling } from "@/constants/styling";
 import { Button } from "@/components/ui/button";
+import { useUser } from "@clerk/nextjs";
+import { LoadingIcon } from "@/components/ui/loading-icon";
 
-export default async function StaffDashboardPage() {
-  const user = await currentUser();
-  return !user ? (
-    <RedirectToSignIn />
-  ) : (
+export default function StaffDashboardPage() {
+  const { isLoaded, isSignedIn, user } = useUser();
+  if (!isLoaded)
+    return (
+      <ContentLayout title="Loading...">
+        <LoadingIcon />
+      </ContentLayout>
+    );
+  if (!isSignedIn) return null;
+  return (
     <ContentLayout title="Dashboard">
       <div className="flex flex-col space-y-8 py-4">
         <section className="flex flex-col">

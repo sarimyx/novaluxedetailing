@@ -47,11 +47,11 @@ export function SectionHeader({ title, hideSidebar }: SectionHeaderProps) {
               <BreadcrumbItem key={crumb.href}>
                 {index < breadcrumbs.length - 1 ? (
                   <>
-                    <BreadcrumbLink asChild>
-                      <Link href={crumb.href}>
+                    <BreadcrumbLink href={crumb.href}>
+                      <p>
                         {crumb.name.charAt(0).toUpperCase() +
                           crumb.name.slice(1)}
-                      </Link>
+                      </p>
                     </BreadcrumbLink>
                     <BreadcrumbSeparator />
                   </>
@@ -66,8 +66,8 @@ export function SectionHeader({ title, hideSidebar }: SectionHeaderProps) {
         </Breadcrumb>
       </div>
       {hideSidebar !== true && (
-        <div className="mx-4 sm:mx-8 flex items-center pt-4">
-          <div className="flex items-center space-x-4 lg:space-x-0">
+        <div className="mx-4 sm:mx-8 flex items-center">
+          <div className="flex mt-2 items-center space-x-4 lg:space-x-0">
             {<SheetMenu />}
           </div>
         </div>

@@ -8,7 +8,7 @@ export default async function CustomerDashboardPage() {
     <RedirectToSignIn />
   ) : (
     <ContentLayout title="Dashboard">
-      <div className="flex flex-col space-y-3 py-4">
+      <div className="flex flex-col space-y-4">
         <span className="text-2xl">Coming soon.</span>
       </div>
     </ContentLayout>

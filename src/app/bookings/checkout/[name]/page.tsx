@@ -23,7 +23,7 @@ export default async function BookingsPage({
     <ContentLayout title="Bookings" hideSidebar>
       <div className="space-y-4">
         <a href="/#pricing">
-          <Button variant="outline" className="mt-4 w-fit">
+          <Button variant="outline" className="w-fit">
             ← Back
           </Button>
         </a>

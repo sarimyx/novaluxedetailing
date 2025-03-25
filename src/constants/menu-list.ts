@@ -29,6 +29,17 @@ type Group = {
 };
 
 export function getMenuList(pathname: string): Group[] {
+  let target = "";
+  if (pathname.startsWith("/dashboard/staff")) {
+    target = "staff";
+  } else if (pathname.startsWith("/dashboard/provider")) {
+    target = "provider";
+  } else if (pathname.startsWith("/dashboard/customer")) {
+    target = "customer";
+  } else {
+    target = "customer";
+  }
+
   const base = {
     groupLabel: "",
     menus: [
@@ -46,7 +57,7 @@ export function getMenuList(pathname: string): Group[] {
     ],
   };
 
-  const services = {
+  const staff_activeServices = {
     groupLabel: "Databases",
     menus: [
       {
@@ -57,9 +68,22 @@ export function getMenuList(pathname: string): Group[] {
     ],
   };
 
+  const manageProfile = {
+    groupLabel: "Account",
+    menus: [
+      {
+        href: `/dashboard/${target}/manage-profile`,
+        label: "Manage Profile",
+        icon: CarFront,
+      },
+    ],
+  };
+
   if (pathname.startsWith("/dashboard/staff")) {
-    return [base, services];
+    return [base, staff_activeServices, manageProfile];
+  } else if (pathname.startsWith("/dashboard/provider")) {
+    return [base, manageProfile];
   } else {
-    return [base];
+    return [base, manageProfile];
   }
 }

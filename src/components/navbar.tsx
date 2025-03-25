@@ -46,20 +46,22 @@ export function Navbar() {
               </a>
             )}
             {pathname.includes("dashboard") && (
-              <OrganizationSwitcher
-                afterSelectPersonalUrl="/dashboard/customer"
-                afterSelectOrganizationUrl={(org) => {
-                  switch (org.name?.toLowerCase()) {
-                    case "provider":
-                      return `/dashboard/provider`;
-                    case "staff":
-                      return `/dashboard/staff`;
-                    default:
-                      return `/dashboard/customer`;
-                  }
-                }}
-                afterLeaveOrganizationUrl="/"
-              ></OrganizationSwitcher>
+              <span className="dark:bg-white rounded-lg">
+                <OrganizationSwitcher
+                  afterSelectPersonalUrl="/dashboard/customer"
+                  afterSelectOrganizationUrl={(org) => {
+                    switch (org.name?.toLowerCase()) {
+                      case "provider":
+                        return `/dashboard/provider`;
+                      case "staff":
+                        return `/dashboard/staff`;
+                      default:
+                        return `/dashboard/customer`;
+                    }
+                  }}
+                  afterLeaveOrganizationUrl="/"
+                />
+              </span>
             )}
           </SignedIn>
           <header className="flex justify-end items-center gap-2 h-16">

@@ -1,5 +1,6 @@
 "use client";
 
+import { Styling } from "@/constants/styling";
 import {
   OrganizationList,
   RedirectToSignIn,
@@ -13,7 +14,9 @@ export default function SelectOrganizationPage() {
       <SignedIn>
         <div className="flex justify-center px-4 py-8">
           <div className="flex flex-col space-y-4">
-            <span className="max-w-80 text-5xl font-light bg-gradient-to-r from-violet-500 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+            <span
+              className={`max-w-80 text-5xl font-light ${Styling.GoldChromatic}`}
+            >
               Select your organization.
             </span>
             <OrganizationList

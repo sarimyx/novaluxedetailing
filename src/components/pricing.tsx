@@ -1,5 +1,6 @@
 import { Styling } from "@/constants/styling";
-import { Button } from "./ui/button";
+import { Button } from "@/components/ui/button";
+import { GoogleConversionLink } from "@/components/ui/google-conversion-link";
 import { Identity } from "@/constants/identity";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 import { CheckCircle2, CircleDollarSign, Clock, Star } from "lucide-react";
@@ -159,11 +160,11 @@ export default async function Pricing() {
                             disabled={!active}
                           >
                             {active ? (
-                              <Link
+                              <GoogleConversionLink
                                 href={`/bookings/checkout/${encodeURIComponent(name)}`}
                               >
                                 Select
-                              </Link>
+                              </GoogleConversionLink>
                             ) : (
                               <span>Coming soon</span>
                             )}

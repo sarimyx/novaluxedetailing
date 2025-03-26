@@ -2,11 +2,7 @@ import {
   CarFront,
   LayoutGrid,
   LucideIcon,
-  // Tag,
-  // Users,
-  // Settings,
-  // Bookmark,
-  // SquarePen,
+  Settings,
 } from "lucide-react";
 
 type Submenu = {
@@ -73,7 +69,7 @@ export function getMenuList(pathname: string): Group[] {
       {
         href: `/dashboard/${target}/manage-profile`,
         label: "Manage Profile",
-        icon: CarFront,
+        icon: Settings,
       },
     ],
   };

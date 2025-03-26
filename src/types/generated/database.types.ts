@@ -17,6 +17,7 @@ export type Database = {
           id: number;
           name: string;
           price: number;
+          recommendation: string | null;
           type: string;
         };
         Insert: {
@@ -26,6 +27,7 @@ export type Database = {
           id?: number;
           name: string;
           price?: number;
+          recommendation?: string | null;
           type: string;
         };
         Update: {
@@ -35,6 +37,7 @@ export type Database = {
           id?: number;
           name?: string;
           price?: number;
+          recommendation?: string | null;
           type?: string;
         };
         Relationships: [];

@@ -31,8 +31,8 @@ export default function Gallery() {
                   <Image
                     src={`/gallery/${id}.png`}
                     alt={`Gallery image ${id}`}
-                    width={800}
-                    height={600}
+                    width={500}
+                    height={250}
                     className="object-cover w-full h-auto rounded-2xl"
                   />
                 </CardContent>
@@ -40,7 +40,7 @@ export default function Gallery() {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <div className="flex justify-center gap-4 mt-6">
+        <div className="flex justify-center gap-4">
           <CarouselPrevious />
           <CarouselNext />
         </div>

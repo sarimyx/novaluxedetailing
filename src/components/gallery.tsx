@@ -9,6 +9,7 @@ import {
   CarouselNext,
 } from "@/components/ui/carousel";
 import Image from "next/image";
+import { Button } from "./ui/button";
 
 export default function Gallery() {
   return (
@@ -45,6 +46,11 @@ export default function Gallery() {
           <CarouselNext />
         </div>
       </Carousel>
+      <div className="flex items-center justify-center mt-4">
+        <a href="#booking">
+          <Button size="lg">Book now</Button>
+        </a>
+      </div>
     </section>
   );
 }

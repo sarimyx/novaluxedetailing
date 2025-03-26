@@ -22,7 +22,7 @@ export default function Gallery() {
 
       <Carousel className="w-full max-w-5xl mx-auto">
         <CarouselContent className="flex gap-6">
-          {["1", "2", "3"].map((id) => (
+          {["1", "2", "3", "4"].map((id) => (
             <CarouselItem
               key={`gallery-${id}`}
               className="min-w-[80%] md:min-w-[40%] lg:min-w-[30%] transition-all duration-500 hover:scale-105"

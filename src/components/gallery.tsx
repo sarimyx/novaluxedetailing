@@ -14,7 +14,7 @@ export default function Gallery() {
   return (
     <section id="gallery" className={`mx-12 ${Fonts.premium.className}`}>
       <h1
-        className={`text-5xl md:text-6xl font-semibold text-center mb-12 tracking-tight ${Styling.GoldChromatic}`}
+        className={`text-5xl md:text-6xl font-semibold text-center mb-8 pb-2 tracking-tight ${Styling.GoldChromatic}`}
       >
         Our Gallery
       </h1>

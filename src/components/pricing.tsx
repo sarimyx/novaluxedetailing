@@ -2,7 +2,7 @@ import { supabaseServerClient } from "@/utils/supabase-client-server";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { GoogleConversionLink } from "@/components/ui/google-conversion-link";
-import { Clock, CheckCircle2, CircleDollarSign, Star } from "lucide-react";
+import { Clock, CheckCircle2, Star } from "lucide-react";
 import { Identity } from "@/constants/identity";
 import { Styling } from "@/constants/styling";
 import { Fonts } from "@/constants/fonts";
@@ -101,7 +101,7 @@ export default async function Pricing() {
                             {duration}
                           </div>
                           {name.includes("Premium") && (
-                            <div className="flex text-red-800 items-center text-sm bg-yellow-200 dark:bg-yellow-700 font-semibold px-2 py-1 rounded">
+                            <div className="flex text-secondary items-center text-sm bg-yellow-200 dark:bg-yellow-700 font-semibold px-2 py-1 rounded">
                               <Star className="w-4 h-4 mr-1" /> Popular
                             </div>
                           )}

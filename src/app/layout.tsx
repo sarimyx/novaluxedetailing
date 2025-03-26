@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     template: "%s | Nova Luxe Detailing",
   },
   description:
-    "Premium auto detailing services in Utah. From interior deep cleans to ceramic coatings, we aim to give you the royal experience. Book your detail today, in less than 3 clicks.",
+    "Premium auto detailing services in Utah. We aim to give you the royal experience. Book your detail today, in less than 3 clicks.",
   keywords: [
     "auto detailing Utah",
     "car detailing",
@@ -73,6 +73,9 @@ export default function RootLayout({
   return (
     <ClerkProvider signInUrl="/login" signUpUrl="/join">
       <html lang="en" suppressHydrationWarning>
+        <head>
+          <link rel="favicon" href="/favicon.ico" sizes="any" />
+        </head>
         <body className={GeistSans.className}>
           {/* Google Ads */}
           <Script

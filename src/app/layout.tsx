@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { GeistSans } from "geist/font/sans";
 
 import "./globals.css";
 
@@ -11,6 +10,7 @@ import { LoadingIcon } from "@/components/ui/loading-icon";
 import { Suspense } from "react";
 
 import Script from "next/script";
+import { Fonts } from "@/constants/fonts";
 
 export const runtime = "edge";
 
@@ -76,7 +76,7 @@ export default function RootLayout({
         <head>
           <link rel="favicon" href="/favicon.ico" sizes="any" />
         </head>
-        <body className={GeistSans.className}>
+        <body className={Fonts.default.className}>
           {/* Google Ads */}
           <Script
             strategy="afterInteractive"

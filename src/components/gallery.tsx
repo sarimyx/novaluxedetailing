@@ -24,7 +24,7 @@ export default function Gallery() {
           {["1", "2", "3"].map((id) => (
             <CarouselItem
               key={`gallery-${id}`}
-              className="min-w-[80%] md:min-w-[40%] lg:min-w-[30%]"
+              className="min-w-[80%] md:min-w-[40%] lg:min-w-[30%] transition-all duration-500 hover:scale-105"
             >
               <Card className="shadow-xl border-none overflow-hidden rounded-2xl">
                 <CardContent className="p-0">

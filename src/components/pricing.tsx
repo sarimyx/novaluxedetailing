@@ -84,7 +84,7 @@ export default async function Pricing() {
                   return (
                     <div
                       key={id}
-                      className="bg-gray-900 shadow-lg rounded-2xl p-6 w-full md:w-[300px] flex flex-col justify-between"
+                      className="bg-gray-900 shadow-lg rounded-2xl p-6 w-full md:w-[300px] flex flex-col justify-between transition-all duration-500 hover:scale-105"
                     >
                       <div>
                         <h2

@@ -39,7 +39,7 @@ export default async function Pricing() {
 
       <Tabs defaultValue={serviceTypes[0]} className="w-full max-w-6xl mx-auto">
         <div className="flex justify-center">
-          <TabsList className="flex justify-center gap-4 mb-2 flex-wrap">
+          <TabsList className="flex justify-center gap-4 mb-2">
             {serviceTypes.map((type) => {
               const isDisabled = groupedServices[type].every((s) => !s.active);
               return (
@@ -47,7 +47,7 @@ export default async function Pricing() {
                   key={type}
                   value={type}
                   disabled={isDisabled}
-                  className="uppercase text-sm tracking-wide text-sm font-light"
+                  className="uppercase text-sm tracking-wide text-xs font-light"
                 >
                   {type.charAt(0).toUpperCase() + type.slice(1)}
                   {isDisabled && " (coming soon)"}

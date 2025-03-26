@@ -7,6 +7,7 @@ import { Styling } from "@/constants/styling";
 import { InstagramLogoIcon } from "@radix-ui/react-icons";
 import { Separator } from "@/components/ui/separator";
 import { Fonts } from "@/constants/fonts";
+import Gallery from "@/components/gallery";
 
 export default function HomePage() {
   return (
@@ -76,6 +77,10 @@ export default function HomePage() {
           <Separator />
           <section className="space-y-4 mx-4">
             <Pricing />
+          </section>
+          <Separator />
+          <section className="space-y-4 mx-4">
+            <Gallery />
           </section>
           <Separator />
           {/* Add more sections here... */}

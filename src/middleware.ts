@@ -1,8 +1,6 @@
 import {
-  clerkClient,
   clerkMiddleware,
   createRouteMatcher,
-  getAuth,
 } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
 

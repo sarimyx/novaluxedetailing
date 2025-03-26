@@ -30,9 +30,9 @@ export default async function Pricing() {
   );
 
   return (
-    <div id="pricing" className="px-24 md:px-12 lg:px-20">
+    <div id="pricing" className={`px-8 ${Fonts.premium.className}`}>
       <h1
-        className={`text-5xl font-semibold text-center mb-10 tracking-tight ${Styling.GoldChromatic} ${Fonts.premium.className}`}
+        className={`text-5xl font-semibold text-center mb-10 tracking-tight ${Styling.GoldChromatic}`}
       >
         Choose Your Service
       </h1>
@@ -69,7 +69,15 @@ export default async function Pricing() {
               className="flex flex-wrap justify-center gap-8"
             >
               {groupedServices[type].map(
-                ({ id, name, duration, features, price, active }) => {
+                ({
+                  id,
+                  name,
+                  duration,
+                  features,
+                  price,
+                  active,
+                  recommendation,
+                }) => {
                   const featureList = features.split(", ");
                   const emptySlots = maxFeatures - featureList.length;
 
@@ -83,28 +91,28 @@ export default async function Pricing() {
                           className={`text-4xl md:text-3xl font-bold mb-1 items-center ${Styling.GoldChromatic}`}
                         >
                           {name.split(" ")[0]}
-                          <span className="font-extralight text-secondary-foreground ml-1">
+                          <span className="font-light text-secondary-foreground pl-2">
                             {name.split(" ")[1]}
                           </span>
                         </h2>
                         <div className="flex gap-2 mb-2 mt-4">
-                          <div className="flex items-center text-sm bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">
+                          <div className="flex items-center text-sm bg-gray-100 dark:bg-gray-700 text-secondary-foreground px-2 py-1 rounded">
                             <Clock className="w-4 h-4 mr-1" />
                             {duration}
                           </div>
-                          {name === "Premium Interior" && (
-                            <div className="flex items-center text-sm bg-yellow-200 dark:bg-yellow-700 font-semibold px-2 py-1 rounded">
+                          {name.includes("Premium") && (
+                            <div className="flex text-red-800 items-center text-sm bg-yellow-200 dark:bg-yellow-700 font-semibold px-2 py-1 rounded">
                               <Star className="w-4 h-4 mr-1" /> Popular
                             </div>
                           )}
-                          {name === "Full Interior" && (
-                            <div className="flex items-center text-sm bg-green-200 dark:bg-green-700 text-green-900 font-semibold px-2 py-1 rounded">
-                              <CircleDollarSign className="w-4 h-4 mr-1" /> Best
-                              Value
-                            </div>
-                          )}
                         </div>
-
+                        {recommendation && (
+                          <div
+                            className={`flex md:text-lg text-xl text-secondary-foreground pt-2 font-semibold ${Fonts.default.className}`}
+                          >
+                            {recommendation}
+                          </div>
+                        )}
                         <ul className="mt-4 mb-6 space-y-2 text-sm text-gray-700 dark:text-gray-300">
                           {featureList.map((feature) => (
                             <li
@@ -172,17 +180,17 @@ export default async function Pricing() {
         })}
       </Tabs>
 
-      <div className="text-center mt-10 text-sm text-gray-500 dark:text-gray-400">
+      <div
+        className={`text-center mt-10 text-sm text-gray-500 dark:text-gray-400 space-y-2 font-light text-sm text-slate-500 ${Fonts.default.className}`}
+      >
         <p>
-          † Prices exclude taxes and may vary with add-ons or promotions. For a
-          full quote,
-          <a
-            href={`tel:${Identity.companyPhoneNumber}`}
-            className="underline ml-1"
-          >
-            call us
-          </a>
-          .
+          †Excluding taxes. Prices do not reflect any special offers or add-ons
+          that may be applicable.
+          <a href={`tel:${Identity.companyPhoneNumber}`} className="link">
+            {" "}
+            Call us{" "}
+          </a>{" "}
+          for more price information.
         </p>
         <p>† Time estimates may vary based on vehicle size and condition.</p>
       </div>

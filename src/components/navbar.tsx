@@ -31,7 +31,7 @@ export function Navbar() {
           >
             <Image
               src="/logo-wheel-transparent.png"
-              alt=""
+              alt="Nova Luxe Logo"
               className="rounded-lg"
               width={30}
               height={30}

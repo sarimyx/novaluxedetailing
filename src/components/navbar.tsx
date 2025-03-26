@@ -14,6 +14,7 @@ import { usePathname } from "next/navigation";
 import { Identity } from "@/constants/identity";
 import { Fonts } from "@/constants/fonts";
 import { dark } from "@clerk/themes";
+import Image from "next/image";
 
 export function Navbar() {
   const pathname = usePathname();
@@ -26,8 +27,15 @@ export function Navbar() {
           className="flex justify-start items-center hover:opacity-85 transition-opacity duration-300"
         >
           <span
-            className={`font-light tracking-widest ${Fonts.premium.className}`}
+            className={`flex gap-1 items-center font-light tracking-widest ${Fonts.premium.className}`}
           >
+            <Image
+              src="/logo-wheel-transparent.png"
+              alt=""
+              className="rounded-lg"
+              width={30}
+              height={30}
+            />
             {Identity.companyShortName.toUpperCase()}
           </span>
           <span className="sr-only">{Identity.companyName}</span>

@@ -1,26 +1,18 @@
-import { Styling } from "@/constants/styling";
+import { supabaseServerClient } from "@/utils/supabase-client-server";
+import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Button } from "@/components/ui/button";
 import { GoogleConversionLink } from "@/components/ui/google-conversion-link";
+import { Clock, CheckCircle2, CircleDollarSign, Star } from "lucide-react";
 import { Identity } from "@/constants/identity";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
-import { CheckCircle2, CircleDollarSign, Clock, Star } from "lucide-react";
-import Link from "next/link";
-import { MiscUtils } from "@/utils/misc";
-import { supabaseServerClient } from "@/utils/supabase-client-server";
+import { Styling } from "@/constants/styling";
 import { Fonts } from "@/constants/fonts";
-
-const sectionStyle =
-  "flex flex-col p-4 bg-slate-100 dark:bg-slate-900 rounded-lg md:h-max lg:w-60 mb-8 justify-between";
-const serviceHeadingStyle = `md:text-2xl text-3xl font-bold truncate ${Fonts.premium.className}`;
-const priceLabelStyle = `text-4xl font-bold ${Styling.GoldChromatic} ${Fonts.premium.className}`;
 
 export default async function Pricing() {
   const db = await supabaseServerClient();
   const { data: services } = await db.from("Services").select("*");
 
-  if (!services) return <p>Failed to load services.</p>;
+  if (!services) return <p>Unable to load services at this time.</p>;
 
-  // Group services by type (interior, exterior, etc.)
   const groupedServices = services
     .sort((a, b) => a.price - b.price)
     .reduce(
@@ -32,169 +24,168 @@ export default async function Pricing() {
       {} as Record<string, typeof services>,
     );
 
-  // Define tab order (others will default after these)
   const order: Record<string, number> = { interior: 0, exterior: 1 };
-
-  // Get unique service types and sort them
   const serviceTypes = Object.keys(groupedServices).sort(
     (a, b) => (order[a] ?? 2) - (order[b] ?? 2),
   );
 
   return (
-    <div id="pricing">
+    <div id="pricing" className="px-24 md:px-12 lg:px-20">
       <h1
-        className={`text-4xl font-bold text-center mb-4 ${Styling.GoldChromatic} ${Fonts.premium.className}`}
+        className={`text-5xl font-semibold text-center mb-10 tracking-tight ${Styling.GoldChromatic} ${Fonts.premium.className}`}
       >
         Choose Your Service
       </h1>
 
-      <Tabs
-        defaultValue={serviceTypes[0]}
-        className="justify-center items-center text-center"
-      >
-        <TabsList className="mb-4">
-          {serviceTypes.map((type) => {
-            const isDisabled = groupedServices[type].every((s) => !s.active);
-            return (
-              <TabsTrigger key={type} value={type} disabled={isDisabled}>
-                {MiscUtils.capitalizeString(type)}{" "}
-                {isDisabled && "(coming soon)"}
-              </TabsTrigger>
-            );
-          })}
-        </TabsList>
+      <Tabs defaultValue={serviceTypes[0]} className="w-full max-w-6xl mx-auto">
+        <div className="flex justify-center">
+          <TabsList className="flex justify-center gap-4 mb-2 flex-wrap">
+            {serviceTypes.map((type) => {
+              const isDisabled = groupedServices[type].every((s) => !s.active);
+              return (
+                <TabsTrigger
+                  key={type}
+                  value={type}
+                  disabled={isDisabled}
+                  className="uppercase text-sm tracking-wide text-sm font-light"
+                >
+                  {type.charAt(0).toUpperCase() + type.slice(1)}
+                  {isDisabled && " (coming soon)"}
+                </TabsTrigger>
+              );
+            })}
+          </TabsList>
+        </div>
 
         {serviceTypes.map((type) => {
-          // Find the max number of features in this service type
           const maxFeatures = Math.max(
             ...groupedServices[type].map((s) => s.features.split(", ").length),
           );
 
           return (
-            <TabsContent key={type} value={type}>
-              <div className="md:flex md:space-x-4 md:gap-4 justify-center text-center">
-                {groupedServices[type].map(
-                  ({ id, name, duration, features, price, active }) => {
-                    const featureList = features.split(", ");
-                    const emptySlots = maxFeatures - featureList.length;
+            <TabsContent
+              key={type}
+              value={type}
+              className="flex flex-wrap justify-center gap-8"
+            >
+              {groupedServices[type].map(
+                ({ id, name, duration, features, price, active }) => {
+                  const featureList = features.split(", ");
+                  const emptySlots = maxFeatures - featureList.length;
 
-                    return (
-                      <section key={id} className={sectionStyle}>
-                        <div>
-                          <h1 className={serviceHeadingStyle}>
-                            <span className={`font-bold`}>
-                              {name.split(" ")[0]}
-                            </span>{" "}
-                            <span className="font-extralight text-secondary-foreground">
-                              {name.split(" ").slice(1).join(" ")}
-                            </span>
-                          </h1>
-                          <hr className="hidden md:block my-1" />
-                        </div>
-
-                        <div className="flex flex-col justify-center items-center text-slate-400 text-md mb-2">
-                          <div className="flex gap-2 text-xs mt-2 mb-4">
-                            <div className="flex p-1 items-center rounded-lg bg-slate-200 dark:bg-slate-700 dark:text-primary">
-                              <Clock className="h-4 w-4 mr-1" />
-                              <span>{duration}</span>
-                            </div>
-                            {/* Popular label */}
-                            {name === "Premium Interior" && (
-                              <div className="flex p-1 items-center rounded-lg bg-orange-200 dark:bg-orange-700 font-bold text-primary">
-                                <Star className="h-4 w-4 mr-1" />
-                                <span>Popular</span>
-                              </div>
-                            )}
-                            {/* Best Value Label */}
-                            {name === "Full Interior" && (
-                              <div className="flex p-1 items-center rounded-lg bg-orange-200 dark:bg-orange-700 font-bold text-primary">
-                                <CircleDollarSign className="h-4 w-4 mr-1" />
-                                <span>Best value</span>
-                              </div>
-                            )}
+                  return (
+                    <div
+                      key={id}
+                      className="bg-gray-900 shadow-lg rounded-2xl p-6 w-full md:w-[300px] flex flex-col justify-between"
+                    >
+                      <div>
+                        <h2
+                          className={`text-4xl md:text-3xl font-bold mb-1 items-center ${Styling.GoldChromatic}`}
+                        >
+                          {name.split(" ")[0]}
+                          <span className="font-extralight text-secondary-foreground ml-1">
+                            {name.split(" ")[1]}
+                          </span>
+                        </h2>
+                        <div className="flex gap-2 mb-2 mt-4">
+                          <div className="flex items-center text-sm bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded">
+                            <Clock className="w-4 h-4 mr-1" />
+                            {duration}
                           </div>
-
-                          {/* Features List */}
-                          {featureList.map((feature) => (
-                            <div
-                              key={feature}
-                              className={`flex items-center mb-2 ${Fonts.premium.className}`}
-                            >
-                              <CheckCircle2
-                                className={`h-4 w-4 mr-1${feature.includes("Everything") ? " text-yellow-500" : ""}`}
-                              />
-                              <span
-                                className={`${feature.includes("Everything") ? "font-bold text-yellow-500" : ""}`}
-                              >
-                                {feature}
-                              </span>
+                          {name === "Premium Interior" && (
+                            <div className="flex items-center text-sm bg-yellow-200 dark:bg-yellow-700 font-semibold px-2 py-1 rounded">
+                              <Star className="w-4 h-4 mr-1" /> Popular
                             </div>
-                          ))}
-
-                          {/* Empty placeholders to maintain alignment */}
-                          {emptySlots > 0 && (
-                            <div className="hidden md:block">
-                              {Array.from({ length: emptySlots }).map(
-                                (_, index) => (
-                                  <div
-                                    key={`empty-${index}`}
-                                    className="h-6 mb-2"
-                                  ></div>
-                                ),
-                              )}
+                          )}
+                          {name === "Full Interior" && (
+                            <div className="flex items-center text-sm bg-green-200 dark:bg-green-700 text-green-900 font-semibold px-2 py-1 rounded">
+                              <CircleDollarSign className="w-4 h-4 mr-1" /> Best
+                              Value
                             </div>
                           )}
                         </div>
 
-                        <div className="flex flex-col space-y-4">
-                          <div className="flex flex-col">
-                            <span className={priceLabelStyle}>${price}</span>
-                          </div>
-                          <Button
-                            variant="outline"
-                            size="lg"
-                            asChild
-                            className={`rounded-lg text-lg my-4 md:my-0 mx-20 md:mx-0 ${
-                              !active ? "bg-slate-200 dark:bg-slate-700" : ""
-                            }`}
-                            disabled={!active}
-                          >
-                            {active ? (
-                              <GoogleConversionLink
-                                href={`/bookings/checkout/${encodeURIComponent(name)}`}
+                        <ul className="mt-4 mb-6 space-y-2 text-sm text-gray-700 dark:text-gray-300">
+                          {featureList.map((feature) => (
+                            <li
+                              key={feature}
+                              className="flex items-start gap-2"
+                            >
+                              <CheckCircle2
+                                className={`w-4 h-4 mt-1 flex-shrink-0 ${
+                                  feature.includes("Everything")
+                                    ? "text-yellow-500"
+                                    : "text-green-500"
+                                }`}
+                              />
+                              <span
+                                className={`text-lg leading-snug ${
+                                  feature.includes("Everything")
+                                    ? "font-medium text-yellow-500"
+                                    : ""
+                                }`}
                               >
-                                Select
-                              </GoogleConversionLink>
-                            ) : (
-                              <span>Coming soon</span>
-                            )}
-                          </Button>
+                                {feature}
+                              </span>
+                            </li>
+                          ))}
+                          <div className="hidden md:block">
+                            {[...Array(emptySlots)].map((_, idx) => (
+                              <li key={`empty-${idx}`} className="invisible">
+                                placeholder
+                              </li>
+                            ))}
+                          </div>
+                        </ul>
+                      </div>
+
+                      <div className="flex flex-col md:items-center">
+                        <div
+                          className={`text-3xl font-bold mb-4 ${Styling.GoldChromatic}`}
+                        >
+                          ${price}
                         </div>
-                      </section>
-                    );
-                  },
-                )}
-              </div>
+                        <Button
+                          variant="outline"
+                          size="lg"
+                          disabled={!active}
+                          className="w-full"
+                          asChild
+                        >
+                          {active ? (
+                            <GoogleConversionLink
+                              href={`/bookings/checkout/${encodeURIComponent(name)}`}
+                            >
+                              Select Package
+                            </GoogleConversionLink>
+                          ) : (
+                            <span>Coming Soon</span>
+                          )}
+                        </Button>
+                      </div>
+                    </div>
+                  );
+                },
+              )}
             </TabsContent>
           );
         })}
       </Tabs>
 
-      <section className="flex flex-col space-y-2 justify-center items-center text-center">
-        <span className="font-light text-sm text-slate-500">
-          †Excluding taxes. Prices do not reflect any special offers, bundle
-          services, or add-ons that may be applicable.
-          <a href={`tel:${Identity.companyPhoneNumber}`} className="link">
-            {" "}
-            Call us{" "}
-          </a>{" "}
-          for more price information.
-        </span>
-        <span className="font-light text-sm text-slate-500">
-          †Time estimates may vary depending on vehicle condition, size, and
-          location.
-        </span>
-      </section>
+      <div className="text-center mt-10 text-sm text-gray-500 dark:text-gray-400">
+        <p>
+          † Prices exclude taxes and may vary with add-ons or promotions. For a
+          full quote,
+          <a
+            href={`tel:${Identity.companyPhoneNumber}`}
+            className="underline ml-1"
+          >
+            call us
+          </a>
+          .
+        </p>
+        <p>† Time estimates may vary based on vehicle size and condition.</p>
+      </div>
     </div>
   );
 }

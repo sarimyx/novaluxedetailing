@@ -31,8 +31,8 @@ export default function Gallery() {
                   <Image
                     src={`/gallery/${id}.png`}
                     alt={`Gallery image ${id}`}
-                    width={1000}
-                    height={500}
+                    width={1280}
+                    height={720}
                     className="object-cover rounded-2xl"
                   />
                 </CardContent>

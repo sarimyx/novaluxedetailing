@@ -1,6 +1,6 @@
 import { Fonts } from "@/constants/fonts";
 import { Styling } from "@/constants/styling";
-import { Card, CardContent } from "./ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,

@@ -1,4 +1,10 @@
-import { CarFront, LayoutGrid, LucideIcon, Settings } from "lucide-react";
+import {
+  CarFront,
+  LayoutGrid,
+  LucideIcon,
+  User,
+  UserRound,
+} from "lucide-react";
 
 type Submenu = {
   href: string;
@@ -62,9 +68,9 @@ export function getMenuList(pathname: string): Group[] {
     groupLabel: "Account",
     menus: [
       {
-        href: `/dashboard/${target}/manage-profile`,
-        label: "Manage Profile",
-        icon: Settings,
+        href: `/dashboard/${target.length > 0 ? target : "customer"}/manage-profile`,
+        label: "My Profile",
+        icon: UserRound,
       },
     ],
   };

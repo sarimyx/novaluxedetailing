@@ -24,8 +24,7 @@ export default function HomePage() {
             <div className="flex flex-col mx-4 space-y-2 text-slate-600 dark:text-slate-400 text-center text-2xl font-light text-foreground">
               <div className="flex text-center justify-center items-center">
                 <span className={`font-light ${Fonts.premium.className} pb-1`}>
-                  {" "}
-                  Premium Interior Car Detail{" "}
+                  Premium Interior Car Detail
                 </span>
               </div>
             </div>
@@ -41,8 +40,8 @@ export default function HomePage() {
                 </Link>
               </Button>
             </div>
-            <span className="dark:text-white font-light">
-              (less than 3 clicks – we&apos;ll come to you!)
+            <span className="dark:text-white font-extralight">
+              Less than 3 clicks – plus, we come to you.
             </span>
             <div className="flex w-full text-center justify-center hover:text-violet-300">
               <Button variant="link" asChild>
@@ -67,9 +66,8 @@ export default function HomePage() {
                 <span
                   className={`text-secondary-foreground ${Fonts.premium.className}`}
                 >
-                  {" "}
                   Proudly Serving{" "}
-                  <strong className="dark:text-white">Utah</strong>{" "}
+                  <strong className="dark:text-white">Utah</strong>
                 </span>
               </section>
             </div>

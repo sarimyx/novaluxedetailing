@@ -1,9 +1,4 @@
-import {
-  CarFront,
-  LayoutGrid,
-  LucideIcon,
-  Settings,
-} from "lucide-react";
+import { CarFront, LayoutGrid, LucideIcon, Settings } from "lucide-react";
 
 type Submenu = {
   href: string;

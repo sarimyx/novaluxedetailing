@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Identity } from "@/constants/identity";
 import Pricing from "@/components/pricing";
-import { CarFront, Map, MapPin, MapPinned, PhoneCall } from "lucide-react";
+import { CarFront, MapPin, PhoneCall } from "lucide-react";
 import { Styling } from "@/constants/styling";
 import { InstagramLogoIcon } from "@radix-ui/react-icons";
 import { Separator } from "@/components/ui/separator";

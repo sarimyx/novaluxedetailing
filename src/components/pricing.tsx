@@ -6,6 +6,7 @@ import { Clock, CheckCircle2, Star } from "lucide-react";
 import { Identity } from "@/constants/identity";
 import { Styling } from "@/constants/styling";
 import { Fonts } from "@/constants/fonts";
+import Countdown from "./ui/countdown";
 
 export default async function Pricing() {
   const db = await supabaseServerClient();
@@ -50,7 +51,12 @@ export default async function Pricing() {
                   className="uppercase text-sm tracking-wide text-xs font-light"
                 >
                   {type.charAt(0).toUpperCase() + type.slice(1)}
-                  {isDisabled && " (coming soon)"}
+                  {isDisabled && type !== "exterior" && " (coming soon)"}
+                  {isDisabled && type === "exterior" && (
+                    <span className="pl-1">
+                      <Countdown text={`(In %t)`} className="dark:text-white" />
+                    </span>
+                  )}
                 </TabsTrigger>
               );
             })}

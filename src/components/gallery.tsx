@@ -48,7 +48,7 @@ export default function Gallery() {
       </Carousel>
       <div className="flex items-center justify-center mt-4">
         <a href="#pricing">
-          <Button size="lg">Book now</Button>
+          <Button variant="special" size="lg">Book now</Button>
         </a>
       </div>
     </section>

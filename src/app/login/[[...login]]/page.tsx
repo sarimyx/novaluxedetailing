@@ -17,7 +17,9 @@ export default function LoginPage() {
   return (
     <>
       <ClerkLoading>
-        <LoadingIcon />
+        <div className="flex min-h-screen flex-col items-center justify-center text-center">
+          <LoadingIcon />
+        </div>
       </ClerkLoading>
       <ClerkLoaded>
         <div className="flex justify-center px-4 py-8">

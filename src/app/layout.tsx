@@ -67,31 +67,26 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: Readonly<{ children: React.ReactNode }>) {
   return (
     <ClerkProvider signInUrl="/login" signUpUrl="/join">
       <html lang="en" suppressHydrationWarning>
-        <head>
-          <link rel="favicon" href="/favicon.ico" sizes="any" />
-        </head>
         <body className={Fonts.default.className}>
           {/* Google Ads */}
           <Script
             strategy="afterInteractive"
-            src={`https://www.googletagmanager.com/gtag/js?id=AW-10986242730`}
+            src="https://www.googletagmanager.com/gtag/js?id=AW-10986242730"
           />
           <Script
             id="google-ads"
             strategy="afterInteractive"
             dangerouslySetInnerHTML={{
               __html: `
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'AW-10986242730');
-    `,
+                window.dataLayer = window.dataLayer || [];
+                function gtag(){dataLayer.push(arguments);}
+                gtag('js', new Date());
+                gtag('config', 'AW-10986242730');
+              `,
             }}
           />
 
@@ -106,11 +101,12 @@ export default function RootLayout({
                   <LoadingIcon />
                 </div>
               }
-            />
-            <div className="min-h-screen bg-[#000000] bg-[radial-gradient(#ffffff33_1px,#00091d_1px)] bg-[size:20px_20px]">
-              <Navbar />
-              {children}
-            </div>
+            >
+              <div className="min-h-screen bg-[#000000] bg-[radial-gradient(#ffffff33_1px,#00091d_1px)] bg-[size:20px_20px]">
+                <Navbar />
+                {children}
+              </div>
+            </Suspense>
           </ThemeProvider>
         </body>
       </html>

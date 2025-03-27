@@ -24,7 +24,7 @@ export default function HomePage() {
             <div className="flex flex-col mx-4 space-y-2 text-slate-600 dark:text-slate-400 text-center text-2xl font-light text-foreground">
               <div className="flex text-center justify-center items-center">
                 <span className={`font-light ${Fonts.premium.className} pb-1`}>
-                  Premium Interior Car Detail
+                  Premium Car Detail
                 </span>
               </div>
             </div>

@@ -37,7 +37,10 @@ export default function HomePage() {
                 asChild
               >
                 <Link href="#pricing">
-                  <span> Book now </span>
+                  <span className={`${Fonts.premium.className}`}>
+                    {" "}
+                    Book now{" "}
+                  </span>
                 </Link>
               </Button>
             </div>

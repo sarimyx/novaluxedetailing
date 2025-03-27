@@ -23,7 +23,7 @@ export default function HomePage() {
             </h1>
             <div className="flex flex-col mx-4 space-y-2 text-slate-600 dark:text-slate-400 text-center text-2xl font-light text-foreground">
               <div className="flex text-center justify-center items-center">
-                <span className={`font-light ${Fonts.premium.className} pb-2`}>
+                <span className={`font-light ${Fonts.premium.className} pb-1`}>
                   {" "}
                   Premium Interior Car Detail{" "}
                 </span>
@@ -31,10 +31,10 @@ export default function HomePage() {
             </div>
             <div className="flex w-full text-center justify-center">
               <Button
-                variant="default"
+                variant="special"
                 size="lg"
+                className="md:w-3/12 md:h-14 w-3/6 h-14 rounded-lg text-2xl"
                 asChild
-                className="md:w-2/6 md:h-14 w-3/6 h-12 rounded-lg text-2xl"
               >
                 <Link href="#pricing">
                   <span> Book now </span>

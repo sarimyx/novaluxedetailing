@@ -64,11 +64,11 @@ export function getMenuList(pathname: string): Group[] {
     ],
   };
 
-  const manageProfile = {
+  const myProfile = {
     groupLabel: "Account",
     menus: [
       {
-        href: `/dashboard/${target.length > 0 ? target : "customer"}/manage-profile`,
+        href: `/dashboard/${target.length > 0 ? target : "customer"}/my-profile`,
         label: "My Profile",
         icon: UserRound,
       },
@@ -76,10 +76,10 @@ export function getMenuList(pathname: string): Group[] {
   };
 
   if (pathname.startsWith("/dashboard/staff")) {
-    return [base, staff_DatabasesSection, manageProfile];
+    return [base, staff_DatabasesSection, myProfile];
   } else if (pathname.startsWith("/dashboard/provider")) {
-    return [base, manageProfile];
+    return [base, myProfile];
   } else {
-    return [base, manageProfile];
+    return [base, myProfile];
   }
 }

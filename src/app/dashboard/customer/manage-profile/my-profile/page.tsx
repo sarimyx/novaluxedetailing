@@ -1,4 +1,4 @@
-import ManageAccount from "@/components/manage-profile";
+import ManageAccount from "@/components/my-account";
 
 export default function ManageAccountPage() {
   return <ManageAccount />;

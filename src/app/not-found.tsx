@@ -24,7 +24,7 @@ export default function Page() {
             >
               ← Return to previous page
             </Button>
-            <a href="/contact">
+            <a href="mailto:contact@novaluxedetailing.com?subject=Regarding%20Website">
               <Button variant="outline" className="mt-2 w-fit">
                 Contact us
               </Button>

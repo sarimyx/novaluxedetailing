@@ -154,7 +154,7 @@ export default async function Pricing() {
                           ${price}
                         </div>
                         <Button
-                          variant="secondary"
+                          variant="outline"
                           size="lg"
                           disabled={!active}
                           className="w-full"

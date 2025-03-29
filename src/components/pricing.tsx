@@ -161,11 +161,11 @@ export default async function Pricing() {
                       </div>
 
                       <div className="flex flex-col md:items-center">
-                        <div
+                        {/* <div
                           className={`text-3xl font-bold mb-4 ${Styling.GoldChromatic}`}
                         >
                           ${price}
-                        </div>
+                        </div> */}
                         <Button
                           variant="outline"
                           size="lg"

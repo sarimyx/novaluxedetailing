@@ -40,9 +40,9 @@ export default async function BookingsPage({
         </section>
         <section>
           <div className="flex flex-wrap gap-3">
-            <Card className="w-fit p-2 bg-slate-200 dark:bg-slate-700">
+            {/* <Card className="w-fit p-2 bg-slate-200 dark:bg-slate-700">
               ${service.data.price}
-            </Card>
+            </Card> */}
             <Card className="w-fit p-2 bg-slate-200 dark:bg-slate-700">
               {service.data.duration}
             </Card>

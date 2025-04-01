@@ -11,6 +11,7 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import Link from "next/link";
+import React from "react";
 
 interface SectionHeaderProps {
   title: string;
@@ -44,23 +45,20 @@ export function SectionHeader({ title, hideSidebar }: SectionHeaderProps) {
             </BreadcrumbItem>
             {breadcrumbs.length > 0 && <BreadcrumbSeparator />}
             {breadcrumbs.map((crumb, index) => (
-              <BreadcrumbItem key={crumb.href}>
-                {index < breadcrumbs.length - 1 ? (
-                  <>
+              <React.Fragment key={crumb.href}>
+                <BreadcrumbItem>
+                  {index < breadcrumbs.length - 1 ? (
                     <BreadcrumbLink href={crumb.href}>
-                      <p>
-                        {crumb.name.charAt(0).toUpperCase() +
-                          crumb.name.slice(1)}
-                      </p>
+                      {crumb.name.charAt(0).toUpperCase() + crumb.name.slice(1)}
                     </BreadcrumbLink>
-                    <BreadcrumbSeparator />
-                  </>
-                ) : (
-                  <BreadcrumbPage>
-                    {crumb.name.charAt(0).toUpperCase() + crumb.name.slice(1)}
-                  </BreadcrumbPage>
-                )}
-              </BreadcrumbItem>
+                  ) : (
+                    <BreadcrumbPage>
+                      {crumb.name.charAt(0).toUpperCase() + crumb.name.slice(1)}
+                    </BreadcrumbPage>
+                  )}
+                </BreadcrumbItem>
+                {index < breadcrumbs.length - 1 && <BreadcrumbSeparator />}
+              </React.Fragment>
             ))}
           </BreadcrumbList>
         </Breadcrumb>

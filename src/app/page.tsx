@@ -1,17 +1,17 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Identity } from "@/constants/identity";
-import Pricing from "@/components/pricing";
 import { CarFront, MapPin, PhoneCall } from "lucide-react";
 import { Styling } from "@/constants/styling";
 import { InstagramLogoIcon } from "@radix-ui/react-icons";
 import { Separator } from "@/components/ui/separator";
 import { Fonts } from "@/constants/fonts";
 import Gallery from "@/components/gallery";
+import Pricing from "@/components/pricing";
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen px-2">
       <main className="min-h-[calc(100vh-57px-97px)] flex-1">
         <div className="relative space-y-16">
           <section className="flex flex-col items-center space-y-4">
@@ -43,14 +43,22 @@ export default function HomePage() {
             <span className="dark:text-white font-extralight">
               Less than 3 clicks – plus, we come to you.
             </span>
-            <div className="flex w-full text-center justify-center hover:text-violet-300">
-              <Button variant="link" asChild>
+            <div className="flex w-full text-center justify-center hover:text-violet-300 gap-3">
+              <Button
+                variant="link"
+                className="border border-yellow-500 rounded-lg"
+                asChild
+              >
                 <Link href="#pricing" rel="noopener noreferrer">
                   <CarFront className="w-4 h-4 mr-1" />
                   Services & Pricing →
                 </Link>
               </Button>
-              <Button variant="link" asChild>
+              <Button
+                variant="link"
+                className="border border-yellow-500 rounded-lg"
+                asChild
+              >
                 <Link
                   href={`tel:+${Identity.companyPhoneNumber}`}
                   rel="noopener noreferrer"

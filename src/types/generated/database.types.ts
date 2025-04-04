@@ -9,6 +9,69 @@ export type Json =
 export type Database = {
   public: {
     Tables: {
+      ListedServices: {
+        Row: {
+          active: boolean;
+          features: string;
+          id: string;
+          metadata: Json | null;
+          order: number;
+          title: string;
+          type: string;
+        };
+        Insert: {
+          active?: boolean;
+          features: string;
+          id?: string;
+          metadata?: Json | null;
+          order: number;
+          title: string;
+          type: string;
+        };
+        Update: {
+          active?: boolean;
+          features?: string;
+          id?: string;
+          metadata?: Json | null;
+          order?: number;
+          title?: string;
+          type?: string;
+        };
+        Relationships: [];
+      };
+      ServiceRequestFormSubmissions: {
+        Row: {
+          address: string | null;
+          contact_preference: string | null;
+          created_at: string;
+          id: number;
+          name: string | null;
+          phone: string | null;
+          selection: string | null;
+          vehicle_type: string | null;
+        };
+        Insert: {
+          address?: string | null;
+          contact_preference?: string | null;
+          created_at?: string;
+          id?: number;
+          name?: string | null;
+          phone?: string | null;
+          selection?: string | null;
+          vehicle_type?: string | null;
+        };
+        Update: {
+          address?: string | null;
+          contact_preference?: string | null;
+          created_at?: string;
+          id?: number;
+          name?: string | null;
+          phone?: string | null;
+          selection?: string | null;
+          vehicle_type?: string | null;
+        };
+        Relationships: [];
+      };
       Services: {
         Row: {
           active: boolean | null;

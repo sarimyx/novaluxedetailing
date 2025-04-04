@@ -187,7 +187,7 @@ export default function ServiceRequestForm({
           />
 
           <div className="flex gap-2 text-xs">
-            <span className="text-secondary-foreground font-light text-sm">
+            <span className="hidden md:block text-secondary-foreground font-light text-sm">
               Preference:
             </span>
             <RadioGroup
@@ -216,21 +216,7 @@ export default function ServiceRequestForm({
 
         <section className="md:w-4/6 space-y-2">
           <span className="text-white font-light text-sm">
-            3. Where do you live?
-          </span>
-          <Textarea
-            name="address"
-            placeholder="Address"
-            className="text-secondary-foreground md:w-4/6 bg-black"
-            value={formData.address}
-            onChange={handleChange}
-            required
-          />
-        </section>
-
-        <section className="md:w-4/6 space-y-2">
-          <span className="text-white font-light text-sm">
-            4. What kind of vehicle are you hoping to detail?
+            3. What kind of vehicle are you hoping to detail?
           </span>
           <RadioGroup
             defaultValue="sedan"
@@ -293,6 +279,20 @@ export default function ServiceRequestForm({
               </div>
             </div>
           </RadioGroup>
+        </section>
+
+        <section className="md:w-4/6 space-y-2">
+          <span className="text-white font-light text-sm">
+            4. Where is the vehicle located?
+          </span>
+          <Textarea
+            name="address"
+            placeholder="Address"
+            className="text-secondary-foreground md:w-4/6 bg-black"
+            value={formData.address}
+            onChange={handleChange}
+            required
+          />
         </section>
 
         <section className="md:w-4/6">

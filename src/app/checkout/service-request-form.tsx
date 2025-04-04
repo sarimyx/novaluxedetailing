@@ -125,9 +125,9 @@ export default function ServiceRequestForm({
   };
 
   return (
-    <div className={`space-y-6 ${Fonts.premium.className}`}>
+    <div className={`space-y-4 ${Fonts.premium.className}`}>
       <a href="/#pricing">
-        <Button variant="outline" className="w-fit">
+        <Button variant="outline" className="w-fit border border-secondary">
           ← Back
         </Button>
       </a>
@@ -185,6 +185,33 @@ export default function ServiceRequestForm({
             onChange={handleChange}
             required
           />
+
+          <div className="flex gap-2 text-xs">
+            <span className="text-secondary-foreground font-light text-sm">
+              Preference:
+            </span>
+            <RadioGroup
+              defaultValue="morning"
+              onValueChange={(v) => {
+                setFormData((prev) => ({ ...prev, contactPreference: v }));
+              }}
+            >
+              <div className="flex gap-2">
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="morning" id="r1" />
+                  <Label className="text-secondary-foreground" htmlFor="r1">
+                    Morning (9 – 11 AM)
+                  </Label>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <RadioGroupItem value="afternoon" id="r2" />
+                  <Label className="text-secondary-foreground" htmlFor="r2">
+                    Afternoon (12 – 3 PM)
+                  </Label>
+                </div>
+              </div>
+            </RadioGroup>
+          </div>
         </section>
 
         <section className="md:w-4/6 space-y-2">
@@ -193,7 +220,7 @@ export default function ServiceRequestForm({
           </span>
           <Textarea
             name="address"
-            placeholder="Street, city, and zip code"
+            placeholder="Address"
             className="text-secondary-foreground md:w-4/6 bg-black"
             value={formData.address}
             onChange={handleChange}
@@ -262,33 +289,6 @@ export default function ServiceRequestForm({
                   className="text-secondary-foreground"
                 >
                   Luxury / Exotic
-                </Label>
-              </div>
-            </div>
-          </RadioGroup>
-        </section>
-
-        <section className="md:w-4/6 space-y-2">
-          <span className="text-white font-light text-sm">
-            5. What time do you prefer being contacted?
-          </span>
-          <RadioGroup
-            defaultValue="morning"
-            onValueChange={(v) => {
-              setFormData((prev) => ({ ...prev, contactPreference: v }));
-            }}
-          >
-            <div className="flex gap-2">
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="morning" id="r1" />
-                <Label className="text-secondary-foreground" htmlFor="r1">
-                  Morning (9 – 11)
-                </Label>
-              </div>
-              <div className="flex items-center space-x-2">
-                <RadioGroupItem value="afternoon" id="r2" />
-                <Label className="text-secondary-foreground" htmlFor="r2">
-                  Afternoon (12 – 3)
                 </Label>
               </div>
             </div>

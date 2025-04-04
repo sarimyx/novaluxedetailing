@@ -8,6 +8,7 @@ import { Separator } from "@/components/ui/separator";
 import { Fonts } from "@/constants/fonts";
 import Gallery from "@/components/gallery";
 import Pricing from "@/components/pricing";
+import Image from "next/image";
 
 export default function HomePage() {
   return (
@@ -17,14 +18,14 @@ export default function HomePage() {
           <section className="flex flex-col items-center space-y-4">
             <br />
             <h1
-              className={`text-6xl font-bold text-center ${Styling.GoldChromatic} ${Fonts.premium.className} pb-2`}
+              className={`flex text-6xl font-bold text-center ${Styling.GoldChromatic} ${Fonts.premium.className} pb-2`}
             >
               {Identity.companyName}
             </h1>
             <div className="flex flex-col mx-4 space-y-2 text-slate-600 dark:text-slate-400 text-center text-2xl font-light text-foreground">
-              <div className="flex text-center justify-center items-center">
+              <div className="flex text-center justify-center items-center px-8">
                 <span className={`font-light ${Fonts.premium.className}`}>
-                  Premium Car Detailer in Utah
+                  Premium Auto Detailer in Utah
                 </span>
               </div>
             </div>
@@ -40,9 +41,6 @@ export default function HomePage() {
                 </Link>
               </Button>
             </div>
-            <span className="dark:text-secondary-foreground font-extralight">
-              Book us in less than 3 clicks.
-            </span>
             <div className="flex w-full text-center justify-center hover:text-violet-300 gap-3">
               <Button
                 variant="link"

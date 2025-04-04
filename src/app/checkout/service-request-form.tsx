@@ -150,7 +150,7 @@ export default function ServiceRequestForm({
 
       {error && <p className="text-red-500 font-semibold">{error}</p>}
 
-      <form className="space-y-4" onSubmit={handleSubmit}>
+      <form className="space-y-8" onSubmit={handleSubmit}>
         {/* Honeypot field - hidden */}
         <input
           type="text"
@@ -162,7 +162,7 @@ export default function ServiceRequestForm({
         />
 
         <section className="md:w-4/6 space-y-2">
-          <span className="text-white font-light text-sm">1. Name</span>
+          <span className="text-white text-md">1. Name</span>
           <Input
             name="name"
             placeholder="Name"
@@ -174,7 +174,7 @@ export default function ServiceRequestForm({
         </section>
 
         <section className="md:w-4/6 space-y-2">
-          <span className="text-white font-light text-sm">
+          <span className="text-white text-md">
             2. What phone number can we reach you at?
           </span>
           <Input
@@ -187,16 +187,13 @@ export default function ServiceRequestForm({
           />
 
           <div className="flex gap-2 text-xs">
-            <span className="hidden md:block text-secondary-foreground font-light text-sm">
-              Preference:
-            </span>
             <RadioGroup
               defaultValue="morning"
               onValueChange={(v) => {
                 setFormData((prev) => ({ ...prev, contactPreference: v }));
               }}
             >
-              <div className="flex gap-2">
+              <div className="flex gap-2 mt-1">
                 <div className="flex items-center space-x-2">
                   <RadioGroupItem value="morning" id="r1" />
                   <Label className="text-secondary-foreground" htmlFor="r1">
@@ -215,9 +212,17 @@ export default function ServiceRequestForm({
         </section>
 
         <section className="md:w-4/6 space-y-2">
-          <span className="text-white font-light text-sm">
-            3. What kind of vehicle are you hoping to detail?
+          <span className="text-white text-md">
+            3. Where is the vehicle located?
           </span>
+          <Textarea
+            name="address"
+            placeholder="Address"
+            className="text-secondary-foreground md:w-4/6 bg-black"
+            value={formData.address}
+            onChange={handleChange}
+            required
+          />
           <RadioGroup
             defaultValue="sedan"
             className="flex flex-col gap-2"
@@ -225,7 +230,7 @@ export default function ServiceRequestForm({
               setFormData((prev) => ({ ...prev, vehicleType: v }));
             }}
           >
-            <div className="flex flex-wrap md:w-4/6 gap-2">
+            <div className="flex flex-wrap md:w-4/6 gap-2 mt-1">
               <div className="flex items-center space-x-2">
                 <RadioGroupItem value="sedan" id="car-sedan" />
                 <Label
@@ -279,20 +284,6 @@ export default function ServiceRequestForm({
               </div>
             </div>
           </RadioGroup>
-        </section>
-
-        <section className="md:w-4/6 space-y-2">
-          <span className="text-white font-light text-sm">
-            4. Where is the vehicle located?
-          </span>
-          <Textarea
-            name="address"
-            placeholder="Address"
-            className="text-secondary-foreground md:w-4/6 bg-black"
-            value={formData.address}
-            onChange={handleChange}
-            required
-          />
         </section>
 
         <section className="md:w-4/6">

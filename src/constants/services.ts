@@ -6,9 +6,9 @@ export const Services = {
     duration: "2.5 – 3 hrs",
     startingPrice: 299,
     features: [
-      "Exterior hand wash & wax",
-      "Interior vacuum & steam clean",
-      "Shampoo seats & mats",
+      "Exterior hand wash",
+      "Interior vacuum, steam clean, & coat",
+      "Seat and mat shampoo",
       "Tire and rim polish",
       "Windows inside & out",
       "Dashboard conditioning",

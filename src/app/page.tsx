@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Identity } from "@/constants/identity";
-import { CarFront, MapPin, PhoneCall } from "lucide-react";
+import { CarFront, MapPin, MessageSquare, PhoneCall } from "lucide-react";
 import { Styling } from "@/constants/styling";
 import { InstagramLogoIcon } from "@radix-ui/react-icons";
 import { Separator } from "@/components/ui/separator";
@@ -24,7 +24,7 @@ export default function HomePage() {
             <div className="flex flex-col mx-4 space-y-2 text-slate-600 dark:text-slate-400 text-center text-2xl font-light text-foreground">
               <div className="flex text-center justify-center items-center">
                 <span className={`font-light ${Fonts.premium.className}`}>
-                  Premium Car Detail
+                  Premium Car Detailer in Utah
                 </span>
               </div>
             </div>
@@ -40,8 +40,8 @@ export default function HomePage() {
                 </Link>
               </Button>
             </div>
-            <span className="dark:text-white font-extralight">
-              Less than 3 clicks – plus, we come to you.
+            <span className="dark:text-secondary-foreground font-extralight">
+              Book us in less than 3 clicks.
             </span>
             <div className="flex w-full text-center justify-center hover:text-violet-300 gap-3">
               <Button
@@ -49,9 +49,12 @@ export default function HomePage() {
                 className="border border-yellow-500 rounded-lg"
                 asChild
               >
-                <Link href="#pricing" rel="noopener noreferrer">
-                  <CarFront className="w-4 h-4 mr-1" />
-                  Services & Pricing →
+                <Link
+                  href={`tel:${Identity.companyPhoneNumber}`}
+                  rel="noopener noreferrer"
+                >
+                  <PhoneCall className="w-4 h-4 mr-2" />
+                  {Identity.companyPhoneNumberFormatted}
                 </Link>
               </Button>
               <Button
@@ -60,22 +63,21 @@ export default function HomePage() {
                 asChild
               >
                 <Link
-                  href={`tel:+${Identity.companyPhoneNumber}`}
+                  href={`sms:${Identity.companyPhoneNumber}`}
                   rel="noopener noreferrer"
                 >
-                  <PhoneCall className="w-4 h-4 mr-2" />
-                  {Identity.companyPhoneNumberFormatted}
+                  <MessageSquare className="w-4 h-4 mr-2" />
+                  Text us
                 </Link>
               </Button>
             </div>
-            <div className="flex flex-col">
+            <div className="flex flex-col space-y-2">
               <section className="flex items-center gap-1">
                 <MapPin className="text-orange-400" />
                 <span
                   className={`text-secondary-foreground ${Fonts.premium.className}`}
                 >
-                  Proudly Serving{" "}
-                  <strong className="dark:text-white">Utah</strong>
+                  We Come To <strong className="dark:text-white">You</strong>
                 </span>
               </section>
             </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { PhoneCall } from "lucide-react";
+import { MessageSquare, PhoneCall } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   OrganizationSwitcher,
@@ -75,26 +75,19 @@ export function Navbar() {
             )}
           </SignedIn>
           <header className="flex justify-end items-center gap-2 h-16">
-            <SignedOut>
-              <SignInButton appearance={{ baseTheme: dark }}>
-                <Button
-                  variant="default"
-                  className="rounded-full bg-violet-600 hover:bg-violet-500"
-                  size="sm"
-                >
-                  <span>Login</span>
-                </Button>
-              </SignInButton>
-              {/* <SignUpButton>
-                                <Button
-                                    variant="outline"
-                                    className="rounded-full"
-                                    size="sm"
-                                >
-                                    <span>Join</span>
-                                </Button>
-                            </SignUpButton> */}
-            </SignedOut>
+            <div className="hidden">
+              <SignedOut>
+                <SignInButton appearance={{ baseTheme: dark }}>
+                  <Button
+                    variant="default"
+                    className="rounded-full bg-violet-600 hover:bg-violet-500"
+                    size="sm"
+                  >
+                    <span>Login</span>
+                  </Button>
+                </SignInButton>
+              </SignedOut>
+            </div>
             <SignedIn>
               <UserButton appearance={{ baseTheme: dark }} />
             </SignedIn>
@@ -106,6 +99,15 @@ export function Navbar() {
               size="icon"
             >
               <PhoneCall className="w-[1.2rem] h-[1.2rem]" />
+            </Button>
+          </a>
+          <a href={`sms:${Identity.companyPhoneNumber}`}>
+            <Button
+              className="rounded-full w-8 h-8 bg-background"
+              variant="outline"
+              size="icon"
+            >
+              <MessageSquare className="w-[1.2rem] h-[1.2rem]" />
             </Button>
           </a>
           {/* <ModeToggle /> */}

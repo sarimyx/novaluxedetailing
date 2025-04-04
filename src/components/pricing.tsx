@@ -114,11 +114,16 @@ export default function Pricing() {
         </span>
         <p>†Time estimates may vary based on vehicle size and condition.</p>
         <p>
-          †Excluding taxes. Prices do not reflect any special offers or add-ons
-          that may be applicable.
+          †
           <a href={`tel:${Identity.companyPhoneNumber}`} className="link">
-            {" "}
-            Call us{" "}
+            Call
+          </a>{" "}
+          or{" "}
+          <a
+            href={`sms:${Identity.companyPhoneNumber}?body=Hi, I'm interested in learning about your prices.`}
+            className="link"
+          >
+            text us
           </a>{" "}
           for more price information.
         </p>

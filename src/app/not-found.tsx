@@ -2,6 +2,7 @@
 
 import { ContentLayout } from "@/components/admin-panel/content-layout";
 import { Button } from "@/components/ui/button";
+import { Identity } from "@/constants/identity";
 import { useRouter } from "next/navigation";
 
 export default function Page() {
@@ -24,7 +25,7 @@ export default function Page() {
             >
               ← Return to previous page
             </Button>
-            <a href="mailto:contact@novaluxedetailing.com?subject=Regarding%20Website">
+            <a href={`sms:${Identity.companyPhoneNumber}`}>
               <Button variant="outline" className="mt-2 w-fit">
                 Contact us
               </Button>

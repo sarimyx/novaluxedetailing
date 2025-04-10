@@ -155,7 +155,7 @@ export default function HomePage() {
               Instagram
             </a>
             <a
-              href={Identity.socialMedia.instagram}
+              href={Identity.socialMedia.facebook}
               target="_blank"
               className="link flex items-center gap-1"
             >

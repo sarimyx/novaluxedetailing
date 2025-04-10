@@ -11,8 +11,6 @@ export default function Reviews({
 }: {
   featurableWidgetId: string;
 }) {
-  // const featurableWidgetId = !;
-
   return (
     <div id="reviews">
       <ReactGoogleReviews

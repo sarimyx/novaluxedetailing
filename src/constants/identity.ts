@@ -5,6 +5,7 @@ export const Identity = {
   companyPhoneNumberFormatted: "(801) 787-5307",
   socialMedia: {
     instagram: "https://instagram.com/novaluxedetailing",
+    facebook: "https://www.facebook.com/profile.php?id=61574582744375",
   },
   googleLink: "https://g.co/kgs/LKm4oRH",
 };

@@ -14,7 +14,7 @@ export default function Reviews({
   // const featurableWidgetId = !;
 
   return (
-    <div id="reviews" className="h-fit">
+    <div id="reviews">
       <ReactGoogleReviews
         theme="dark"
         layout="carousel"
@@ -26,7 +26,7 @@ export default function Reviews({
       >
         <a href={Identity.googleLink} target="_blank">
           <Button variant="special" size="lg">
-            Reviews
+            Open in Google
           </Button>
         </a>
       </div>

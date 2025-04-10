@@ -49,7 +49,7 @@ export default function HomePage() {
                 </Link>
               </Button>
             </div>
-            <div className="flex w-full text-center justify-center hover:text-violet-300 gap-3">
+            <div className="flex flex-wrap w-full text-center justify-center hover:text-violet-300 gap-3">
               <Button
                 variant="link"
                 className="border border-yellow-500 rounded-lg"
@@ -129,7 +129,7 @@ export default function HomePage() {
           <p className="text-balance text-center leading-loose text-muted-foreground">
             Copyright © {new Date().getFullYear()} {Identity.companyName}.
           </p>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap justify-center gap-2">
             <a href="#pricing" className="link flex items-center gap-1">
               <CarFront className="w-4 h-4" />
               Services

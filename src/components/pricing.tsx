@@ -110,7 +110,7 @@ export default function Pricing() {
         <span className="flex justify-center items-center text-center gap-1">
           <CheckCircle />
           All <span className="font-bold">first time</span> detailers get{" "}
-          <span className={`${Styling.GoldChromatic} font-bold`}>10%</span> off.
+          <span className={`${Styling.GoldChromatic} font-bold`}>35%</span> off.
         </span>
         <p>†Time estimates may vary based on vehicle size and condition.</p>
         <p>

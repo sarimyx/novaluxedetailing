@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Identity } from "@/constants/identity";
 import {
   CarFront,
+  Check,
   Facebook,
   MapPin,
   MessageSquare,
@@ -93,7 +94,8 @@ export default function HomePage() {
                 <span
                   className={`text-secondary-foreground ${Fonts.premium.className}`}
                 >
-                  We Come To <strong className="dark:text-white">You</strong>
+                  We Come To{" "}
+                  <strong className={Styling.GoldChromatic}>You</strong>
                 </span>
               </section>
               <section className="flex items-center gap-1">
@@ -103,6 +105,16 @@ export default function HomePage() {
                 >
                   <strong className={`${Styling.GoldChromatic}`}>5</strong> star
                   service
+                </span>
+              </section>
+              <section className="flex items-center gap-1">
+                <Check className="text-orange-400" />
+                <span
+                  className={`text-secondary-foreground ${Fonts.premium.className}`}
+                >
+                  Less than{" "}
+                  <strong className={`${Styling.GoldChromatic}`}>3</strong>{" "}
+                  clicks to book
                 </span>
               </section>
             </div>

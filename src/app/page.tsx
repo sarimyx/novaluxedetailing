@@ -1,14 +1,22 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Identity } from "@/constants/identity";
-import { CarFront, MapPin, MessageSquare, PhoneCall } from "lucide-react";
+import {
+  CarFront,
+  Facebook,
+  MapPin,
+  MessageSquare,
+  PhoneCall,
+  Star,
+  StarIcon,
+} from "lucide-react";
 import { Styling } from "@/constants/styling";
 import { InstagramLogoIcon } from "@radix-ui/react-icons";
 import { Separator } from "@/components/ui/separator";
 import { Fonts } from "@/constants/fonts";
 import Gallery from "@/components/gallery";
 import Pricing from "@/components/pricing";
-import Image from "next/image";
+import Reviews from "@/components/reviews";
 
 export default function HomePage() {
   return (
@@ -69,13 +77,22 @@ export default function HomePage() {
                 </Link>
               </Button>
             </div>
-            <div className="flex flex-col space-y-2">
+            <div className="flex flex-col space-y-2 items-center">
               <section className="flex items-center gap-1">
                 <MapPin className="text-orange-400" />
                 <span
                   className={`text-secondary-foreground ${Fonts.premium.className}`}
                 >
                   We Come To <strong className="dark:text-white">You</strong>
+                </span>
+              </section>
+              <section className="flex items-center gap-1">
+                <Star className="text-orange-400" />
+                <span
+                  className={`text-secondary-foreground ${Fonts.premium.className}`}
+                >
+                  <strong className={`${Styling.GoldChromatic}`}>5</strong> star
+                  service
                 </span>
               </section>
             </div>
@@ -87,6 +104,10 @@ export default function HomePage() {
           <Separator />
           <section className="space-y-4 mx-4">
             <Gallery />
+          </section>
+          <Separator />
+          <section className="space-y-4 mx-4">
+            <Reviews />
           </section>
           <Separator />
           {/* Add more sections here... */}
@@ -108,8 +129,24 @@ export default function HomePage() {
               target="_blank"
               className="link flex items-center gap-1"
             >
-              <InstagramLogoIcon />
+              <InstagramLogoIcon className="w-4 h-4" />
               Instagram
+            </a>
+            <a
+              href={Identity.socialMedia.instagram}
+              target="_blank"
+              className="link flex items-center gap-1"
+            >
+              <Facebook className="w-4 h-4" />
+              Facebook
+            </a>
+            <a
+              href={Identity.googleLink}
+              target="_blank"
+              className="link flex items-center gap-1"
+            >
+              <StarIcon className="w-4 h-4" />
+              Reviews
             </a>
           </div>
         </div>

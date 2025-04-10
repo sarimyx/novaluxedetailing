@@ -6,4 +6,5 @@ export const Identity = {
   socialMedia: {
     instagram: "https://instagram.com/novaluxedetailing",
   },
+  googleLink: "https://g.co/kgs/LKm4oRH",
 };

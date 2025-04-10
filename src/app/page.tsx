@@ -117,7 +117,7 @@ export default function HomePage() {
           </section>
           <Separator />
           <section className="space-y-4 mx-4">
-            <Reviews />
+            <Reviews featurableWidgetId={process.env.FEATURABLE_WIDGET_ID!} />
           </section>
           <Separator />
           {/* Add more sections here... */}

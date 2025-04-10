@@ -6,8 +6,12 @@ import { Button } from "@/components/ui/button";
 import { Fonts } from "@/constants/fonts";
 import { Identity } from "@/constants/identity";
 
-export default function Reviews() {
-  const featurableWidgetId = process.env.FEATURABLE_WIDGET_ID!; // You can use "example" for testing
+export default function Reviews({
+  featurableWidgetId,
+}: {
+  featurableWidgetId: string;
+}) {
+  // const featurableWidgetId = !;
 
   return (
     <div id="reviews" className="h-fit">

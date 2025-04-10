@@ -15,6 +15,7 @@ import { Identity } from "@/constants/identity";
 import { Fonts } from "@/constants/fonts";
 import { dark } from "@clerk/themes";
 import Image from "next/image";
+import { InstagramLogoIcon } from "@radix-ui/react-icons";
 
 export function Navbar() {
   const pathname = usePathname();
@@ -92,6 +93,15 @@ export function Navbar() {
               <UserButton appearance={{ baseTheme: dark }} />
             </SignedIn>
           </header>
+          <a href={Identity.socialMedia.instagram} target="_blank">
+            <Button
+              className="rounded-full w-8 h-8 bg-background"
+              variant="outline"
+              size="icon"
+            >
+              <InstagramLogoIcon className="w-[1.2rem] h-[1.2rem]" />
+            </Button>
+          </a>
           <a href={`tel:${Identity.companyPhoneNumber}`}>
             <Button
               className="rounded-full w-8 h-8 bg-background"

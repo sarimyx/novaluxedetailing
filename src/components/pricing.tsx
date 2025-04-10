@@ -10,7 +10,7 @@ const serviceTypes = Object.keys(Services);
 
 export default function Pricing() {
   return (
-    <div id="pricing" className={`md:px-4 ${Fonts.premium.className}`}>
+    <div id="pricing" className={`md:px-4 px-2 ${Fonts.premium.className}`}>
       <h1
         className={`pb-2 text-5xl font-semibold text-center mb-10 tracking-tight ${Styling.GoldChromatic}`}
       >

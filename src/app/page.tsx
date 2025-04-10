@@ -11,7 +11,7 @@ import {
   StarIcon,
 } from "lucide-react";
 import { Styling } from "@/constants/styling";
-import { InstagramLogoIcon } from "@radix-ui/react-icons";
+import { InstagramLogoIcon, PersonIcon } from "@radix-ui/react-icons";
 import { Separator } from "@/components/ui/separator";
 import { Fonts } from "@/constants/fonts";
 import Gallery from "@/components/gallery";
@@ -74,6 +74,16 @@ export default function HomePage() {
                 >
                   <MessageSquare className="w-4 h-4 mr-2" />
                   Text us
+                </Link>
+              </Button>
+              <Button
+                variant="link"
+                className="border border-yellow-500 rounded-lg"
+                asChild
+              >
+                <Link href={`#reviews`} rel="noopener noreferrer">
+                  <PersonIcon className="w-4 h-4 mr-2" />
+                  Reviews
                 </Link>
               </Button>
             </div>

@@ -3,8 +3,8 @@ import ServiceRequestForm from "../service-request-form";
 
 export default async function Page() {
   return (
-    <ContentLayout title="Bookings" hideSidebar>
-      <ServiceRequestForm forServiceId="custom-service" />
+    <ContentLayout title="Book Exterior" hideSidebar>
+      <ServiceRequestForm forServiceId="exterior" />
     </ContentLayout>
   );
 }

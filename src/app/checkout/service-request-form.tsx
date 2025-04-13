@@ -134,7 +134,7 @@ export default function ServiceRequestForm({
 
       <section className="flex flex-col space-y-2">
         <span className={`${Styling.GoldChromatic} font-bold text-5xl pb-2`}>
-          Service request form
+          Complete your booking
         </span>
         <p className="text-secondary-foreground">
           One of our specialists will be in touch with you within 24 hours. Or,

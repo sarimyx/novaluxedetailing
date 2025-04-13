@@ -29,7 +29,6 @@ export const Services = {
       "Paint-safe clay decontamination",
       "Tire + rim polish & shine",
       "Streak-free window detail",
-      "Wax or ceramic coat add-on",
     ],
   },
   full: {

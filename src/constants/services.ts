@@ -37,7 +37,7 @@ export const Services = {
     id: "full",
     name: "Full Detail",
     recommendation:
-      "The ultimate experience, everything included in one package.",
+      "The ultimate experience, interior and exterior. All in one.",
     duration: "3 – 3.5 hrs",
     startingPrice: 397,
     features: [

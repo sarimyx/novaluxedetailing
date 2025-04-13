@@ -3,7 +3,7 @@ import Pricing from "@/components/pricing";
 
 export default function CheckoutPage() {
   return (
-    <ContentLayout title="Checkout">
+    <ContentLayout title="Checkout" hideSidebar>
       <Pricing />
     </ContentLayout>
   );

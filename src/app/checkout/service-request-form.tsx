@@ -12,6 +12,7 @@ import { ArrowUpRight } from "lucide-react";
 import { supabaseBrowserClient } from "@/utils/supabase-client-browser";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
+import { MiscUtils } from "@/utils/misc";
 
 export default function ServiceRequestForm({
   forServiceId,
@@ -284,6 +285,17 @@ export default function ServiceRequestForm({
               </div>
             </div>
           </RadioGroup>
+        </section>
+
+        <section className="md:w-4/6 space-y-2">
+          <span className="font-light text-secondary-foreground">
+            You selected:{" "}
+            <span className={Styling.GoldChromatic}>
+              {MiscUtils.capitalizeString(forServiceId)}
+            </span>
+            . Additional customizations or changes can be made when we contact
+            you to confirm this booking.
+          </span>
         </section>
 
         <section className="md:w-4/6">

@@ -88,11 +88,7 @@ export default function Pricing() {
                 >
                   {service.active ? (
                     <GoogleConversionLink href={`/checkout/${service.id}`}>
-                      <span className="text-lg">
-                        {type === "full"
-                          ? "Book Full Service"
-                          : "Customize Your Service →"}
-                      </span>
+                      <span className="text-lg">Select</span>
                     </GoogleConversionLink>
                   ) : (
                     <span>Coming Soon</span>

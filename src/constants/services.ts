@@ -1,4 +1,20 @@
 export const Services = {
+  "interior-express": {
+    active: true,
+    id: "interior-express",
+    name: "Interior Express",
+    recommendation:
+      "A quick freshen up. Ideal for new / well-maintained vehicles.",
+    duration: "45m - 1 hr",
+    startingPrice: 147,
+    features: [
+      "Deep interior vacuum + steam cleaning",
+      "Mat wash + wipe down (sanitize)",
+      "Dash, doors, and console detail",
+      "Faux leather wipe & protect",
+      "Your choice of scent to finish it off right",
+    ],
+  },
   interior: {
     active: true,
     id: "interior",

@@ -13,6 +13,9 @@ export default function Reviews({
 }) {
   return (
     <div id="reviews">
+      <span className="tracking-widest font-light text-secondary-foreground flex items-center justify-center">
+        WHAT OUR CUSTOMERS SAY
+      </span>
       <ReactGoogleReviews
         theme="dark"
         layout="carousel"

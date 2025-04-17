@@ -87,7 +87,10 @@ export default function Pricing() {
                   asChild
                 >
                   {service.active ? (
-                    <GoogleConversionLink href={`/checkout/${service.id}`}>
+                    <GoogleConversionLink
+                      href={`/checkout/${service.id}`}
+                      usdValue={service.startingPrice}
+                    >
                       <span className="text-lg">Select</span>
                     </GoogleConversionLink>
                   ) : (

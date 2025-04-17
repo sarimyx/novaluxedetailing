@@ -7,10 +7,12 @@ import { MouseEvent } from "react";
 export function GoogleConversionLink({
   href,
   children,
+  usdValue,
   className,
 }: {
   href: string;
   children: React.ReactNode;
+  usdValue?: number;
   className?: string;
 }) {
   const router = useRouter();
@@ -23,7 +25,9 @@ export function GoogleConversionLink({
       typeof (window as any).gtag === "function"
     ) {
       (window as any).gtag("event", "conversion", {
-        send_to: "AW-16947905102/CVeRCKrtwa4aEM6EspE_",
+        send_to: "AW-11202037395/Fe5JCKOVv5wZENvr1oA9",
+        value: usdValue,
+        currency: "USD",
       });
     }
 

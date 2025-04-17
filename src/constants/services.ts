@@ -1,20 +1,4 @@
 export const Services = {
-  "interior-express": {
-    active: true,
-    id: "interior-express",
-    name: "Interior Express",
-    recommendation:
-      "A quick freshen up. Ideal for new / well-maintained vehicles.",
-    duration: "45m - 1 hr",
-    startingPrice: 147,
-    features: [
-      "Full vacuum",
-      "Panel wipe-down",
-      "Faux leather seat cleaning",
-      "Weather mat wash & condition",
-      "Finishing touch with your choice of interior scent",
-    ],
-  },
   interior: {
     active: true,
     id: "interior",
@@ -30,6 +14,22 @@ export const Services = {
       "Interior glass + mirror polish",
       "Dash + door panel deep clean & protect",
       "Optional odor neutralization",
+    ],
+  },
+  "interior-express": {
+    active: true,
+    id: "interior-express",
+    name: "Interior Express",
+    recommendation:
+      "A quick freshen up. Ideal for new / well-maintained vehicles.",
+    duration: "45m - 1 hr",
+    startingPrice: 147,
+    features: [
+      "Full vacuum",
+      "Panel wipe-down",
+      "Faux leather seat cleaning",
+      "Weather mat wash & condition",
+      "Finishing touch with your choice of interior scent",
     ],
   },
   exterior: {

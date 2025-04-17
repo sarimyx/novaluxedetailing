@@ -8,11 +8,11 @@ export const Services = {
     duration: "45m - 1 hr",
     startingPrice: 147,
     features: [
-      "Deep interior vacuum + steam cleaning",
-      "Mat wash + wipe down (sanitize)",
-      "Dash, doors, and console detail",
-      "Faux leather wipe & protect",
-      "Your choice of scent to finish it off right",
+      "Full vacuum",
+      "Panel wipe-down",
+      "Faux leather seat cleaning",
+      "Weather mat wash & condition",
+      "Finishing touch with your choice of interior scent",
     ],
   },
   interior: {

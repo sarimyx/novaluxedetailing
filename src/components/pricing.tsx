@@ -106,11 +106,6 @@ export default function Pricing() {
       <div
         className={`text-center mt-10 text-sm text-gray-500 dark:text-gray-400 space-y-2 font-light text-sm text-slate-500 ${Fonts.default.className}`}
       >
-        <span className="flex justify-center items-center text-center gap-1">
-          <CheckCircle />
-          All <span className="font-bold">first time</span> detailers get{" "}
-          <span className={`${Styling.GoldChromatic} font-bold`}>35%</span> off.
-        </span>
         <p>†Time estimates may vary based on vehicle size and condition.</p>
         <p>
           †

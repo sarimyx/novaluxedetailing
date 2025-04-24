@@ -1,108 +1,131 @@
-import { Button } from "@/components/ui/button";
-import { GoogleConversionLink } from "@/components/ui/google-conversion-link";
-import { Clock, CheckCircle2, Star, CheckCircle } from "lucide-react";
 import { Identity } from "@/constants/identity";
 import { Styling } from "@/constants/styling";
 import { Fonts } from "@/constants/fonts";
 import { Services } from "@/constants/services";
+import Link from "next/link";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const serviceTypes = Object.keys(Services);
 
-export default function Pricing() {
+export default function PricingV2() {
   return (
-    <div id="pricing" className={`md:px-4 px-2 ${Fonts.premium.className}`}>
-      <div className="w-full max-w-6xl mx-auto flex flex-wrap justify-center gap-8">
-        {serviceTypes.map((type) => {
-          const service = Services[type as keyof typeof Services];
-          const featureList = service.features;
+    <div id="services" className={`px-4 px-2 ${Fonts.default.className}`}>
+      <span
+        className={`text-2xl tracking-widest font-light text-secondary-foreground flex items-center justify-center`}
+      >
+        CHOOSE YOUR PACKAGE
+      </span>
+      <Tabs defaultValue="premium" className="w-full">
+        <TabsList className="grid w-full max-w-md mx-auto grid-cols-2 my-4">
+          <TabsTrigger value="premium">PREMIUM</TabsTrigger>
+          <TabsTrigger value="express">EXPRESS</TabsTrigger>
+        </TabsList>
 
-          return (
-            <div
-              key={type}
-              className="bg-gray-900 shadow-lg rounded-2xl p-6 w-full md:w-[400px] flex flex-col justify-between transition-all duration-500 hover:scale-105"
-            >
-              <div>
-                <h2
-                  className={`text-4xl md:text-3xl font-bold mb-1 items-center ${Styling.GoldChromatic}`}
-                >
-                  {service.name.split(" ")[0]}
-                  <span className="font-light text-secondary-foreground pl-2">
-                    {service.name.split(" ")[1]}
-                  </span>
-                </h2>
-                {service.recommendation && (
-                  <span
-                    className={`flex md:text-lg text-xl pt-2 ${Fonts.default.className} text-secondary-foreground`}
-                  >
-                    {service.recommendation}
-                  </span>
-                )}
-                <div className="flex gap-2 mb-2 mt-4">
-                  <div className="flex items-center text-sm bg-gray-100 dark:bg-gray-700 text-secondary-foreground px-2 py-1 rounded">
-                    <Clock className="w-4 h-4 mr-1" />
-                    {service.duration}
-                  </div>
-                  {type === "full" && (
-                    <div className="flex text-secondary items-center text-sm text-black bg-gradient-to-r from-[#bfa14d] via-[#d4af37] to-[#b8860b] text-primary-foreground shadow hover:brightness-110 font-semibold px-2 py-1 rounded">
-                      <Star className="w-4 h-4 mr-1" /> Popular
-                    </div>
-                  )}
-                </div>
+        <TabsContent value="premium">
+          <div className="w-full max-w-6xl mx-auto grid md:grid-cols-1 gap-8">
+            {serviceTypes.map((type) => {
+              const service = Services[type as keyof typeof Services];
 
-                <ul className="mt-4 mb-6 space-y-2 text-sm text-gray-700 dark:text-gray-300">
-                  {featureList.map((feature) => (
-                    <li key={feature} className="flex items-start gap-2">
-                      <CheckCircle2
-                        className={`w-4 h-4 mt-1 flex-shrink-0 ${feature.includes("Everything") ? "text-yellow-500" : "text-green-500"}`}
-                      />
-                      <span
-                        className={`text-lg leading-snug ${feature.includes("Everything") ? "font-medium text-yellow-500" : ""}`}
-                      >
-                        {feature}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div className="flex flex-col">
-                <div
-                  className={`text-2xl mb-4 font-light text-secondary-foreground ${Fonts.default.className}`}
+              if (service.category === "express") return;
+
+              return (
+                <Link
+                  href={service.active ? `/checkout/${service.id}` : "#"}
+                  key={type}
+                  className={`relative group overflow-hidden rounded-2xl transition-all duration-500 hover:scale-105 aspect-[16/9] ${!service.active && "pointer-events-none opacity-60"}`}
                 >
-                  Starting at{" "}
-                  <span className={`${Styling.GoldChromatic} font-semibold`}>
-                    ${service.startingPrice}
-                  </span>
-                </div>
-                <Button
-                  variant="outline"
-                  size="lg"
-                  disabled={!service.active}
-                  className="w-full"
-                  asChild
-                >
-                  {service.active ? (
-                    <GoogleConversionLink
-                      href={`/checkout/${service.id}`}
-                      usdValue={service.startingPrice}
+                  <div
+                    className="absolute inset-0 bg-cover bg-center z-0 opacity-40"
+                    style={{
+                      backgroundImage: `url(/showcase/package-cover-${service.id}.png)`,
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition-all duration-300" />
+
+                  <div className="relative flex flex-col items-center text-center justify-center z-10 p-6 md:p-12 md:mx-8 h-full">
+                    <h2
+                      className={`text-3xl md:text-5xl font-bold mb-2 md:mb-4 md:pb-2 ${Styling.GoldChromatic} ${Fonts.premium.className}`}
                     >
-                      <span className="text-lg">Select</span>
-                    </GoogleConversionLink>
-                  ) : (
-                    <span>Coming Soon</span>
-                  )}
-                </Button>
-              </div>
-            </div>
-          );
-        })}
-      </div>
+                      {service.name}
+                    </h2>
+
+                    <p className="text-lg md:text-xl text-gray-200 mb-4 md:mb-6">
+                      {service.recommendation ||
+                        "Professional detailing service for your vehicle"}
+                    </p>
+
+                    <div
+                      className={`tracking-widest font-light text-secondary-foreground`}
+                    >
+                      STARTING AT{" "}
+                      <span
+                        className={`${Styling.GoldChromatic} font-semibold`}
+                      >
+                        ${service.startingPrice}
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        </TabsContent>
+
+        <TabsContent value="express">
+          <div className="w-full max-w-6xl mx-auto grid md:grid-cols-1 gap-8">
+            {serviceTypes.map((type) => {
+              const service = Services[type as keyof typeof Services];
+
+              if (service.category !== "express") return;
+
+              return (
+                <Link
+                  href={service.active ? `/checkout/${service.id}` : "#"}
+                  key={type}
+                  className={`relative group overflow-hidden rounded-2xl transition-all duration-500 hover:scale-105 aspect-[16/9] ${!service.active && "pointer-events-none opacity-60"}`}
+                >
+                  <div
+                    className="absolute inset-0 bg-cover bg-center z-0 opacity-40"
+                    style={{
+                      backgroundImage: `url(/showcase/package-cover-${service.id}.png)`,
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition-all duration-300" />
+
+                  <div className="relative flex flex-col items-center text-center justify-center z-10 p-6 md:p-12 md:mx-8 h-full">
+                    <h2
+                      className={`text-3xl md:text-5xl font-bold mb-2 md:mb-4 md:pb-2 ${Styling.GoldChromatic} ${Fonts.premium.className}`}
+                    >
+                      {service.name}
+                    </h2>
+
+                    <p className="text-lg md:text-xl text-gray-200 mb-4 md:mb-6">
+                      {service.recommendation ||
+                        "Professional detailing service for your vehicle"}
+                    </p>
+
+                    <div
+                      className={`text-2xl md:text-3xl font-light text-white`}
+                    >
+                      Starting at{" "}
+                      <span
+                        className={`${Styling.GoldChromatic} font-semibold`}
+                      >
+                        ${service.startingPrice}
+                      </span>
+                    </div>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        </TabsContent>
+      </Tabs>
 
       <div
-        className={`text-center mt-10 text-sm text-gray-500 dark:text-gray-400 space-y-2 font-light text-sm text-slate-500 ${Fonts.default.className}`}
+        className={`text-center mt-10 text-sm text-gray-500 dark:text-gray-400 space-y-2 ${Fonts.default.className}`}
       >
-        <p>†Time estimates may vary based on vehicle size and condition.</p>
         <p>
-          †
           <a href={`tel:${Identity.companyPhoneNumber}`} className="link">
             Call
           </a>{" "}

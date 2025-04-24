@@ -99,3 +99,16 @@ a.link:hover {
   color: hsl(45, 80%, 60%);
   /* Brighter gold on hover */
 }
+
+@keyframes infinite-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-infinite-scroll {
+  animation: infinite-scroll 20s linear infinite;
+}

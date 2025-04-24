@@ -12,7 +12,10 @@ export default function Reviews({
   featurableWidgetId: string;
 }) {
   return (
-    <div id="reviews">
+    <div
+      id="reviews"
+      className="lg:w-fit md:w-[800px] w-[400px] items-left text-left"
+    >
       <span className="tracking-widest font-light text-secondary-foreground flex items-center justify-center">
         WHAT OUR CUSTOMERS SAY
       </span>

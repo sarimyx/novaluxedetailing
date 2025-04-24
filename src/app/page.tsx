@@ -1,178 +1,133 @@
-import Link from "next/link";
+import Footer from "@/components/footer";
+import Pricing from "@/components/pricing";
+import Reviews from "@/components/reviews";
 import { Button } from "@/components/ui/button";
+import { Separator } from "@/components/ui/separator";
+import { Fonts } from "@/constants/fonts";
 import { Identity } from "@/constants/identity";
+import { Styling } from "@/constants/styling";
 import {
-  CarFront,
-  Check,
-  Facebook,
+  ArrowDown,
   MapPin,
   MessageSquare,
   PhoneCall,
-  Star,
-  StarIcon,
+  Stars,
 } from "lucide-react";
-import { Styling } from "@/constants/styling";
-import { InstagramLogoIcon, PersonIcon } from "@radix-ui/react-icons";
-import { Separator } from "@/components/ui/separator";
-import { Fonts } from "@/constants/fonts";
-import Gallery from "@/components/gallery";
-import Pricing from "@/components/pricing";
-import Reviews from "@/components/reviews";
+import Image from "next/image";
 
-export default function HomePage() {
+export default function Page() {
   return (
-    <div className="flex flex-col min-h-screen px-2">
-      <main className="min-h-[calc(100vh-57px-97px)] flex-1">
-        <div className="relative space-y-16">
-          <section className="flex flex-col items-center space-y-4">
-            <br />
-            <h1
-              className={`flex text-6xl font-bold text-center ${Styling.GoldChromatic} ${Fonts.premium.className} pb-2`}
-            >
-              {Identity.companyName}
-            </h1>
-            <div className="flex flex-col mx-4 space-y-2 text-slate-600 dark:text-slate-400 text-center text-2xl font-light text-foreground">
-              <div className="flex text-center justify-center items-center px-8">
-                <span className={`font-light ${Fonts.premium.className}`}>
-                  Premium Auto Detailer in Utah
-                </span>
-              </div>
-            </div>
-            <div className="flex w-full text-center justify-center">
-              <Button
-                variant="special"
-                size="lg"
-                className="md:w-3/12 md:h-14 w-3/6 h-14 rounded-lg text-2xl"
-                asChild
-              >
-                <Link href="#pricing">
-                  <span className={`${Fonts.premium.className}`}>Book now</span>
-                </Link>
+    <div className="flex flex-col justify-center items-center text-center space-y-8 py-8">
+      <section className="w-full h-[60vh] relative overflow-hidden -mt-8">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          className="absolute inset-0 w-full h-full object-cover opacity-30"
+        >
+          <source src="/showcase/landing-page-video.mov" type="video/mp4" />
+          <source
+            src="/showcase/landing-page-video.mov"
+            type="video/quicktime"
+          />
+          Your browser does not support the video tag.
+        </video>
+        <div className="absolute inset-0 bg-black/30" />
+        <div className="absolute inset-0 flex flex-col items-center justify-center space-y-8">
+          <span
+            className={`text-7xl py-2 w-[400px] ${Styling.GoldChromatic} ${Fonts.premium.className}`}
+          >
+            {Identity.companyName}
+          </span>
+
+          <div className="flex flex-col items-center space-y-4">
+            <div className="flex">
+              <Button variant="special" size="lg" className="rounded-full">
+                <a href="#services" className="flex gap-2 items-center">
+                  Book Us In 3 Clicks
+                  <ArrowDown className="h-4 w-4 inline-block" />
+                </a>
               </Button>
             </div>
-            <div className="flex flex-wrap w-full text-center justify-center hover:text-violet-300 gap-3">
-              <Button
-                variant="link"
-                className="border border-yellow-500 rounded-lg"
-                asChild
-              >
-                <Link
+            <div className="flex flex-wrap gap-2">
+              <Button variant="secondary" size="sm" className="rounded-full">
+                <a
                   href={`tel:${Identity.companyPhoneNumber}`}
-                  rel="noopener noreferrer"
+                  className="flex gap-2 items-center"
                 >
-                  <PhoneCall className="w-4 h-4 mr-2" />
+                  <PhoneCall className="h-4 w-4 inline-block" />
                   {Identity.companyPhoneNumberFormatted}
-                </Link>
+                </a>
               </Button>
-              <Button
-                variant="link"
-                className="border border-yellow-500 rounded-lg"
-                asChild
-              >
-                <Link
+              <Button variant="secondary" size="sm" className="rounded-full">
+                <a
                   href={`sms:${Identity.companyPhoneNumber}`}
-                  rel="noopener noreferrer"
+                  className="flex gap-2 items-center"
                 >
-                  <MessageSquare className="w-4 h-4 mr-2" />
-                  Text us
-                </Link>
+                  <MessageSquare className="h-4 w-4 inline-block" />
+                  Text Us
+                </a>
               </Button>
-              <Button
-                variant="link"
-                className="border border-yellow-500 rounded-lg"
-                asChild
-              >
-                <Link href={`#reviews`} rel="noopener noreferrer">
-                  <PersonIcon className="w-4 h-4 mr-2" />
+              <Button variant="secondary" size="sm" className="rounded-full">
+                <a href="#reviews" className="flex gap-2 items-center">
+                  <Stars className="h-4 w-4 inline-block" />
                   Reviews
-                </Link>
+                </a>
               </Button>
             </div>
-            <div className="flex flex-col space-y-2 items-center">
-              <section className="flex items-center gap-1">
-                <MapPin className="text-orange-400" />
-                <span
-                  className={`text-secondary-foreground ${Fonts.premium.className}`}
-                >
-                  We Come To{" "}
-                  <strong className={Styling.GoldChromatic}>You</strong>
-                </span>
-              </section>
-              <section className="flex items-center gap-1">
-                <Star className="text-orange-400" />
-                <span
-                  className={`text-secondary-foreground ${Fonts.premium.className}`}
-                >
-                  <strong className={`${Styling.GoldChromatic}`}>5</strong> star
-                  service
-                </span>
-              </section>
-              <section className="flex items-center gap-1">
-                <Check className="text-orange-400" />
-                <span
-                  className={`text-secondary-foreground ${Fonts.premium.className}`}
-                >
-                  Less than{" "}
-                  <strong className={`${Styling.GoldChromatic}`}>3</strong>{" "}
-                  clicks to book
-                </span>
-              </section>
+            <div className="flex items-center gap-1">
+              <MapPin className="text-orange-400" />
+              <span
+                className={`text-secondary-foreground ${Fonts.premium.className}`}
+              >
+                Serving all of{" "}
+                <strong className={Styling.GoldChromatic}>Utah County</strong>
+              </span>
             </div>
-          </section>
-          <Separator />
-          <section className="space-y-4 mx-4">
-            <Pricing />
-          </section>
-          <Separator />
-          <section className="space-y-4 mx-4">
-            <Gallery />
-          </section>
-          <Separator />
-          <section className="space-y-4 mx-4">
-            <Reviews featurableWidgetId={process.env.FEATURABLE_WIDGET_ID!} />
-          </section>
-          <Separator />
-          {/* Add more sections here... */}
-          <hr />
-        </div>
-      </main>
-      <footer className="py-6 md:py-0 border-t border-border/40">
-        <div className="text-sm container flex flex-col items-center justify-center gap-4 md:h-24">
-          <p className="text-balance text-center leading-loose text-muted-foreground">
-            Copyright © {new Date().getFullYear()} {Identity.companyName}.
-          </p>
-          <div className="flex flex-wrap justify-center gap-2">
-            <a href="#pricing" className="link flex items-center gap-1">
-              <CarFront className="w-4 h-4" />
-              Services
-            </a>
-            <a
-              href={Identity.socialMedia.instagram}
-              target="_blank"
-              className="link flex items-center gap-1"
-            >
-              <InstagramLogoIcon className="w-4 h-4" />
-              Instagram
-            </a>
-            <a
-              href={Identity.socialMedia.facebook}
-              target="_blank"
-              className="link flex items-center gap-1"
-            >
-              <Facebook className="w-4 h-4" />
-              Facebook
-            </a>
-            <a
-              href={Identity.googleLink}
-              target="_blank"
-              className="link flex items-center gap-1"
-            >
-              <StarIcon className="w-4 h-4" />
-              Reviews
-            </a>
           </div>
         </div>
-      </footer>
+      </section>
+      <Separator />
+      <section>
+        <Pricing />
+      </section>
+      <Separator />
+      <section>
+        <Reviews featurableWidgetId={process.env.FEATURABLE_WIDGET_ID!} />
+      </section>
+      <Separator />
+      <section>
+        <section className="w-full">
+          <div className="relative overflow-hidden w-full">
+            <div className="flex animate-infinite-scroll">
+              {[1, 2, 3, 4, 5, 6].map((num) => (
+                <Image
+                  key={`image-${num}`}
+                  src={`/showcase/slideshow-${num}.png`}
+                  alt={`Luxury car detailing showcase ${num}`}
+                  width={400}
+                  height={400}
+                  className="rounded-full shadow-2xl mx-4 w-[300px] h-[300px] md:w-[400px] md:h-[400px] object-cover"
+                />
+              ))}
+              {/* Duplicate set for seamless loop */}
+              {[1, 2, 3].map((num) => (
+                <Image
+                  key={`image-${num}-duplicate`}
+                  src={`/showcase/slideshow-${num}.png`}
+                  alt={`Luxury car detailing showcase ${num}`}
+                  width={400}
+                  height={400}
+                  className="rounded-full shadow-2xl mx-4 w-[300px] h-[300px] md:w-[400px] md:h-[400px] object-cover"
+                />
+              ))}
+            </div>
+          </div>
+        </section>
+      </section>
+      <Footer />
     </div>
   );
 }

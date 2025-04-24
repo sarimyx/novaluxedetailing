@@ -2,7 +2,8 @@ export const Services = {
   interior: {
     active: true,
     id: "interior",
-    name: "Interior Detail",
+    name: "The Interior Package",
+    category: "full",
     recommendation:
       "A full interior rebirth. Perfect for regular upkeep with a touch of luxury.",
     duration: "2 – 2.5 hrs",
@@ -20,6 +21,7 @@ export const Services = {
     active: true,
     id: "interior-express",
     name: "Interior Express",
+    category: "express",
     recommendation:
       "A quick freshen up. Ideal for new / well-maintained vehicles.",
     duration: "45m - 1 hr",
@@ -35,7 +37,8 @@ export const Services = {
   exterior: {
     active: true,
     id: "exterior",
-    name: "Exterior Detail",
+    name: "The Exterior Package",
+    category: "full",
     recommendation:
       "Get a deep hand-clean, shine, and polish. Covers all outer surfaces.",
     duration: "1.5 - 2 hrs",
@@ -50,7 +53,8 @@ export const Services = {
   full: {
     active: true,
     id: "full",
-    name: "Full Detail",
+    name: "The Full Package",
+    category: "full",
     recommendation:
       "The ultimate experience, interior and exterior. All in one.",
     duration: "3 – 3.5 hrs",

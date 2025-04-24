@@ -11,12 +11,6 @@ const serviceTypes = Object.keys(Services);
 export default function Pricing() {
   return (
     <div id="pricing" className={`md:px-4 px-2 ${Fonts.premium.className}`}>
-      <h1
-        className={`pb-2 text-5xl font-semibold text-center mb-10 tracking-tight ${Styling.GoldChromatic}`}
-      >
-        Choose Your Service
-      </h1>
-
       <div className="w-full max-w-6xl mx-auto flex flex-wrap justify-center gap-8">
         {serviceTypes.map((type) => {
           const service = Services[type as keyof typeof Services];

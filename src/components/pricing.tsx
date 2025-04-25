@@ -50,8 +50,7 @@ export default function PricingV2() {
                     </h2>
 
                     <p className="text-lg md:text-xl text-gray-200 mb-4 md:mb-6">
-                      {service.recommendation ||
-                        "Professional detailing service for your vehicle"}
+                      {service.recommendation}
                     </p>
 
                     <div
@@ -100,14 +99,13 @@ export default function PricingV2() {
                     </h2>
 
                     <p className="text-lg md:text-xl text-gray-200 mb-4 md:mb-6">
-                      {service.recommendation ||
-                        "Professional detailing service for your vehicle"}
+                      {service.recommendation}
                     </p>
 
                     <div
-                      className={`text-2xl md:text-3xl font-light text-white`}
+                      className={`tracking-widest font-light text-secondary-foreground`}
                     >
-                      Starting at{" "}
+                      STARTING AT{" "}
                       <span
                         className={`${Styling.GoldChromatic} font-semibold`}
                       >
@@ -136,7 +134,7 @@ export default function PricingV2() {
           >
             text us
           </a>{" "}
-          for more price information.
+          for more information.
         </p>
       </div>
     </div>

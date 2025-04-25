@@ -101,12 +101,11 @@ export default function Page() {
         <h2 className="sr-only">Our Detailing Services</h2>
         <Pricing />
       </section>
-
+      <Separator />
       <section id="reviews" aria-label="Customer Reviews">
         <h2 className="sr-only">Customer Reviews and Testimonials</h2>
         <Reviews featurableWidgetId={process.env.FEATURABLE_WIDGET_ID!} />
       </section>
-
       <section aria-label="Portfolio Showcase">
         <h2 className="sr-only">Our Detailing Portfolio</h2>
         <div className="relative overflow-hidden w-full">
@@ -134,7 +133,7 @@ export default function Page() {
           </div>
         </div>
       </section>
-
+      <Separator />
       <Footer />
     </main>
   );

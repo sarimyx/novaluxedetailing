@@ -559,8 +559,24 @@ export function BookingStepThree({
 
       <p className="text-sm text-gray-500 dark:text-gray-400">
         By submitting, you agree to our{" "}
-        <span className="text-blue-500">Terms of Service</span> and{" "}
-        <span className="text-blue-500">Privacy Policy</span>.
+        <a
+          href="/terms-of-service"
+          target="_blank"
+          rel="noreferrer"
+          className="text-blue-500"
+        >
+          Terms of Service
+        </a>{" "}
+        and{" "}
+        <a
+          href="/privacy-policy"
+          target="_blank"
+          rel="noreferrer"
+          className="text-blue-500"
+        >
+          Privacy Policy
+        </a>
+        .
       </p>
     </div>
   );

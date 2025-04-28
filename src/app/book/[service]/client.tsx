@@ -343,7 +343,7 @@ export function BookingStepTwo({
     <div className="space-y-4">
       {/* Morning block */}
       <p className="text-xs uppercase tracking-wide text-muted-foreground font-semibold">
-        AVAILABLE TIMES ON {MiscUtils.parseDateObject(selectedDay).readableDate}
+        AVAILABLE TIMES FOR {MiscUtils.parseDateObject(selectedDay).readableDate}
       </p>
       {morningHours.length > 0 && (
         <div className="space-y-2">

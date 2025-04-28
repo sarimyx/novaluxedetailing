@@ -43,9 +43,13 @@ export class SheetsService {
           const hour = startingHour + i;
           const value = hours[i];
 
-          // If it's BOOKED, treat as null (unavailable)
+          // If it's BOOKED or BLOCKED, treat as null (unavailable)
           hourAvailability[`${hour}:00`] =
-            value && value.toUpperCase() !== "BOOKED" ? value : null;
+            value &&
+            !value.toUpperCase().startsWith("BOOKED") &&
+            !value.toUpperCase().startsWith("BLOCKED")
+              ? value
+              : null;
         }
 
         return {
@@ -123,8 +127,33 @@ export class SheetsService {
       const currentValue = rows[rowIndex][columnIndex] || "";
       const detailerName = currentValue.toString().trim();
 
-      // 6. Overwrite the cell with "BOOKED"
-      rows[rowIndex][columnIndex] = "BOOKED";
+      // 6. Overwrite the selected cell + surrounding buffer
+      const bookedLabel = detailerName ? `BOOKED (${detailerName})` : "BOOKED";
+      const bufferLabel = "BLOCKED (Buffer)";
+
+      const hoursToBlockBefore = 3; // Prior 3 hours
+      const hoursToBlockAfter = 3; // Following 3 hours
+
+      // Block prior 3 hours
+      for (let i = 1; i <= hoursToBlockBefore; i++) {
+        const targetColumnIndex = columnIndex - i;
+        if (targetColumnIndex >= 3) {
+          // Don't go before 8 AM
+          rows[rowIndex][targetColumnIndex] = bufferLabel;
+        }
+      }
+
+      // Block the booked hour itself
+      rows[rowIndex][columnIndex] = bookedLabel;
+
+      // Block following 3 hours
+      for (let i = 1; i <= hoursToBlockAfter; i++) {
+        const targetColumnIndex = columnIndex + i;
+        if (targetColumnIndex <= 13) {
+          // Don't go past 6 PM
+          rows[rowIndex][targetColumnIndex] = bufferLabel;
+        }
+      }
 
       await this.sheetsClient.spreadsheets.values.update({
         spreadsheetId,
@@ -135,30 +164,80 @@ export class SheetsService {
         },
       });
 
-      // 7. Apply red background formatting to the booked cell
-      const requests = [
-        {
+      // 7. Set formatting for BOOKED and BLOCKED cells
+      const requests = [];
+
+      // Red background for BOOKED cell
+      requests.push({
+        repeatCell: {
+          range: {
+            sheetId: availabilitySheetId,
+            startRowIndex: rowIndex + 1,
+            endRowIndex: rowIndex + 2,
+            startColumnIndex: columnIndex,
+            endColumnIndex: columnIndex + 1,
+          },
+          cell: {
+            userEnteredFormat: {
+              backgroundColor: {
+                red: 1,
+                green: 0.7,
+                blue: 0.7,
+              },
+            },
+          },
+          fields: "userEnteredFormat.backgroundColor",
+        },
+      });
+
+      // Orange background for buffer cells BEFORE and AFTER
+      const bufferRanges = [];
+
+      // Prior 3 buffer cells
+      for (let i = 1; i <= hoursToBlockBefore; i++) {
+        const targetColumnIndex = columnIndex - i;
+        if (targetColumnIndex >= 3) {
+          bufferRanges.push({
+            startColumnIndex: targetColumnIndex,
+            endColumnIndex: targetColumnIndex + 1,
+          });
+        }
+      }
+
+      // Following 3 buffer cells
+      for (let i = 1; i <= hoursToBlockAfter; i++) {
+        const targetColumnIndex = columnIndex + i;
+        if (targetColumnIndex <= 13) {
+          bufferRanges.push({
+            startColumnIndex: targetColumnIndex,
+            endColumnIndex: targetColumnIndex + 1,
+          });
+        }
+      }
+
+      for (const range of bufferRanges) {
+        requests.push({
           repeatCell: {
             range: {
               sheetId: availabilitySheetId,
-              startRowIndex: rowIndex + 1, // +1 because A2 corresponds to rowIndex 1
+              startRowIndex: rowIndex + 1,
               endRowIndex: rowIndex + 2,
-              startColumnIndex: columnIndex,
-              endColumnIndex: columnIndex + 1,
+              startColumnIndex: range.startColumnIndex,
+              endColumnIndex: range.endColumnIndex,
             },
             cell: {
               userEnteredFormat: {
                 backgroundColor: {
                   red: 1,
-                  green: 0.7,
-                  blue: 0.7,
+                  green: 0.8,
+                  blue: 0.5,
                 },
               },
             },
             fields: "userEnteredFormat.backgroundColor",
           },
-        },
-      ];
+        });
+      }
 
       await this.sheetsClient.spreadsheets.batchUpdate({
         spreadsheetId,

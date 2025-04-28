@@ -306,7 +306,7 @@ export function BookingStepTwo({
   availableSlots,
 }: {
   setCurrentStep: (step: number) => void;
-  setSelectedHour: (hour: number) => void;
+  setSelectedHour: (hour: number | null) => void;
   selectedDay: { year: number; month: number; day: number };
   availableSlots: any[];
 }) {
@@ -328,8 +328,11 @@ export function BookingStepTwo({
   const afternoonHours = availableHours.filter((hour) => hour >= 12);
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-4">
       {/* Morning block */}
+      <p className="text-xs uppercase tracking-wide text-muted-foreground font-semibold">
+        AVAILABLE TIMES ON {MiscUtils.parseDateObject(selectedDay).readableDate}
+      </p>
       {morningHours.length > 0 && (
         <div className="space-y-2">
           <p className="text-xs uppercase tracking-wide text-muted-foreground">
@@ -374,6 +377,17 @@ export function BookingStepTwo({
           </div>
         </div>
       )}
+      <hr />
+      <button
+        onClick={() => {
+          setCurrentStep(1);
+          setSelectedHour(null);
+        }}
+      >
+        <p className="text-sm text-yellow-500 hover:underline">
+          ← Choose another day
+        </p>
+      </button>
     </div>
   );
 }
@@ -436,7 +450,7 @@ export function BookingStepThree({
         // Redirect to a success page or handle as needed
         setTimeout(() => {
           router.push("/book/thank-you");
-        }, 1000);
+        }, 500);
 
         // Optional: Clear form fields after success
         setName("");

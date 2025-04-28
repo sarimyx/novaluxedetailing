@@ -45,7 +45,7 @@ export default function Page() {
         <div className="absolute inset-0 bg-black/30" />
         <div className="absolute inset-0 flex flex-col items-center justify-center space-y-8">
           <h1
-            className={`text-7xl py-2 w-[400px] ${Styling.GoldChromatic} ${Fonts.premium.className}`}
+            className={`text-8xl w-[500px] py-2 ${Styling.GoldChromatic} ${Fonts.premium.className}`}
           >
             {Identity.companyName}
           </h1>

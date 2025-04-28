@@ -90,14 +90,12 @@ export class SheetsService {
     startHour: number,
   ): Promise<string> {
     try {
-      // 1. Get the correct sheetId dynamically for "Availability"
       const availabilitySheetId = await this.getSheetIdByName(
         spreadsheetId,
         "Availability",
       );
 
-      // 2. Fetch the current availability rows
-      const rangeToFetch = "Availability!A2:M"; // A2:M = full availability grid
+      const rangeToFetch = "Availability!A2:M";
       const response = await this.sheetsClient.spreadsheets.values.get({
         spreadsheetId,
         range: rangeToFetch,
@@ -105,52 +103,43 @@ export class SheetsService {
 
       const rows = response.data.values || [];
 
-      // 3. Find the correct row based on the date
-      const rowIndex = rows.findIndex((row) => row[1] === date); // column B = date
-
+      const rowIndex = rows.findIndex((row) => row[1] === date);
       if (rowIndex === -1) {
         throw new Error("Date not found in availability sheet");
       }
 
-      // 4. Find the correct column based on the hour
-      const startingHour = 8; // 8:00 AM
-      const columnOffset = 3; // Columns A, B, C are non-hour columns
-
+      const startingHour = 8; // 8 AM
+      const columnOffset = 3; // A, B, C are not hours
       const columnIndex = columnOffset + (startHour - startingHour);
 
       if (columnIndex < 3 || columnIndex > 13) {
-        // Only allow 08:00 - 18:00 slots
         throw new Error("Selected hour is outside valid range");
       }
 
-      // 5. Capture the detailer's name BEFORE overwriting
       const currentValue = rows[rowIndex][columnIndex] || "";
       const detailerName = currentValue.toString().trim();
 
-      // 6. Overwrite the selected cell + surrounding buffer
       const bookedLabel = detailerName ? `BOOKED (${detailerName})` : "BOOKED";
       const bufferLabel = "BLOCKED (Buffer)";
 
-      const hoursToBlockBefore = 3; // Prior 3 hours
-      const hoursToBlockAfter = 3; // Following 3 hours
+      const hoursToBlockBefore = 3;
+      const hoursToBlockAfter = 3;
 
       // Block prior 3 hours
       for (let i = 1; i <= hoursToBlockBefore; i++) {
         const targetColumnIndex = columnIndex - i;
         if (targetColumnIndex >= 3) {
-          // Don't go before 8 AM
           rows[rowIndex][targetColumnIndex] = bufferLabel;
         }
       }
 
-      // Block the booked hour itself
+      // Booked cell
       rows[rowIndex][columnIndex] = bookedLabel;
 
-      // Block following 3 hours
+      // Block next 3 hours
       for (let i = 1; i <= hoursToBlockAfter; i++) {
         const targetColumnIndex = columnIndex + i;
         if (targetColumnIndex <= 13) {
-          // Don't go past 6 PM
           rows[rowIndex][targetColumnIndex] = bufferLabel;
         }
       }
@@ -164,7 +153,6 @@ export class SheetsService {
         },
       });
 
-      // 7. Set formatting for BOOKED and BLOCKED cells
       const requests = [];
 
       // Red background for BOOKED cell
@@ -190,10 +178,9 @@ export class SheetsService {
         },
       });
 
-      // Orange background for buffer cells BEFORE and AFTER
+      // Orange background for buffer cells
       const bufferRanges = [];
 
-      // Prior 3 buffer cells
       for (let i = 1; i <= hoursToBlockBefore; i++) {
         const targetColumnIndex = columnIndex - i;
         if (targetColumnIndex >= 3) {
@@ -204,7 +191,6 @@ export class SheetsService {
         }
       }
 
-      // Following 3 buffer cells
       for (let i = 1; i <= hoursToBlockAfter; i++) {
         const targetColumnIndex = columnIndex + i;
         if (targetColumnIndex <= 13) {
@@ -244,7 +230,6 @@ export class SheetsService {
         requestBody: { requests },
       });
 
-      // 8. Return the captured detailer's name for use in the booking
       return detailerName;
     } catch (error) {
       console.error("SheetsService Block Slot Error:", error);

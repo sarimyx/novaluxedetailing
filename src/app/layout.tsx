@@ -12,8 +12,6 @@ import { Fonts } from "@/constants/fonts";
 import { SiteMetadata } from "@/constants/metadata";
 import { Toaster } from "@/components/ui/toaster";
 
-export const runtime = "edge";
-
 export const metadata = SiteMetadata;
 
 export default function RootLayout({

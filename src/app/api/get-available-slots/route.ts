@@ -1,5 +1,3 @@
-export const runtime = "edge";
-
 import { SheetsService } from "@/utils/server/sheets-service";
 
 export async function GET() {

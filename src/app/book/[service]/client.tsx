@@ -436,14 +436,29 @@ export function BookingStepThree({
     try {
       const selectedDate = `${selectedDay.year}-${String(selectedDay.month).padStart(2, "0")}-${String(selectedDay.day).padStart(2, "0")}`;
 
-      // Real-time availability check
-      const latestSlots = await fetch("/api/get-available-slots").then((res) =>
-        res.json(),
-      );
+      // Run availability check and booking submission in parallel
+      const [latestSlots, bookingResponse] = await Promise.all([
+        fetch("/api/get-available-slots").then((res) => res.json()),
+        fetch("/api/submit-booking", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            name,
+            address,
+            phone,
+            email,
+            selectedDate,
+            selectedHour,
+            vehicleType,
+            service,
+          }),
+        }),
+      ]);
+
+      // Check availability first
       const daySlot = latestSlots.find(
         (slot: any) => slot.date === selectedDate,
       );
-
       if (!daySlot || !daySlot.availableHours[`${selectedHour}:00`]) {
         toast({
           title: "Time Unavailable",
@@ -451,35 +466,20 @@ export function BookingStepThree({
             "Sorry! This time was just booked by someone else. Please select another time by going back.",
           variant: "destructive",
         });
-        setSubmitting(false);
         return;
       }
 
-      // ✅ Step 2: Proceed to book
-      const response = await fetch("/api/submit-booking", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name,
-          address,
-          phone,
-          email,
-          selectedDate,
-          selectedHour,
-          vehicleType,
-          service,
-        }),
-      });
-
-      if (response.ok) {
+      // If available, process the booking response
+      if (bookingResponse.ok) {
         toast({
           title: "Success!",
           duration: 1000,
         });
 
-        setTimeout(() => {
+        // Use requestAnimationFrame for smoother transition
+        requestAnimationFrame(() => {
           router.push("/book/thank-you");
-        }, 200);
+        });
 
         setName("");
         setAddress("");

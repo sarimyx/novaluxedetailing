@@ -174,15 +174,12 @@ export default function BookingClientComponent({
               <h2 className="text-lg tracking-widest font-light text-secondary-foreground">
                 CONFIRM BOOKING
               </h2>
-              <div className="flex justify-between md:w-4/6">
-                <div className="flex font-light gap-2 items-center ">
-                  <CheckCircleIcon className="h-4 w-4" />
-                  <p>{MiscUtils.parseDateObject(selectedDay).readableDate}</p>
-                  <p>•</p>
-                  <p>{MiscUtils.parseHour(selectedHour)}</p>
-                  <p>•</p>
-                  <p>We come to you!</p>
-                </div>
+              <div className="flex font-light gap-2 items-center ">
+                <CheckCircleIcon className="h-4 w-4" />
+                <p>{MiscUtils.parseDateObject(selectedDay).readableDate}</p>
+                <p>•</p>
+                <p>{MiscUtils.parseHour(selectedHour)}</p>
+                <p>•</p>
                 <p
                   className="text-yellow-500 hover:text-yellow-600 underline cursor-pointer"
                   onClick={() => {
@@ -191,7 +188,7 @@ export default function BookingClientComponent({
                     setSelectedDay(null);
                   }}
                 >
-                  Edit time
+                  Change
                 </p>
               </div>
               {currentStep === 3 && (
@@ -343,7 +340,8 @@ export function BookingStepTwo({
     <div className="space-y-4">
       {/* Morning block */}
       <p className="text-xs uppercase tracking-wide text-muted-foreground font-semibold">
-        AVAILABLE TIMES FOR {MiscUtils.parseDateObject(selectedDay).readableDate}
+        AVAILABLE TIMES FOR{" "}
+        {MiscUtils.parseDateObject(selectedDay).readableDate}
       </p>
       {morningHours.length > 0 && (
         <div className="space-y-2">

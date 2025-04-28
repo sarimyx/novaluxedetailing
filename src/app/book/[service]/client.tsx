@@ -478,12 +478,13 @@ export function BookingStepThree({
 
         // Pass booking details through router.push
         router.push(
-          `/book/thank-you?name=${encodeURIComponent(name)}&date=${encodeURIComponent(selectedDate)}&time=${encodeURIComponent(selectedHour)}&service=${encodeURIComponent(service.name)}`,
+          `/book/thank-you?name=${encodeURIComponent(name)}&date=${encodeURIComponent(selectedDate)}&time=${encodeURIComponent(selectedHour)}&service=${encodeURIComponent(service.name.split(" ")[0])}`,
         );
 
         setName("");
         setAddress("");
         setPhone("");
+
         setEmail("");
         setVehicleType("standard");
       } else {

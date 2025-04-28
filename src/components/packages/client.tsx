@@ -68,11 +68,14 @@ export default function PackagesComponent() {
                       src={`/showcase/package-cover-${service.service_id}.jpeg`}
                       alt={service.name}
                       fill
-                      className="object-cover object-center opacity-40 group-hover:opacity-50 transition-opacity duration-300"
-                      priority={service.display_order === 1}
+                      className="object-cover object-center opacity-40 group-hover:opacity-50 transition-opacity duration-300 
+                        saturate-50 contrast-125 brightness-75 
+                        group-hover:saturate-75 group-hover:contrast-100 group-hover:brightness-90
+                        transition-all duration-500"
+                      priority
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
                     />
-                    <div className="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition-all duration-300" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60 group-hover:bg-black/40 transition-all duration-300" />
 
                     <div className="relative flex flex-col items-center text-center justify-center z-10 p-6 md:p-12 md:mx-8 h-full">
                       <h2
@@ -109,11 +112,13 @@ export default function PackagesComponent() {
                     key={service.service_id}
                     className={`relative group overflow-hidden rounded-2xl transition-all duration-500 hover:scale-105 aspect-[16/9] ${!service.active && "pointer-events-none opacity-60"}`}
                   >
-                    <div
-                      className="absolute inset-0 bg-cover bg-center z-0 opacity-40"
-                      style={{
-                        backgroundImage: `url(/showcase/package-cover-${service.service_id}.jpeg)`,
-                      }}
+                    <Image
+                      src={`/showcase/package-cover-full-package.jpeg`}
+                      alt={service.name}
+                      fill
+                      className="object-cover object-center opacity-40 group-hover:opacity-50 transition-opacity duration-300"
+                      priority
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
                     />
                     <div className="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition-all duration-300" />
 

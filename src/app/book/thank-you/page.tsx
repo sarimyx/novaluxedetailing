@@ -1,29 +1,76 @@
-import { ContentLayout } from "@/components/admin-panel/content-layout";
-import { Button } from "@/components/ui/button";
-import { Identity } from "@/constants/identity";
-import { Styling } from "@/constants/styling";
+"use client";
 
-export default function Page() {
+import { ContentLayout } from "@/components/admin-panel/content-layout";
+import { CheckCircle2 } from "lucide-react";
+import { useSearchParams } from "next/navigation";
+import { MiscUtils } from "@/utils/misc";
+import { Fonts } from "@/constants/fonts";
+import { Identity } from "@/constants/identity";
+import Image from "next/image";
+
+export default function ThankYouPage() {
+  const searchParams = useSearchParams();
+  const name = searchParams.get("name");
+  const date = searchParams.get("date");
+  const time = searchParams.get("time");
+  const service = searchParams.get("service");
+
   return (
-    <ContentLayout title="Thank you" hideSidebar>
-      <div className="flex flex-col space-y-4 md:w-3/6">
-        <span className={`text-6xl font-bold ${Styling.GoldChromatic}`}>
-          Thank you.
-        </span>
-        <span className="text-lg font-light text-secondary-foreground">
-          Your booking was received. You will receive a confirmation text within
-          24 hours. If you have any questions or would like to reschedule, text
-          or call us at{" "}
-          <a href={`sms:${Identity.companyPhoneNumber}`} className="link">
-            {Identity.companyPhoneNumberFormatted}
+    <ContentLayout title="Booking Confirmed" hideSidebar>
+      <div className="flex flex-col items-center justify-center space-y-6 text-center">
+        <CheckCircle2 className="w-16 h-16 text-green-500" />
+        <h1 className={`text-4xl ${Fonts.premium.className}`}>
+          Thank you, {name}!
+        </h1>
+        <p className="text-xl text-muted-foreground">
+          Your booking has been confirmed
+        </p>
+
+        <div className="bg-secondary/30 p-6 rounded-lg max-w-md w-full">
+          <h2 className="text-lg font-semibold mb-4">Booking Details</h2>
+          <div className="space-y-2 text-left">
+            <p>
+              <span className="text-muted-foreground">Service:</span> {service}
+            </p>
+            <p>
+              <span className="text-muted-foreground">Date:</span>{" "}
+              {date &&
+                MiscUtils.parseDateObject({
+                  year: parseInt(date.split("-")[0]),
+                  month: parseInt(date.split("-")[1]),
+                  day: parseInt(date.split("-")[2]),
+                }).readableDate}
+            </p>
+            <p>
+              <span className="text-muted-foreground">Time:</span>{" "}
+              {time && MiscUtils.parseHour(parseInt(time))}
+            </p>
+            <p className="text-muted-foreground">
+              Please ensure your vehicle is present at the date above and
+              address you provided.
+            </p>
+          </div>
+        </div>
+
+        <div className="flex justify-center mb-6">
+          <Image
+            src="/logo-wheel.png"
+            alt="Nova Luxe Detailing"
+            width={50}
+            height={50}
+            className="object-contain rounded-full"
+            priority
+          />
+        </div>
+
+        <p className="text-sm text-muted-foreground max-w-md">
+          We will send a confirmation text within 24 hours of the scheduled
+          date. If you need to make any changes, please{" "}
+          <a className="link" href={`sms:${Identity.companyPhoneNumber}`}>
+            contact us
           </a>
           .
-        </span>
-        <div className="flex flex-col">
-          <a href="/">
-            <Button className="mt-2 w-fit">Home page</Button>
-          </a>
-        </div>
+        </p>
       </div>
     </ContentLayout>
   );

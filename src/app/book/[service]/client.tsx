@@ -435,26 +435,11 @@ export function BookingStepThree({
     try {
       const selectedDate = `${selectedDay.year}-${String(selectedDay.month).padStart(2, "0")}-${String(selectedDay.day).padStart(2, "0")}`;
 
-      // Run availability check and booking submission in parallel
-      const [latestSlots, bookingResponse] = await Promise.all([
-        fetch("/api/get-available-slots").then((res) => res.json()),
-        fetch("/api/submit-booking", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            name,
-            address,
-            phone,
-            email,
-            selectedDate,
-            selectedHour,
-            vehicleType,
-            service,
-          }),
-        }),
-      ]);
+      // First check availability
+      const availabilityResponse = await fetch("/api/get-available-slots");
+      const latestSlots = await availabilityResponse.json();
 
-      // Check availability first
+      // Verify the slot is still available
       const daySlot = latestSlots.find(
         (slot: any) => slot.date === selectedDate,
       );
@@ -465,20 +450,36 @@ export function BookingStepThree({
             "Sorry! This time was just booked by someone else. Please select another time by going back.",
           variant: "destructive",
         });
+        setSubmitting(false);
         return;
       }
 
-      // If available, process the booking response
+      // If slot is available, proceed with booking submission
+      const bookingResponse = await fetch("/api/submit-booking", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          address,
+          phone,
+          email,
+          selectedDate,
+          selectedHour,
+          vehicleType,
+          service,
+        }),
+      });
+
       if (bookingResponse.ok) {
         toast({
           title: "Success!",
           duration: 1000,
         });
 
-        // Use requestAnimationFrame for smoother transition
-        requestAnimationFrame(() => {
-          router.push("/book/thank-you");
-        });
+        // Pass booking details through router.push
+        router.push(
+          `/book/thank-you?name=${encodeURIComponent(name)}&date=${encodeURIComponent(selectedDate)}&time=${encodeURIComponent(selectedHour)}&service=${encodeURIComponent(service.name)}`,
+        );
 
         setName("");
         setAddress("");

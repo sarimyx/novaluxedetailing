@@ -1,5 +1,5 @@
 import Footer from "@/components/footer";
-import Pricing from "@/components/pricing";
+import PackagesComponent from "@/components/packages/packages-component";
 import Reviews from "@/components/reviews";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
@@ -15,6 +15,7 @@ import {
   Stars,
 } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 export const metadata = SiteMetadata;
 
@@ -52,36 +53,36 @@ export default function Page() {
           <div className="flex flex-col items-center space-y-4">
             <div className="flex">
               <Button variant="special" size="lg" className="rounded-full">
-                <a href="#services" className="flex gap-2 items-center">
+                <Link href="#packages" className="flex gap-2 items-center">
                   Book Us In 3 Clicks
                   <ArrowDown className="h-4 w-4 inline-block" />
-                </a>
+                </Link>
               </Button>
             </div>
             <div className="flex flex-wrap gap-2">
               <Button variant="secondary" size="sm" className="rounded-full">
-                <a
+                <Link
                   href={`tel:${Identity.companyPhoneNumber}`}
                   className="flex gap-2 items-center"
                 >
                   <PhoneCall className="h-4 w-4 inline-block" />
                   {Identity.companyPhoneNumberFormatted}
-                </a>
+                </Link>
               </Button>
               <Button variant="secondary" size="sm" className="rounded-full">
-                <a
+                <Link
                   href={`sms:${Identity.companyPhoneNumber}`}
                   className="flex gap-2 items-center"
                 >
                   <MessageSquare className="h-4 w-4 inline-block" />
                   Text Us
-                </a>
+                </Link>
               </Button>
               <Button variant="secondary" size="sm" className="rounded-full">
-                <a href="#reviews" className="flex gap-2 items-center">
+                <Link href="#reviews" className="flex gap-2 items-center">
                   <Stars className="h-4 w-4 inline-block" />
                   Reviews
-                </a>
+                </Link>
               </Button>
             </div>
             <div className="flex items-center gap-1">
@@ -97,9 +98,9 @@ export default function Page() {
         </div>
       </section>
       <Separator />
-      <section id="services" aria-label="Pricing and Services">
-        <h2 className="sr-only">Our Detailing Services</h2>
-        <Pricing />
+      <section id="packages" aria-label="Packages">
+        <h2 className="sr-only">Our Detailing Packages</h2>
+        <PackagesComponent />
       </section>
       <Separator />
       <section id="reviews" aria-label="Customer Reviews">

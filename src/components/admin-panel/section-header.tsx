@@ -27,8 +27,13 @@ export function SectionHeader({ title, hideSidebar }: SectionHeaderProps) {
   // Reconstruct URLs for each segment
   const breadcrumbs = pathSegments.map((segment, index) => {
     const href = "/" + pathSegments.slice(0, index + 1).join("/");
+    const words = decodeURIComponent(segment.replace(/-/g, " ")).split(" ");
+    const capitalizedName = words
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(" ");
+    
     return {
-      name: decodeURIComponent(segment.replace(/-/g, " ")), // Optionally format (e.g., replace hyphens)
+      name: capitalizedName,
       href,
     };
   });

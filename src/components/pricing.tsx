@@ -5,9 +5,9 @@ import { Services } from "@/constants/services";
 import Link from "next/link";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
-const serviceTypes = Object.keys(Services);
+export default function Pricing() {
+  const serviceTypes = Object.keys(Services);
 
-export default function PricingV2() {
   return (
     <div id="services" className={`px-4 px-2 ${Fonts.default.className}`}>
       <span
@@ -30,7 +30,7 @@ export default function PricingV2() {
 
               return (
                 <Link
-                  href={service.active ? `/checkout/${service.id}` : "#"}
+                  href={service.active ? `/book/${service.id}` : "#"}
                   key={type}
                   className={`relative group overflow-hidden rounded-2xl transition-all duration-500 hover:scale-105 aspect-[16/9] ${!service.active && "pointer-events-none opacity-60"}`}
                 >
@@ -79,7 +79,7 @@ export default function PricingV2() {
 
               return (
                 <Link
-                  href={service.active ? `/checkout/${service.id}` : "#"}
+                  href={service.active ? `/book/${service.id}` : "#"}
                   key={type}
                   className={`relative group overflow-hidden rounded-2xl transition-all duration-500 hover:scale-105 aspect-[16/9] ${!service.active && "pointer-events-none opacity-60"}`}
                 >

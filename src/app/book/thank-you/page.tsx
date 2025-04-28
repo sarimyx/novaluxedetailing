@@ -6,14 +6,15 @@ import { Styling } from "@/constants/styling";
 export default function Page() {
   return (
     <ContentLayout title="Thank you" hideSidebar>
-      <div className="flex flex-col space-y-4">
+      <div className="flex flex-col space-y-4 md:w-3/6">
         <span className={`text-6xl font-bold ${Styling.GoldChromatic}`}>
           Thank you.
         </span>
         <span className="text-lg font-light text-secondary-foreground">
-          We got your request. We will get back to you shortly. If you have any
-          questions, text or call us at{" "}
-          <a href={`tel:${Identity.companyPhoneNumber}`} className="link">
+          Your booking was received. You will receive a confirmation text within
+          24 hours. If you have any questions or would like to reschedule, text
+          or call us at{" "}
+          <a href={`sms:${Identity.companyPhoneNumber}`} className="link">
             {Identity.companyPhoneNumberFormatted}
           </a>
           .

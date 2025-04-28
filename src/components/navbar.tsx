@@ -120,7 +120,6 @@ export function Navbar() {
               <MessageSquare className="w-[1.2rem] h-[1.2rem]" />
             </Button>
           </a>
-          {/* <ModeToggle /> */}
         </nav>
       </div>
     </header>

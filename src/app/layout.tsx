@@ -10,6 +10,7 @@ import { Suspense } from "react";
 import Script from "next/script";
 import { Fonts } from "@/constants/fonts";
 import { SiteMetadata } from "@/constants/metadata";
+import { Toaster } from "@/components/ui/toaster";
 
 export const runtime = "edge";
 
@@ -21,7 +22,7 @@ export default function RootLayout({
   return (
     <ClerkProvider signInUrl="/login" signUpUrl="/join">
       <html lang="en" suppressHydrationWarning>
-        <body className={Fonts.default.className}>
+        <body suppressHydrationWarning className={Fonts.default.className}>
           {/* Google Ads */}
           <Script
             strategy="afterInteractive"
@@ -54,6 +55,8 @@ export default function RootLayout({
             >
               <div className="min-h-screen bg-[#000000] bg-[radial-gradient(#ffffff33_1px,#00091d_1px)] bg-[size:20px_20px]">
                 <Navbar />
+                <Toaster />
+
                 {children}
               </div>
             </Suspense>

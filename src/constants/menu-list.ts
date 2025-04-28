@@ -1,10 +1,4 @@
-import {
-  CarFront,
-  LayoutGrid,
-  LucideIcon,
-  User,
-  UserRound,
-} from "lucide-react";
+import { CarFront, LayoutGrid, LucideIcon, UserRound } from "lucide-react";
 
 type Submenu = {
   href: string;
@@ -29,8 +23,8 @@ export function getMenuList(pathname: string): Group[] {
   let target = "";
   if (pathname.startsWith("/dashboard/staff")) {
     target = "staff";
-  } else if (pathname.startsWith("/dashboard/provider")) {
-    target = "provider";
+  } else if (pathname.startsWith("/dashboard/detailer")) {
+    target = "detailer";
   } else if (pathname.startsWith("/dashboard/customer")) {
     target = "customer";
   }
@@ -47,7 +41,7 @@ export function getMenuList(pathname: string): Group[] {
           pathname.startsWith("/dashboard") &&
           // Any sub pages are appended to the end of the pathname after the target, so if the target itself is is the last word in the pathname, we are on the root dashboard page.
           (pathname.endsWith("staff") ||
-            pathname.endsWith("provider") ||
+            pathname.endsWith("detailer") ||
             pathname.endsWith("customer")),
       },
     ],
@@ -77,7 +71,7 @@ export function getMenuList(pathname: string): Group[] {
 
   if (pathname.startsWith("/dashboard/staff")) {
     return [base, staff_DatabasesSection, myProfile];
-  } else if (pathname.startsWith("/dashboard/provider")) {
+  } else if (pathname.startsWith("/dashboard/detailer")) {
     return [base, myProfile];
   } else {
     return [base, myProfile];

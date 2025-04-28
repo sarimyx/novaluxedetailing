@@ -7,6 +7,7 @@ export const Services = {
     recommendation:
       "A full interior rebirth. Perfect for regular upkeep with a touch of luxury.",
     duration: "2 – 2.5 hrs",
+    estimatedHours: 3,
     startingPrice: 297,
     features: [
       "Deep interior vacuum + steam cleaning",
@@ -25,6 +26,7 @@ export const Services = {
     recommendation:
       "A quick freshen up. Ideal for new / well-maintained vehicles.",
     duration: "45m - 1 hr",
+    estimatedHours: 1,
     startingPrice: 147,
     features: [
       "Full vacuum",
@@ -42,6 +44,7 @@ export const Services = {
     recommendation:
       "Get a deep hand-clean, shine, and polish. Covers all outer surfaces.",
     duration: "1.5 - 2 hrs",
+    estimatedHours: 2,
     startingPrice: 179,
     features: [
       "Hand wash with pH-neutral foam",
@@ -58,6 +61,7 @@ export const Services = {
     recommendation:
       "The ultimate experience, interior and exterior. All in one.",
     duration: "3 – 3.5 hrs",
+    estimatedHours: 4,
     startingPrice: 397,
     features: [
       "Everything in interior and exterior.",

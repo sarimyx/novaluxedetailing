@@ -65,7 +65,7 @@ export default function PackagesComponent() {
                     className={`relative group overflow-hidden rounded-2xl transition-all duration-500 hover:scale-105 aspect-[16/9] ${!service.active && "pointer-events-none opacity-60"}`}
                   >
                     <Image
-                      src={`/showcase/package-cover-${service.service_id}.png`}
+                      src={`/showcase/package-cover-${service.service_id}.jpeg`}
                       alt={service.name}
                       fill
                       className="object-cover object-center opacity-40 group-hover:opacity-50 transition-opacity duration-300"
@@ -112,7 +112,7 @@ export default function PackagesComponent() {
                     <div
                       className="absolute inset-0 bg-cover bg-center z-0 opacity-40"
                       style={{
-                        backgroundImage: `url(/showcase/package-cover-${service.service_id}.png)`,
+                        backgroundImage: `url(/showcase/package-cover-${service.service_id}.jpeg)`,
                       }}
                     />
                     <div className="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition-all duration-300" />

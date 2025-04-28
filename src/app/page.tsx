@@ -114,7 +114,7 @@ export default function Page() {
             {[1, 2, 3, 4, 5, 6].map((num) => (
               <Image
                 key={`image-${num}`}
-                src={`/showcase/slideshow-${num}.png`}
+                src={`/showcase/slideshow-${num}.jpeg`}
                 alt={`Professional car detailing result - Showcase ${num}`}
                 width={400}
                 height={400}
@@ -124,7 +124,7 @@ export default function Page() {
             {[1, 3, 5, 4, 2].map((num) => (
               <Image
                 key={`slideshow-image-${num}`}
-                src={`/showcase/slideshow-${num}.png`}
+                src={`/showcase/slideshow-${num}.jpeg`}
                 alt={`Showcase ${num}`}
                 width={400}
                 height={400}

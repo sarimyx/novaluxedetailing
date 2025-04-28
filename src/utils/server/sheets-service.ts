@@ -109,10 +109,13 @@ export class SheetsService {
       }
 
       const startingHour = 8; // 8 AM
+      const endingHour = 18; // 6 PM
       const columnOffset = 3; // A, B, C are not hours
+      const lastValidColumnIndex = columnOffset + (endingHour - startingHour); // 13 for column M
+
       const columnIndex = columnOffset + (startHour - startingHour);
 
-      if (columnIndex < 3 || columnIndex > 13) {
+      if (columnIndex < 3 || columnIndex > lastValidColumnIndex) {
         throw new Error("Selected hour is outside valid range");
       }
 
@@ -128,7 +131,10 @@ export class SheetsService {
       // Block prior 3 hours
       for (let i = 1; i <= hoursToBlockBefore; i++) {
         const targetColumnIndex = columnIndex - i;
-        if (targetColumnIndex >= 3) {
+        if (
+          targetColumnIndex >= 3 &&
+          targetColumnIndex <= lastValidColumnIndex
+        ) {
           rows[rowIndex][targetColumnIndex] = bufferLabel;
         }
       }
@@ -139,7 +145,10 @@ export class SheetsService {
       // Block next 3 hours
       for (let i = 1; i <= hoursToBlockAfter; i++) {
         const targetColumnIndex = columnIndex + i;
-        if (targetColumnIndex <= 13) {
+        if (
+          targetColumnIndex >= 3 &&
+          targetColumnIndex <= lastValidColumnIndex
+        ) {
           rows[rowIndex][targetColumnIndex] = bufferLabel;
         }
       }
@@ -183,7 +192,10 @@ export class SheetsService {
 
       for (let i = 1; i <= hoursToBlockBefore; i++) {
         const targetColumnIndex = columnIndex - i;
-        if (targetColumnIndex >= 3) {
+        if (
+          targetColumnIndex >= 3 &&
+          targetColumnIndex <= lastValidColumnIndex
+        ) {
           bufferRanges.push({
             startColumnIndex: targetColumnIndex,
             endColumnIndex: targetColumnIndex + 1,
@@ -193,7 +205,10 @@ export class SheetsService {
 
       for (let i = 1; i <= hoursToBlockAfter; i++) {
         const targetColumnIndex = columnIndex + i;
-        if (targetColumnIndex <= 13) {
+        if (
+          targetColumnIndex >= 3 &&
+          targetColumnIndex <= lastValidColumnIndex
+        ) {
           bufferRanges.push({
             startColumnIndex: targetColumnIndex,
             endColumnIndex: targetColumnIndex + 1,

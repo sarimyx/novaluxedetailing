@@ -17,8 +17,8 @@ export default function TermsPage() {
                 1. Acceptance of Terms
               </h2>
               <p>
-                By accessing and using {Identity.companyName}'s services, you
-                agree to be bound by these Terms of Service.
+                By accessing and using {Identity.companyName}&apos;s services,
+                you agree to be bound by these Terms of Service.
               </p>
             </section>
 
@@ -51,9 +51,9 @@ export default function TermsPage() {
                 4. Service Guarantee
               </h2>
               <p>
-                We strive to provide the highest quality service. If you're not
-                satisfied with our work, please contact us within 24 hours of
-                service completion.
+                We strive to provide the highest quality service. If you&apos;re
+                not satisfied with our work, please contact us within 24 hours
+                of service completion.
               </p>
             </section>
 

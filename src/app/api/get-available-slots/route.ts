@@ -1,4 +1,4 @@
-import { SheetsService } from "@/utils/sheets-service";
+import { SheetsService } from "@/utils/server/sheets-service";
 
 export async function GET() {
   try {

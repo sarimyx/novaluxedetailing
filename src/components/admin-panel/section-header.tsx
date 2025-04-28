@@ -29,9 +29,9 @@ export function SectionHeader({ title, hideSidebar }: SectionHeaderProps) {
     const href = "/" + pathSegments.slice(0, index + 1).join("/");
     const words = decodeURIComponent(segment.replace(/-/g, " ")).split(" ");
     const capitalizedName = words
-      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
       .join(" ");
-    
+
     return {
       name: capitalizedName,
       href,

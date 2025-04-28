@@ -1,3 +1,5 @@
+export const runtime = "edge";
+
 import { SheetsService } from "@/utils/server/sheets-service";
 import { NextRequest } from "next/server";
 

@@ -58,7 +58,7 @@ export default function PackagesComponent() {
             <div className="w-full max-w-6xl mx-auto grid md:grid-cols-1 gap-8">
               {services
                 .filter((service) => service.category !== "express")
-                .map((service) => (
+                .map((service, index) => (
                   <Link
                     href={service.active ? `/book/${service.service_id}` : "#"}
                     key={service.service_id}
@@ -68,11 +68,12 @@ export default function PackagesComponent() {
                       src={`/showcase/package-cover-${service.service_id}.jpeg`}
                       alt={service.name}
                       fill
+                      priority={index === 0} // Only top image is priority
+                      loading={index === 0 ? "eager" : "lazy"} // First eager, others lazy
                       className="object-cover object-center opacity-40 group-hover:opacity-50 transition-opacity duration-300 
                         saturate-50 contrast-125 brightness-75 
                         group-hover:saturate-75 group-hover:contrast-100 group-hover:brightness-90
                         transition-all duration-500"
-                      priority
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
                     />
                     <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60 group-hover:bg-black/40 transition-all duration-300" />
@@ -86,9 +87,7 @@ export default function PackagesComponent() {
                       <p className="text-lg md:text-xl text-gray-200 mb-4 md:mb-6">
                         {service.description}
                       </p>
-                      <div
-                        className={`tracking-widest font-light text-secondary-foreground`}
-                      >
+                      <div className="tracking-widest font-light text-secondary-foreground">
                         STARTING AT{" "}
                         <span
                           className={`${Styling.GoldChromatic} font-semibold`}
@@ -106,7 +105,7 @@ export default function PackagesComponent() {
             <div className="w-full max-w-6xl mx-auto grid md:grid-cols-1 gap-8">
               {services
                 .filter((service) => service.category === "express")
-                .map((service) => (
+                .map((service, index) => (
                   <Link
                     href={service.active ? `/book/${service.service_id}` : "#"}
                     key={service.service_id}
@@ -116,8 +115,9 @@ export default function PackagesComponent() {
                       src={`/showcase/package-cover-full-package.jpeg`}
                       alt={service.name}
                       fill
+                      priority={index === 0}
+                      loading={index === 0 ? "eager" : "lazy"}
                       className="object-cover object-center opacity-40 group-hover:opacity-50 transition-opacity duration-300"
-                      priority
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
                     />
                     <div className="absolute inset-0 bg-black/50 group-hover:bg-black/40 transition-all duration-300" />
@@ -131,9 +131,7 @@ export default function PackagesComponent() {
                       <p className="text-lg md:text-xl text-gray-200 mb-4 md:mb-6">
                         {service.description}
                       </p>
-                      <div
-                        className={`tracking-widest font-light text-secondary-foreground`}
-                      >
+                      <div className="tracking-widest font-light text-secondary-foreground">
                         STARTING AT{" "}
                         <span
                           className={`${Styling.GoldChromatic} font-semibold`}

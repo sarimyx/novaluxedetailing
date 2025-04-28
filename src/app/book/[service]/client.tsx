@@ -174,13 +174,25 @@ export default function BookingClientComponent({
               <h2 className="text-lg tracking-widest font-light text-secondary-foreground">
                 CONFIRM BOOKING
               </h2>
-              <div className="flex font-light gap-2 items-center">
-                <CheckCircleIcon className="h-4 w-4" />
-                <p>{MiscUtils.parseDateObject(selectedDay).readableDate}</p>
-                <p>•</p>
-                <p>{MiscUtils.parseHour(selectedHour)}</p>
-                <p>•</p>
-                <p>We come to you!</p>
+              <div className="flex justify-between md:w-4/6">
+                <div className="flex font-light gap-2 items-center ">
+                  <CheckCircleIcon className="h-4 w-4" />
+                  <p>{MiscUtils.parseDateObject(selectedDay).readableDate}</p>
+                  <p>•</p>
+                  <p>{MiscUtils.parseHour(selectedHour)}</p>
+                  <p>•</p>
+                  <p>We come to you!</p>
+                </div>
+                <p
+                  className="text-yellow-500 hover:text-yellow-600 underline cursor-pointer"
+                  onClick={() => {
+                    setCurrentStep(1);
+                    setSelectedHour(null);
+                    setSelectedDay(null);
+                  }}
+                >
+                  Edit time
+                </p>
               </div>
               {currentStep === 3 && (
                 <BookingStepThree
@@ -426,6 +438,26 @@ export function BookingStepThree({
     try {
       const selectedDate = `${selectedDay.year}-${String(selectedDay.month).padStart(2, "0")}-${String(selectedDay.day).padStart(2, "0")}`;
 
+      // Real-time availability check
+      const latestSlots = await fetch("/api/get-available-slots").then((res) =>
+        res.json(),
+      );
+      const daySlot = latestSlots.find(
+        (slot: any) => slot.date === selectedDate,
+      );
+
+      if (!daySlot || !daySlot.availableHours[`${selectedHour}:00`]) {
+        toast({
+          title: "Time Unavailable",
+          description:
+            "Sorry! This time was just booked by someone else. Please select another time by going back.",
+          variant: "destructive",
+        });
+        setSubmitting(false);
+        return;
+      }
+
+      // ✅ Step 2: Proceed to book
       const response = await fetch("/api/submit-booking", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -447,12 +479,10 @@ export function BookingStepThree({
           duration: 1000,
         });
 
-        // Redirect to a success page or handle as needed
         setTimeout(() => {
           router.push("/book/thank-you");
-        }, 500);
+        }, 200);
 
-        // Optional: Clear form fields after success
         setName("");
         setAddress("");
         setPhone("");
@@ -474,7 +504,6 @@ export function BookingStepThree({
       setSubmitting(false);
     }
   };
-
   return (
     <div className="flex flex-col space-y-4 md:w-4/6 w-6/6">
       <input

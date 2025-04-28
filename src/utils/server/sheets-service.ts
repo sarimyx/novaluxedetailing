@@ -158,7 +158,7 @@ export class SheetsService {
         range: `Availability!A${rowIndex + 2}:M${rowIndex + 2}`,
         valueInputOption: "USER_ENTERED",
         requestBody: {
-          values: [rows[rowIndex]],
+          values: [rows[rowIndex].slice(0, 13)], // <-- only [A - M] columns
         },
       });
 

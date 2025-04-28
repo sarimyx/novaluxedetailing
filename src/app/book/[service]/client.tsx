@@ -47,7 +47,6 @@ export default function BookingClientComponent({
     day: number;
   } | null>(null);
   const [selectedHour, setSelectedHour] = useState<number | null>(null);
-
   const [availableSlots, setAvailableSlots] = useState<any[]>([]);
 
   useEffect(() => {

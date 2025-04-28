@@ -95,15 +95,15 @@ export class SheetsService {
         "Availability",
       );
 
-      const rangeToFetch = "Availability!A2:M";
+      const rangeToFetch = "Availability!A2:M"; // A-M range
       const response = await this.sheetsClient.spreadsheets.values.get({
         spreadsheetId,
         range: rangeToFetch,
       });
 
       const rows = response.data.values || [];
-
       const rowIndex = rows.findIndex((row) => row[1] === date);
+
       if (rowIndex === -1) {
         throw new Error("Date not found in availability sheet");
       }
@@ -111,7 +111,7 @@ export class SheetsService {
       const startingHour = 8; // 8 AM
       const endingHour = 18; // 6 PM
       const columnOffset = 3; // A, B, C are not hours
-      const lastValidColumnIndex = columnOffset + (endingHour - startingHour); // 13 for column M
+      const lastValidColumnIndex = columnOffset + (endingHour - startingHour); // 13
 
       const columnIndex = columnOffset + (startHour - startingHour);
 
@@ -153,15 +153,23 @@ export class SheetsService {
         }
       }
 
+      // --- FIX: Clean row to exactly A–M columns ---
+      const rowCopy = [...rows[rowIndex]];
+      while (rowCopy.length < 14) {
+        rowCopy.push(""); // Pad missing cells if needed
+      }
+      rowCopy.length = 14; // Crop to 14 columns
+
       await this.sheetsClient.spreadsheets.values.update({
         spreadsheetId,
         range: `Availability!A${rowIndex + 2}:M${rowIndex + 2}`,
         valueInputOption: "USER_ENTERED",
         requestBody: {
-          values: [rows[rowIndex].slice(0, 14)], // <-- only [A - N] columns
+          values: [rowCopy],
         },
       });
 
+      // --- Coloring ---
       const requests = [];
 
       // Red background for BOOKED cell
@@ -187,7 +195,7 @@ export class SheetsService {
         },
       });
 
-      // Orange background for buffer cells
+      // Orange background for BUFFER cells
       const bufferRanges = [];
 
       for (let i = 1; i <= hoursToBlockBefore; i++) {

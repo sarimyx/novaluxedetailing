@@ -15,23 +15,23 @@ export const SiteMetadata: Metadata = {
     "interior cleaning",
     "mobile detailing",
     "utah county auto detail",
+    "car cleaning utah",
     "Nova Luxe Detailing",
   ],
   alternates: {
     canonical: "https://novaluxedetailing.com",
   },
   openGraph: {
-    title: "Nova Luxe Detailing | Premium Auto Detailing in Utah",
+    title: "Nova Luxe Detailing",
     description:
-      "Premium auto detailing services in Utah. Book us in less than 3 clicks.",
+      "Premium auto detailing services in Utah. We aim to give you the royal experience. Book your detail today, in less than 3 clicks.",
     url: "https://novaluxedetailing.com",
     siteName: "Nova Luxe Detailing",
     images: [
       {
-        url: "https://novaluxedetailing.com/og-image.jpg",
+        url: "/logo-wheel.png",
         width: 1200,
         height: 630,
-        alt: "Nova Luxe Detailing",
       },
     ],
     locale: "en_US",

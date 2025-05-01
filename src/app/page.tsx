@@ -136,6 +136,31 @@ export default function Page() {
       </section>
       <Separator />
       <Footer />
+      <Script
+        id="structured-data"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "AutoRepair",
+            name: "Nova Luxe Detailing",
+            image: "https://novaluxedetailing.com/logo-wheel.png",
+            address: {
+              "@type": "PostalAddress",
+              addressRegion: "UT",
+              addressCountry: "US",
+            },
+            geo: {
+              "@type": "GeoCoordinates",
+              latitude: "40.2338",
+              longitude: "-111.6585",
+            },
+            url: "https://novaluxedetailing.com",
+            telephone: Identity.companyPhoneNumber,
+            priceRange: "$$",
+          }),
+        }}
+      />
     </main>
   );
 }

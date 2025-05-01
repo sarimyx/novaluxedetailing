@@ -216,10 +216,23 @@ export function BookingStepOne({
   ) => void;
   availableSlots: any[];
 }) {
+  // Filter out past days first
+  const today = new Date();
+  today.setHours(0, 0, 0, 0); // Reset time to start of day for accurate comparison
+
   const validDays = availableSlots
-    .filter((slot) =>
-      Object.values(slot.availableHours).some((v) => v !== null),
-    )
+    .filter((slot) => {
+      // First check if the day has any available hours
+      const hasAvailableHours = Object.values(slot.availableHours).some(
+        (v) => v !== null,
+      );
+
+      // Then check if the day is not in the past
+      const slotDate = new Date(slot.date);
+      slotDate.setHours(0, 0, 0, 0);
+
+      return hasAvailableHours && slotDate >= today;
+    })
     .map((slot) => {
       const [year, month, day] = slot.date.split("-").map(Number);
       return { year, month, day, date: slot.date };

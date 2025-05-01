@@ -97,7 +97,7 @@ export default function Page() {
           </div>
         </div>
       </section>
-      <Separator />
+      <Separator id="pricing" />
       <section id="packages" aria-label="Packages">
         <h2 className="sr-only">Our Detailing Packages</h2>
         <PackagesComponent />

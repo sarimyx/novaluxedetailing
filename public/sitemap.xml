@@ -7,7 +7,7 @@
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://novaluxedetailing.com/logo.png</image:loc>
+      <image:loc>https://novaluxedetailing.com/branding-kit/logo-wheel.png</image:loc>
       <image:title>Nova Luxe Detailing Logo</image:title>
     </image:image>
   </url>
@@ -23,7 +23,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://novaluxedetailing.com/logo-wheel.png</image:loc>
+      <image:loc>https://novaluxedetailing.com/branding-kit/logo-wheel.png</image:loc>
       <image:title>The Interior Package</image:title>
     </image:image>
   </url>
@@ -33,7 +33,7 @@
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
     <image:image>
-      <image:loc>https://novaluxedetailing.com/logo-wheel.png</image:loc>
+      <image:loc>https://novaluxedetailing.com/branding-kit/logo-wheel.png</image:loc>
       <image:title>The Full Package</image:title>
     </image:image>
   </url>

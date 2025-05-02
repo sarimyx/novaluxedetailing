@@ -36,7 +36,7 @@ export default function Page() {
           className="absolute inset-0 w-full h-full object-cover opacity-30"
           aria-label="Luxury car detailing showcase video"
         >
-          <source src="/showcase/landing-page-video.mov" type="video/mp4" />
+          <source src="/videos/landing-page-video.mov" type="video/mp4" />
           <source
             src="/showcase/landing-page-video.mov"
             type="video/quicktime"
@@ -50,7 +50,6 @@ export default function Page() {
           >
             {Identity.companyName}
           </h1>
-
           <div className="flex flex-col items-center space-y-4">
             <div className="flex">
               <Button variant="special" size="lg" className="rounded-full">
@@ -115,7 +114,7 @@ export default function Page() {
             {[1, 2, 3, 4, 5, 6].map((num) => (
               <Image
                 key={`image-${num}`}
-                src={`/showcase/slideshow-${num}.jpeg`}
+                src={`/slideshow/slideshow-${num}.jpeg`}
                 alt={`Professional car detailing result - Showcase ${num}`}
                 width={400}
                 height={400}
@@ -125,7 +124,7 @@ export default function Page() {
             {[1, 3, 5, 4, 2].map((num) => (
               <Image
                 key={`slideshow-image-${num}`}
-                src={`/showcase/slideshow-${num}.jpeg`}
+                src={`/slideshow/slideshow-${num}.jpeg`}
                 alt={`Showcase ${num}`}
                 width={400}
                 height={400}
@@ -145,7 +144,7 @@ export default function Page() {
             "@context": "https://schema.org",
             "@type": "AutoRepair",
             name: "Nova Luxe Detailing",
-            image: "https://novaluxedetailing.com/logo-wheel.png",
+            image: "https://novaluxedetailing.com/branding-kit/logo-wheel.png",
             address: {
               "@type": "PostalAddress",
               addressRegion: "UT",

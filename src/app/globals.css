@@ -110,5 +110,5 @@ a.link:hover {
 }
 
 .animate-infinite-scroll {
-  animation: infinite-scroll 20s linear infinite;
+  animation: infinite-scroll 10s linear infinite;
 }

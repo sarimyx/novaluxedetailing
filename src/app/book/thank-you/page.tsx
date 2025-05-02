@@ -54,7 +54,7 @@ export default function ThankYouPage() {
 
         <div className="flex justify-center mb-6">
           <Image
-            src="/logo-wheel.png"
+            src="/branding-kit/logo-wheel.png"
             alt="Nova Luxe Detailing"
             width={50}
             height={50}

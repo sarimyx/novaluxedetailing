@@ -29,7 +29,7 @@ export const SiteMetadata: Metadata = {
     siteName: "Nova Luxe Detailing",
     images: [
       {
-        url: "/logo-wheel.png",
+        url: "/branding-kit/logo-wheel.png",
         width: 500,
         height: 500,
       },

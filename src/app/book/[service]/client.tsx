@@ -88,7 +88,7 @@ export default function BookingClientComponent({
           <section>
             <div className="flex flex-wrap gap-2">
               <Image
-                src="/logo-wheel-transparent.png"
+                src="/branding-kit/logo-wheel-transparent.png"
                 alt="Nova Luxe Logo"
                 className="rounded-lg object-cover hidden md:block"
                 width={30}

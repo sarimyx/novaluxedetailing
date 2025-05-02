@@ -31,7 +31,7 @@ export function Navbar() {
             className={`flex gap-1 items-center font-light tracking-widest ${Fonts.premium.className}`}
           >
             <Image
-              src="/logo-wheel-transparent.png"
+              src="/branding-kit/logo-wheel-transparent.png"
               alt="Nova Luxe Logo"
               className="rounded-lg"
               width={30}

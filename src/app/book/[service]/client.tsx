@@ -10,7 +10,7 @@ import {
 } from "@/components/ui/stepper";
 import { Fonts } from "@/constants/fonts";
 import { Database } from "@/types/generated/database.types";
-import { useClerkSupabaseClient } from "@/utils/supabase-client-v2";
+import { useSupabaseClient } from "@/utils/supabase-client";
 import { useEffect, useState } from "react";
 import { CheckCircle2, CheckCircleIcon } from "lucide-react";
 import LoadingSkeleton from "@/components/ui/loading-skeleton";
@@ -34,7 +34,7 @@ export default function BookingClientComponent({
 }: {
   serviceId: string;
 }) {
-  const db = useClerkSupabaseClient();
+  const db = useSupabaseClient();
 
   const [isLoading, setIsLoading] = useState(true);
   const [service, setService] = useState<
@@ -487,6 +487,51 @@ export function BookingStepThree({
         toast({
           title: "Success!",
           duration: 1000,
+        });
+
+        fetch("/api/submit-discord", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            embeds: [
+              {
+                title: "A new booking was submitted via website",
+                description: `Refer to [Master Calendar](https://discord.com/channels/1349528908050989136/1366958455423762472/1366958486256226305) for more booking details.`,
+                fields: [
+                  {
+                    name: "Date",
+                    value: `**${MiscUtils.parseDateObject(selectedDay).readableDate}**, at **${MiscUtils.parseHour(selectedHour)}**`,
+                    inline: true,
+                  },
+                  {
+                    name: "Name",
+                    value: name,
+                    inline: true,
+                  },
+                  {
+                    name: "Phone",
+                    value: phone,
+                    inline: true,
+                  },
+                  {
+                    name: "Address",
+                    value: address,
+                    inline: true,
+                  },
+                  {
+                    name: "Service",
+                    value: `**${service.name}**`,
+                    inline: true,
+                  },
+                ],
+                thumbnail: {
+                  url: `https://novaluxedetailing.com/branding-kit/logo-wheel.png`,
+                },
+              },
+            ],
+          }),
         });
 
         // Pass booking details through router.push

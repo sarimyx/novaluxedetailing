@@ -3,17 +3,9 @@
 import Link from "next/link";
 import { MessageSquare, PhoneCall } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  OrganizationSwitcher,
-  SignInButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
-} from "@clerk/nextjs";
 import { usePathname } from "next/navigation";
 import { Identity } from "@/constants/identity";
 import { Fonts } from "@/constants/fonts";
-import { dark } from "@clerk/themes";
 import Image from "next/image";
 import { InstagramLogoIcon } from "@radix-ui/react-icons";
 
@@ -42,57 +34,6 @@ export function Navbar() {
           <span className="sr-only">{Identity.companyName}</span>
         </Link>
         <nav className="ml-auto flex items-center gap-2">
-          <SignedIn>
-            {!pathname.includes("dashboard") && (
-              <a href="/dashboard">
-                <Button
-                  variant="default"
-                  className="rounded-full bg-violet-600 hover:bg-violet-500"
-                  size="sm"
-                  asChild
-                >
-                  <span>Dashboard</span>
-                </Button>
-              </a>
-            )}
-            {pathname.includes("dashboard") && (
-              <span className="dark:bg-slate-900 rounded-lg">
-                <OrganizationSwitcher
-                  appearance={{ baseTheme: dark }}
-                  afterSelectPersonalUrl="/dashboard/customer"
-                  afterSelectOrganizationUrl={(org) => {
-                    switch (org.name?.toLowerCase()) {
-                      case "provider":
-                        return `/dashboard/provider`;
-                      case "staff":
-                        return `/dashboard/staff`;
-                      default:
-                        return `/dashboard/customer`;
-                    }
-                  }}
-                  afterLeaveOrganizationUrl="/"
-                />
-              </span>
-            )}
-          </SignedIn>
-          <header className="flex justify-end items-center gap-2 h-16">
-            <div className="hidden">
-              <SignedOut>
-                <SignInButton appearance={{ baseTheme: dark }}>
-                  <Button
-                    variant="default"
-                    className="rounded-full bg-violet-600 hover:bg-violet-500"
-                    size="sm"
-                  >
-                    <span>Login</span>
-                  </Button>
-                </SignInButton>
-              </SignedOut>
-            </div>
-            <SignedIn>
-              <UserButton appearance={{ baseTheme: dark }} />
-            </SignedIn>
-          </header>
           <a href={Identity.socialMedia.instagram} target="_blank">
             <Button
               className="rounded-full w-8 h-8 bg-background"

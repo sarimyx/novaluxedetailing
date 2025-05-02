@@ -1,7 +1,7 @@
 "use client";
 
 import { Database } from "@/types/generated/database.types";
-import { useClerkSupabaseClient } from "@/utils/supabase-client-v2";
+import { useSupabaseClient } from "@/utils/supabase-client";
 import { useEffect, useState } from "react";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Link from "next/link";
@@ -15,7 +15,7 @@ export default function PackagesComponent() {
   const [services, setServices] = useState<
     Database["public"]["Tables"]["Services"]["Row"][]
   >([]);
-  const db = useClerkSupabaseClient();
+  const db = useSupabaseClient();
 
   useEffect(() => {
     if (!loading) setLoading(true);

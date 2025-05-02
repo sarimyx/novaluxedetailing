@@ -11,6 +11,8 @@ import { Fonts } from "@/constants/fonts";
 import { SiteMetadata } from "@/constants/metadata";
 import { Toaster } from "@/components/ui/toaster";
 
+import { Analytics } from "@vercel/analytics/react";
+
 export const metadata = SiteMetadata;
 
 export default function RootLayout({
@@ -48,8 +50,8 @@ export default function RootLayout({
             <div className="min-h-screen bg-[#000000] bg-[radial-gradient(#ffffff33_1px,#00091d_1px)] bg-[size:20px_20px]">
               <Navbar />
               <Toaster />
-
               {children}
+              <Analytics />
             </div>
           </Suspense>
         </ThemeProvider>

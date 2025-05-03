@@ -11,6 +11,10 @@ export async function POST(req: NextRequest) {
     if (!GOOGLE_PRIVATE_KEY)
       return NextResponse.json({ error: "Missing API key" }, { status: 500 });
 
+    const GOOGLE_SPREADSHEET_ID = process.env.GOOGLE_SPREADSHEET_ID;
+    if (!GOOGLE_SPREADSHEET_ID)
+      return NextResponse.json({ error: "Missing API key" }, { status: 500 });
+
     const body = await req.json();
 
     const {
@@ -37,7 +41,7 @@ export async function POST(req: NextRequest) {
 
     // Block the availability slot (and get the detailer's name on the cell)
     const detailerName = await sheetsService.blockAvailabilitySlot(
-      process.env.SPREADSHEET_ID!,
+      GOOGLE_SPREADSHEET_ID!,
       selectedDate,
       selectedHour,
     );
@@ -55,7 +59,7 @@ export async function POST(req: NextRequest) {
       service.name,
     ];
 
-    await sheetsService.addBooking(process.env.SPREADSHEET_ID!, newBooking);
+    await sheetsService.addBooking(GOOGLE_SPREADSHEET_ID, newBooking);
 
     return new Response(JSON.stringify({ ok: true }));
   } catch (error) {

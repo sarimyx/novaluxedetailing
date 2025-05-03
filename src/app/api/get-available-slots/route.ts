@@ -11,13 +11,17 @@ export async function GET() {
     if (!GOOGLE_PRIVATE_KEY)
       return NextResponse.json({ error: "Missing API key" }, { status: 500 });
 
+    const GOOGLE_SPREADSHEET_ID = process.env.GOOGLE_SPREADSHEET_ID;
+    if (!GOOGLE_SPREADSHEET_ID)
+      return NextResponse.json({ error: "Missing API key" }, { status: 500 });
+
     const sheetsService = new SheetsService({
       GOOGLE_CLIENT_EMAIL,
       GOOGLE_PRIVATE_KEY,
     });
 
     const slots = await sheetsService.getAvailableSlots(
-      process.env.SPREADSHEET_ID!,
+      GOOGLE_SPREADSHEET_ID,
     );
 
     return new Response(JSON.stringify(slots), {

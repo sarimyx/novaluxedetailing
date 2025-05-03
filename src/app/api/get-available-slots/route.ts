@@ -20,9 +20,7 @@ export async function GET() {
       GOOGLE_PRIVATE_KEY,
     });
 
-    const slots = await sheetsService.getAvailableSlots(
-      GOOGLE_SPREADSHEET_ID,
-    );
+    const slots = await sheetsService.getAvailableSlots(GOOGLE_SPREADSHEET_ID);
 
     return new Response(JSON.stringify(slots), {
       headers: { "Content-Type": "application/json" },

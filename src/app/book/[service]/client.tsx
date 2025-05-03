@@ -225,21 +225,16 @@ export function BookingStepOne({
   ) => void;
   availableSlots: any[];
 }) {
-  // Filter out past days first
   const today = new Date();
-  today.setHours(0, 0, 0, 0); // Reset time to start of day for accurate comparison
+  today.setHours(0, 0, 0, 0);
 
   const validDays = availableSlots
     .filter((slot) => {
-      // First check if the day has any available hours
       const hasAvailableHours = Object.values(slot.availableHours).some(
         (v) => v !== null,
       );
-
-      // Then check if the day is not in the past
       const slotDate = new Date(slot.date);
       slotDate.setHours(0, 0, 0, 0);
-
       return hasAvailableHours && slotDate >= today;
     })
     .map((slot) => {
@@ -247,86 +242,71 @@ export function BookingStepOne({
       return { year, month, day, date: slot.date };
     });
 
-  // Group validDays by week
-  const groupedByWeek: {
-    [key: string]: { year: number; month: number; day: number; date: string }[];
-  } = {};
+  // Build weeks for THIS WEEK and NEXT WEEK (even if empty)
+  const getWeekKey = (date: Date) =>
+    format(startOfWeek(date, { weekStartsOn: 0 }), "yyyy-MM-dd");
+
+  const thisWeekKey = getWeekKey(today);
+  const nextWeekKey = getWeekKey(addWeeks(today, 1));
+
+  const grouped: { [key: string]: { label: string; days: typeof validDays } } =
+    {
+      [thisWeekKey]: { label: "THIS WEEK", days: [] },
+      [nextWeekKey]: { label: "NEXT WEEK", days: [] },
+    };
 
   validDays.forEach((day) => {
-    const weekStart = format(
-      startOfWeek(parseISO(day.date), { weekStartsOn: 0 }),
-      "yyyy-MM-dd",
-    ); // Sunday starting
-    if (!groupedByWeek[weekStart]) {
-      groupedByWeek[weekStart] = [];
+    const key = getWeekKey(parseISO(day.date));
+    if (!grouped[key]) {
+      grouped[key] = { label: "LATER", days: [] };
     }
-    groupedByWeek[weekStart].push(day);
+    grouped[key].days.push(day);
   });
 
-  const weeks = Object.entries(groupedByWeek); // Keep key + week days
-
-  // Helper function to get label
-  const getWeekLabel = (weekStartDate: string) => {
-    const parsedDate = parseISO(weekStartDate);
-
-    if (isThisWeek(parsedDate, { weekStartsOn: 0 })) {
-      return "THIS WEEK";
-    } else if (isNextWeek(parsedDate, { weekStartsOn: 0 })) {
-      return "NEXT WEEK";
-    } else {
-      return "LATER";
-    }
-  };
+  const weeks = Object.entries(grouped);
 
   return (
     <div className="space-y-8">
-      {weeks.map(([weekStart, week], idx) => (
-        <div key={idx} className="space-y-2">
-          {/* Subtle Section Title */}
+      {weeks.map(([weekKey, { label, days }]) => (
+        <div key={weekKey} className="space-y-2">
           <p className="text-xs uppercase tracking-wide text-muted-foreground">
-            {getWeekLabel(weekStart)}
+            {label}
           </p>
 
-          {/* Buttons */}
-          <div className="flex gap-2 flex-wrap">
-            {week.map((day) => (
-              <Button
-                key={`${day.year}-${day.month}-${day.day}`}
-                variant="special"
-                onClick={() => {
-                  setSelectedDay({
-                    year: day.year,
-                    month: day.month,
-                    day: day.day,
-                  });
-                  setCurrentStep(2);
-                }}
-              >
-                {
-                  MiscUtils.parseDateObject({
-                    year: day.year,
-                    month: day.month,
-                    day: day.day,
-                  }).readableDate
-                }
-              </Button>
-            ))}
-          </div>
+          {days.length === 0 ? (
+            <Button variant="special" className="text-secondary" disabled>
+              Fully Booked
+            </Button>
+          ) : (
+            <div className="flex gap-2 flex-wrap">
+              {days.map((day) => (
+                <Button
+                  key={`${day.year}-${day.month}-${day.day}`}
+                  variant="special"
+                  onClick={() => {
+                    setSelectedDay({
+                      year: day.year,
+                      month: day.month,
+                      day: day.day,
+                    });
+                    setCurrentStep(2);
+                  }}
+                >
+                  {
+                    MiscUtils.parseDateObject({
+                      year: day.year,
+                      month: day.month,
+                      day: day.day,
+                    }).readableDate
+                  }
+                </Button>
+              ))}
+            </div>
+          )}
         </div>
       ))}
     </div>
   );
-
-  // Helper to check "next week"
-  function isNextWeek(date: Date, options?: { weekStartsOn?: number }) {
-    const nextWeek = addWeeks(new Date(), 1);
-
-    const typedOptions = options
-      ? { weekStartsOn: options.weekStartsOn as 0 | 1 | 2 | 3 | 4 | 5 | 6 }
-      : undefined;
-
-    return isSameWeek(date, nextWeek, typedOptions);
-  }
 }
 
 export function BookingStepTwo({

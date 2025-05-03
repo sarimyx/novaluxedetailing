@@ -37,11 +37,19 @@ export default function PackagesComponent() {
     fetchServices();
   }, []);
 
-  // Get unique categories and sort them in the desired order
-  const categoryOrder = ["premium", "express", "ceramic-coating"];
-  const categories = Array.from(new Set(services.map((s) => s.category))).sort(
-    (a, b) => categoryOrder.indexOf(a) - categoryOrder.indexOf(b),
-  );
+  // Get unique categories and sort them based on the minimum display_order of services in each category
+  const categories = Array.from(new Set(services.map((s) => s.category)))
+    .filter((category) => category && category.trim() !== "") // Filter out null/empty categories
+    .map((category) => ({
+      name: category,
+      minOrder: Math.min(
+        ...services
+          .filter((s) => s.category === category)
+          .map((s) => s.display_order || 0),
+      ),
+    }))
+    .sort((a, b) => a.minOrder - b.minOrder)
+    .map((c) => c.name);
 
   return (
     <div>
@@ -55,10 +63,14 @@ export default function PackagesComponent() {
       )}
 
       {!loading && services && (
-        <Tabs defaultValue="premium" className="w-full">
-          <TabsList className="grid w-full max-w-md mx-auto grid-cols-3 my-4">
+        <Tabs defaultValue={categories[0]} className="w-full">
+          <TabsList className="flex w-full max-w-md mx-auto my-4">
             {categories.map((category) => (
-              <TabsTrigger key={category} value={category} className="text-xs">
+              <TabsTrigger
+                key={category}
+                value={category}
+                className="flex-1 text-xs"
+              >
                 {category.toUpperCase().replace("-", " ")}
               </TabsTrigger>
             ))}

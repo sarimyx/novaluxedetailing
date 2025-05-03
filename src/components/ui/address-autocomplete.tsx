@@ -94,7 +94,7 @@ export function AddressAutocomplete({
             fetchPredictions(e.target.value);
           }}
           placeholder={placeholder}
-          className="w-full h-9 px-3 py-1 bg-slate-900 rounded-lg"
+          className="w-full p-2 rounded-lg bg-slate-900"
           aria-autocomplete="list"
           aria-controls="autocomplete-list"
         />

@@ -582,7 +582,7 @@ export function BookingStepThree({
       <AddressAutocomplete
         value={address}
         onChange={setAddress}
-        placeholder="Service address"
+        placeholder="Address"
       />
       <input
         value={phone}
@@ -596,7 +596,7 @@ export function BookingStepThree({
         <RadioGroup
           value={vehicleType}
           onValueChange={(value) => setVehicleType(value)}
-          className="flex gap-4"
+          className="flex flex-wrap gap-4"
         >
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="standard" id="standard" />
@@ -604,11 +604,7 @@ export function BookingStepThree({
           </div>
           <div className="flex items-center space-x-2">
             <RadioGroupItem value="large" id="large" />
-            <Label htmlFor="large">Truck/Van/SUV</Label>
-          </div>
-          <div className="flex items-center space-x-2">
-            <RadioGroupItem value="luxury" id="luxury" />
-            <Label htmlFor="luxury">Luxury/Sports</Label>
+            <Label htmlFor="large">Truck/Van/SUV/Luxury</Label>
           </div>
         </RadioGroup>
       </div>

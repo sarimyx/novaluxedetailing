@@ -12,6 +12,7 @@ import { SiteMetadata } from "@/constants/metadata";
 import { Toaster } from "@/components/ui/toaster";
 
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata = SiteMetadata;
 
@@ -52,6 +53,7 @@ export default function RootLayout({
               <Toaster />
               {children}
               <Analytics />
+              <SpeedInsights />
             </div>
           </Suspense>
         </ThemeProvider>

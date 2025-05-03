@@ -9,4 +9,5 @@ export const Identity = {
     facebook: "https://www.facebook.com/profile.php?id=61574582744375",
   },
   googleLink: "https://g.co/kgs/LKm4oRH",
+  googlePlaceId: "ChIJgzeeavpiBIgRKoUSiTLu0zU",
 };

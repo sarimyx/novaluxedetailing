@@ -104,24 +104,24 @@ export default function PackagesComponent() {
                       />
                       <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60 group-hover:bg-black/40 transition-all duration-300" />
 
-                      <div className="relative flex flex-col items-center text-center justify-center z-10 p-6 md:p-12 md:mx-8 h-full">
+                      <div className="relative flex flex-col items-center text-center justify-center z-10 p-4 sm:p-6 md:p-12 md:mx-8 h-full">
                         {service.service_id === "interior-package" && (
-                          <div className="mb-2">
-                            <Badge className="bg-orange-500 flex items-center gap-1">
+                          <div className="mb-1 sm:mb-2">
+                            <Badge className="bg-orange-500 flex items-center gap-1 text-xs sm:text-sm">
                               <Star className="h-3 w-3" />
                               Most Popular
                             </Badge>
                           </div>
                         )}
                         <h2
-                          className={`text-3xl md:text-5xl font-bold mb-2 md:mb-4 md:pb-2 ${Styling.GoldChromatic} ${Fonts.premium.className}`}
+                          className={`text-2xl sm:text-3xl md:text-5xl font-bold mb-1 sm:mb-2 md:mb-4 md:pb-2 ${Styling.GoldChromatic} ${Fonts.premium.className}`}
                         >
                           {service.name}
                         </h2>
-                        <p className="text-lg md:text-xl text-gray-200 mb-4 md:mb-6">
+                        <p className="text-base sm:text-lg md:text-xl text-gray-200 mb-2 sm:mb-4 md:mb-6 px-2 sm:px-4">
                           {service.description}
                         </p>
-                        <div className="tracking-widest font-light text-secondary-foreground">
+                        <div className="tracking-widest font-light text-secondary-foreground text-sm sm:text-base">
                           STARTING AT{" "}
                           <span
                             className={`${Styling.GoldChromatic} font-semibold`}

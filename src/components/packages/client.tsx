@@ -114,11 +114,11 @@ export default function PackagesComponent() {
                           </div>
                         )}
                         <h2
-                          className={`text-3xl sm:text-3xl md:text-5xl font-bold mb-1 sm:mb-2 md:mb-4 md:pb-2 ${Styling.GoldChromatic} ${Fonts.premium.className}`}
+                          className={`text-3xl sm:text-3xl md:text-5xl font-bold pb-1 sm:mb-2 md:mb-4 md:pb-2 ${Styling.GoldChromatic} ${Fonts.premium.className}`}
                         >
                           {service.name}
                         </h2>
-                        <p className="text-base sm:text-lg md:text-xl text-gray-200 mb-2 sm:mb-4 md:mb-6 px-2 sm:px-4">
+                        <p className="font-light text-base sm:text-lg md:text-xl text-gray-200 mb-2 sm:mb-4 md:mb-6 px-2 sm:px-4">
                           {service.description}
                         </p>
                         <div className="tracking-widest font-light text-secondary-foreground text-sm sm:text-base">

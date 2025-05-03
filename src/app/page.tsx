@@ -1,6 +1,6 @@
 import Footer from "@/components/footer";
 import PackagesComponent from "@/components/packages/packages-component";
-import Reviews from "@/components/reviews";
+import ReviewsComponent from "@/components/reviews/page";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Fonts } from "@/constants/fonts";
@@ -97,16 +97,28 @@ export default function Page() {
           </div>
         </div>
       </section>
-      <Separator id="pricing" />
-      <section id="packages" aria-label="Packages">
+      <Separator id="packages" />
+      <section id="pricing" aria-label="Packages">
         <h2 className="sr-only">Our Detailing Packages</h2>
         <PackagesComponent />
       </section>
-      <Separator />
-      <section id="reviews" aria-label="Customer Reviews">
+      <Separator id="reviews" />
+      <section aria-label="Customer Reviews">
         <h2 className="sr-only">Customer Reviews and Testimonials</h2>
-        <Reviews featurableWidgetId={process.env.FEATURABLE_WIDGET_ID!} />
+        <ReviewsComponent />
       </section>
+      <Separator />
+      <section className="space-y-2">
+        <span className="tracking-widest font-light flex items-center justify-center">
+          SO WHAT ARE YOU WAITING FOR?
+        </span>
+        <Button variant="special" size="lg" className="rounded-full">
+          <Link href="#packages" className="flex gap-2 items-center">
+            Book Now
+          </Link>
+        </Button>
+      </section>
+      <Separator />
       <section aria-label="Portfolio Showcase">
         <h2 className="sr-only">Our Detailing Portfolio</h2>
         <div className="relative overflow-hidden w-full">

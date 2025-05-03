@@ -80,7 +80,7 @@ export default function BookingClientComponent({
       {isLoading && (
         <div className="space-y-2">
           <h1 className="text-lg tracking-widest font-light text-secondary-foreground animate-pulse">
-            CHECKING FOR AVAILABILITY
+            CHECKING AVAILABLE DATES
           </h1>
           <LoadingSkeleton />
         </div>

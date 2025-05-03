@@ -28,9 +28,7 @@ export function AddressAutocomplete({
   const abortRef = useRef<AbortController | null>(null);
 
   useEffect(() => {
-    if (value !== input) {
-      setInput(value);
-    }
+    setInput(value);
   }, [value]);
 
   useEffect(() => {
@@ -79,7 +77,14 @@ export function AddressAutocomplete({
   }, 300);
 
   return (
-    <div ref={rootRef} className="autocomplete-root relative w-full">
+    <div
+      ref={rootRef}
+      className="autocomplete-root relative w-full"
+      role="combobox"
+      aria-controls="autocomplete-list"
+      aria-expanded={open ? "true" : "false"}
+      aria-haspopup="listbox"
+    >
       <div className="w-full">
         <input
           type="text"
@@ -92,7 +97,6 @@ export function AddressAutocomplete({
           className="w-full h-9 px-3 py-1 bg-slate-900 rounded-lg"
           aria-autocomplete="list"
           aria-controls="autocomplete-list"
-          aria-expanded={open}
         />
       </div>
       {loading && (
@@ -111,6 +115,7 @@ export function AddressAutocomplete({
               <div
                 key={prediction.place_id}
                 role="option"
+                aria-selected="false"
                 onClick={() => {
                   setInput(prediction.description);
                   onChange(prediction.description);

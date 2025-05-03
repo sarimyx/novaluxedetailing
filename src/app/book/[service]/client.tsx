@@ -72,6 +72,7 @@ export default function BookingClientComponent({
     };
 
     fetchData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

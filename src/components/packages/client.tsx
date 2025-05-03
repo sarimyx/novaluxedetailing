@@ -35,6 +35,7 @@ export default function PackagesComponent() {
     };
 
     fetchServices();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Get unique categories and sort them based on the minimum display_order of services in each category

@@ -28,6 +28,7 @@ import {
   isSameWeek,
 } from "date-fns";
 import { useRouter } from "next/navigation";
+import { AddressAutocomplete } from "@/components/ui/address-autocomplete";
 
 export default function BookingClientComponent({
   serviceId,
@@ -75,7 +76,14 @@ export default function BookingClientComponent({
 
   return (
     <main>
-      {isLoading && <LoadingSkeleton />}
+      {isLoading && (
+        <div className="space-y-2">
+          <h1 className="text-lg tracking-widest font-light text-secondary-foreground animate-pulse">
+            CHECKING FOR AVAILABILITY
+          </h1>
+          <LoadingSkeleton />
+        </div>
+      )}
 
       {!isLoading && !service && (
         <div>
@@ -84,7 +92,7 @@ export default function BookingClientComponent({
       )}
 
       {!isLoading && service && (
-        <div className="space-y-8">
+        <div className="space-y-4">
           <section>
             <div className="flex flex-wrap gap-2">
               <Image
@@ -570,12 +578,10 @@ export function BookingStepThree({
         type="text"
         className="p-2 rounded-lg bg-slate-900"
       />
-      <input
+      <AddressAutocomplete
         value={address}
-        onChange={(e) => setAddress(e.target.value)}
-        placeholder="Address"
-        type="text"
-        className="p-2 rounded-lg bg-slate-900"
+        onChange={setAddress}
+        placeholder="Service address"
       />
       <input
         value={phone}
@@ -584,15 +590,8 @@ export function BookingStepThree({
         type="tel"
         className="p-2 rounded-lg bg-slate-900"
       />
-      <input
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="Email (optional)"
-        type="email"
-        className="p-2 rounded-lg bg-slate-900"
-      />
-      <div className="space-y-1">
-        <p>Vehicle type</p>
+      <div className="space-y-1 bg-slate-900 p-2 rounded-lg">
+        <p className="text-secondary-foreground">Vehicle type</p>
         <RadioGroup
           value={vehicleType}
           onValueChange={(value) => setVehicleType(value)}
@@ -612,6 +611,14 @@ export function BookingStepThree({
           </div>
         </RadioGroup>
       </div>
+
+      <input
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
+        placeholder="Email (optional)"
+        type="email"
+        className="p-2 rounded-lg bg-slate-900"
+      />
 
       <Button onClick={handleSubmit} disabled={submitting}>
         {submitting ? "Submitting..." : "Submit"}

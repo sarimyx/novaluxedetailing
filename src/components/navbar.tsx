@@ -28,6 +28,7 @@ export function Navbar() {
               className="rounded-lg"
               width={30}
               height={30}
+              priority
             />
             {Identity.companyShortName.toUpperCase()}
           </span>

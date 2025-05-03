@@ -1,8 +1,16 @@
 import { SheetsService } from "@/utils/server/sheets-service";
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 export async function POST(req: NextRequest) {
   try {
+    const GOOGLE_CLIENT_EMAIL = process.env.GOOGLE_CLIENT_EMAIL;
+    if (!GOOGLE_CLIENT_EMAIL)
+      return NextResponse.json({ error: "Missing API key" }, { status: 500 });
+
+    const GOOGLE_PRIVATE_KEY = process.env.GOOGLE_PRIVATE_KEY;
+    if (!GOOGLE_PRIVATE_KEY)
+      return NextResponse.json({ error: "Missing API key" }, { status: 500 });
+
     const body = await req.json();
 
     const {
@@ -23,8 +31,8 @@ export async function POST(req: NextRequest) {
     }
 
     const sheetsService = new SheetsService({
-      GOOGLE_CLIENT_EMAIL: process.env.GOOGLE_CLIENT_EMAIL!,
-      GOOGLE_PRIVATE_KEY: process.env.GOOGLE_PRIVATE_KEY!,
+      GOOGLE_CLIENT_EMAIL,
+      GOOGLE_PRIVATE_KEY,
     });
 
     // Block the availability slot (and get the detailer's name on the cell)

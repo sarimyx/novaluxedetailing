@@ -1,6 +1,7 @@
 import { ContentLayout } from "@/components/admin-panel/content-layout";
 import { Styling } from "@/constants/styling";
 import { Identity } from "@/constants/identity";
+import { Fonts } from "@/constants/fonts";
 
 export default function TermsPage() {
   return (
@@ -11,7 +12,9 @@ export default function TermsPage() {
             Terms of Service
           </h1>
 
-          <div className="prose prose-invert max-w-none space-y-6">
+          <div
+            className={`prose prose-invert max-w-none space-y-6 text-white ${Fonts.premium.className}`}
+          >
             <section>
               <h2 className="text-2xl font-semibold mb-4">
                 1. Acceptance of Terms

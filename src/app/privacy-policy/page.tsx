@@ -1,6 +1,7 @@
 import { ContentLayout } from "@/components/admin-panel/content-layout";
 import { Styling } from "@/constants/styling";
 import { Identity } from "@/constants/identity";
+import { Fonts } from "@/constants/fonts";
 
 export default function PrivacyPage() {
   return (
@@ -11,7 +12,9 @@ export default function PrivacyPage() {
             Privacy Policy
           </h1>
 
-          <div className="prose prose-invert max-w-none space-y-6">
+          <div
+            className={`prose prose-invert max-w-none space-y-6 text-white ${Fonts.premium.className}`}
+          >
             <section>
               <h2 className="text-2xl font-semibold mb-4">
                 1. Information We Collect
@@ -64,7 +67,10 @@ export default function PrivacyPage() {
               <h2 className="text-2xl font-semibold mb-4">5. Contact Us</h2>
               <p>
                 For privacy-related inquiries, please contact us at{" "}
-                {Identity.companyEmail}.
+                <a href={`mailto:${Identity.companyEmail}`} className="link">
+                  {Identity.companyEmail}
+                </a>
+                .
               </p>
             </section>
           </div>

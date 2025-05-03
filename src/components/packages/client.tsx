@@ -94,7 +94,7 @@ export default function PackagesComponent() {
                         alt={service.name}
                         fill
                         priority={index === 0}
-                        loading={index === 0 ? "eager" : "lazy"}
+                        loading="eager"
                         className="object-cover opacity-80 object-center group-hover:opacity-50 transition-opacity duration-300 
                           saturate-50 contrast-125 brightness-75 
                           group-hover:saturate-75 group-hover:contrast-100 group-hover:brightness-90

@@ -9,6 +9,7 @@ import { Styling } from "@/constants/styling";
 import { Fonts } from "@/constants/fonts";
 import Image from "next/image";
 import { Badge } from "../ui/badge";
+import { Star } from "lucide-react";
 
 export default function PackagesComponent() {
   const [loading, setLoading] = useState(true);
@@ -57,7 +58,7 @@ export default function PackagesComponent() {
         <Tabs defaultValue="premium" className="w-full">
           <TabsList className="grid w-full max-w-md mx-auto grid-cols-3 my-4">
             {categories.map((category) => (
-              <TabsTrigger key={category} value={category}>
+              <TabsTrigger key={category} value={category} className="text-xs">
                 {category.toUpperCase().replace("-", " ")}
               </TabsTrigger>
             ))}
@@ -82,7 +83,7 @@ export default function PackagesComponent() {
                         fill
                         priority={index === 0}
                         loading={index === 0 ? "eager" : "lazy"}
-                        className="object-cover opacity-60 object-center group-hover:opacity-50 transition-opacity duration-300 
+                        className="object-cover opacity-80 object-center group-hover:opacity-50 transition-opacity duration-300 
                           saturate-50 contrast-125 brightness-75 
                           group-hover:saturate-75 group-hover:contrast-100 group-hover:brightness-90
                           transition-all duration-500"
@@ -91,6 +92,14 @@ export default function PackagesComponent() {
                       <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60 group-hover:bg-black/40 transition-all duration-300" />
 
                       <div className="relative flex flex-col items-center text-center justify-center z-10 p-6 md:p-12 md:mx-8 h-full">
+                        {service.service_id === "interior-package" && (
+                          <div className="mb-2">
+                            <Badge className="bg-orange-500 flex items-center gap-1">
+                              <Star className="h-3 w-3" />
+                              Most Popular
+                            </Badge>
+                          </div>
+                        )}
                         <h2
                           className={`text-3xl md:text-5xl font-bold mb-2 md:mb-4 md:pb-2 ${Styling.GoldChromatic} ${Fonts.premium.className}`}
                         >
@@ -107,11 +116,6 @@ export default function PackagesComponent() {
                             ${service.starting_price}
                           </span>
                         </div>
-                        {service.service_id === "interior-package" && (
-                          <Badge className="bg-orange-500 mt-5">
-                            Most Popular
-                          </Badge>
-                        )}
                       </div>
                     </Link>
                   ))}

@@ -91,7 +91,9 @@ export default function Page() {
                 className={`text-secondary-foreground ${Fonts.premium.className}`}
               >
                 Serving all of{" "}
-                <strong className={Styling.GoldChromatic}>Utah County</strong>
+                <strong className={Styling.GoldChromatic}>
+                  Utah & Salt Lake County
+                </strong>
               </span>
             </div>
           </div>

@@ -592,7 +592,7 @@ export function BookingStepThree({
         className="p-2 rounded-lg bg-slate-900"
       />
       <div className="space-y-1 bg-slate-900 p-2 rounded-lg">
-        <p className="text-secondary-foreground">Vehicle type</p>
+        <p className="text-secondary-foreground">Vehicle</p>
         <RadioGroup
           value={vehicleType}
           onValueChange={(value) => setVehicleType(value)}

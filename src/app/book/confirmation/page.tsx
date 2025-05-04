@@ -3,7 +3,6 @@
 import { ContentLayout } from "@/components/admin-panel/content-layout";
 import { CheckCircle2 } from "lucide-react";
 import { useSearchParams } from "next/navigation";
-import { MiscUtils } from "@/utils/misc";
 import { Fonts } from "@/constants/fonts";
 import { Identity } from "@/constants/identity";
 import Image from "next/image";
@@ -33,17 +32,10 @@ export default function ThankYouPage() {
               <span className="text-muted-foreground">Service:</span> {service}
             </p>
             <p>
-              <span className="text-muted-foreground">Date:</span>{" "}
-              {date &&
-                MiscUtils.parseDateObject({
-                  year: parseInt(date.split("-")[0]),
-                  month: parseInt(date.split("-")[1]),
-                  day: parseInt(date.split("-")[2]),
-                }).readableDate}
+              <span className="text-muted-foreground">Date:</span> {date}
             </p>
             <p>
-              <span className="text-muted-foreground">Time:</span>{" "}
-              {time && MiscUtils.parseHour(parseInt(time))}
+              <span className="text-muted-foreground">Time:</span> {time}
             </p>
             <p className="text-muted-foreground">
               Please ensure your vehicle is present at the date above and

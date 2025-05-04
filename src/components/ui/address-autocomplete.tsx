@@ -5,9 +5,10 @@ import { Loader2 } from "lucide-react";
 import { useDebouncedCallback } from "use-debounce";
 
 interface AddressAutocompleteProps {
-  value: string;
+  value?: string;
   onChange: (value: string) => void;
   placeholder?: string;
+  className?: string;
 }
 
 interface Prediction {
@@ -19,6 +20,7 @@ export function AddressAutocomplete({
   value,
   onChange,
   placeholder = "Enter your address",
+  className,
 }: AddressAutocompleteProps) {
   const [predictions, setPredictions] = useState<Prediction[]>([]);
   const [loading, setLoading] = useState(false);
@@ -94,7 +96,8 @@ export function AddressAutocomplete({
             fetchPredictions(e.target.value);
           }}
           placeholder={placeholder}
-          className="w-full p-2 rounded-lg bg-slate-900"
+          autoComplete="street-address"
+          className={className || "p-2 rounded-lg bg-slate-800 md:w-3/6 w-4/6"}
           aria-autocomplete="list"
           aria-controls="autocomplete-list"
         />

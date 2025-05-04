@@ -68,9 +68,7 @@ export default function BookingClientComponent({
         .single();
 
     const fnFetchAvailability = async () => {
-      console.log("Fetching availability...");
       const result = await getAvailability();
-      console.log("Availability result:", result);
       return result;
     };
 

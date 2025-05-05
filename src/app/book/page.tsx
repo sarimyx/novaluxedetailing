@@ -15,9 +15,9 @@ export const metadata: Metadata = {
     "We offer full interior, exterior, and ceramic coating options...",
   openGraph: {
     ...SiteMetadata.openGraph,
-    title: "Book Your Detail | Utah's Premium Auto Detailing Service",
+    title: "Book Your Detail | Utah's Premium Mobile Auto Detailing Service",
     description:
-      "We offer full interior, exterior, and ceramic coating options. Book us in 3 clicks.",
+      "We offer full interior, exterior, and ceramic coating options. Book a detail in 3 clicks.",
     url: "https://novaluxedetailing.com/book",
     images: [
       {

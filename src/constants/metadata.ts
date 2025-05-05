@@ -33,7 +33,7 @@ export const SiteMetadata: Metadata = {
   openGraph: {
     title: "Nova Luxe Detailing | Utah's Premier Mobile Auto Detailing",
     description:
-      "Premium mobile car detailing in Utah County. Interior, exterior, and ceramic coating services delivered to your door. Book online in 3 clicks.",
+      "We bring your car back to life. Premium interior, exterior, and ceramic coating services. Book a detail in 3 clicks.",
     url: "https://novaluxedetailing.com",
     siteName: "Nova Luxe Detailing",
     images: [

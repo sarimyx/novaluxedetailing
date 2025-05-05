@@ -4,12 +4,6 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { Calendar, Car, CheckCircle2 } from "lucide-react";
 import { useSupabaseClient } from "@/utils/supabase-client";
-import {
-  getAvailability,
-  submitBooking,
-  verifyTimeSlotAvailability,
-} from "./server-functions";
-import { AvailabilitySlot, CustomerDetails } from "./types";
 import { DateUtils } from "@/utils/date";
 import { Fonts } from "@/constants/fonts";
 import { Badge } from "@/components/ui/badge";
@@ -28,6 +22,14 @@ import { Label } from "@/components/ui/label";
 import { Database } from "@/types/generated/database.types";
 import { useToast } from "@/hooks/use-toast";
 import { useRouter } from "next/navigation";
+import { AvailabilitySlot } from "@/types/availability-slot";
+import { CustomerDetails } from "@/types/customer-details";
+import {
+  getAvailability,
+  verifyTimeSlotAvailability,
+  submitBooking,
+} from "@/utils/server/spreadsheet-management";
+import { sendDiscordNotification } from "@/utils/server/send-discord-notification";
 
 export default function BookingClientComponent({
   serviceId,
@@ -147,57 +149,51 @@ export default function BookingClientComponent({
             description: "Your booking has been submitted.",
           });
 
-          fetch("/api/submit-discord", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              embeds: [
-                {
-                  title: "A new booking was submitted via website",
-                  description: `Refer to Master Calendar for more booking details.`,
-                  fields: [
-                    {
-                      name: "Date",
-                      value: `${selectedAvailability.weekday}, ${DateUtils.monthFromIndex(selectedAvailability.month, true)} ${selectedAvailability.day} at ${DateUtils.formatTimeLabel(selectedHour, true)}`,
-                      inline: true,
-                    },
-                    {
-                      name: "Name",
-                      value: customerDetails.name,
-                      inline: true,
-                    },
-                    {
-                      name: "Phone",
-                      value: customerDetails.phone,
-                      inline: true,
-                    },
-                    {
-                      name: "Address",
-                      value: customerDetails.address,
-                      inline: true,
-                    },
-                    {
-                      name: "Service",
-                      value: `**${service.name}**`,
-                      inline: true,
-                    },
-                    {
-                      name: "Vehicle",
-                      value: customerDetails.vehicle,
-                      inline: true,
-                    },
-                  ],
-                  thumbnail: {
-                    url: `https://novaluxedetailing.com/branding-kit/logo-wheel.png`,
+          await sendDiscordNotification({
+            embeds: [
+              {
+                title: "A new booking was submitted via website",
+                description: `Refer to Master Calendar for more booking details.`,
+                fields: [
+                  {
+                    name: "Date",
+                    value: `${selectedAvailability.weekday}, ${DateUtils.monthFromIndex(selectedAvailability.month, true)} ${selectedAvailability.day} at ${DateUtils.formatTimeLabel(selectedHour, true)}`,
+                    inline: true,
                   },
-                  footer: {
-                    text: `Booking ID: ${booking.success.bookingId}`,
+                  {
+                    name: "Name",
+                    value: customerDetails.name,
+                    inline: true,
                   },
+                  {
+                    name: "Phone",
+                    value: customerDetails.phone,
+                    inline: true,
+                  },
+                  {
+                    name: "Address",
+                    value: customerDetails.address,
+                    inline: true,
+                  },
+                  {
+                    name: "Service",
+                    value: `**${service.name}**`,
+                    inline: true,
+                  },
+                  {
+                    name: "Vehicle",
+                    value: customerDetails.vehicle,
+                    inline: true,
+                  },
+                ],
+                thumbnail: {
+                  url: `https://novaluxedetailing.com/branding-kit/logo-wheel.png`,
                 },
-              ],
-            }),
+                footer: {
+                  text: `Booking ID: ${booking.success.bookingId}`,
+                },
+              },
+            ],
           });
 
           router.push(

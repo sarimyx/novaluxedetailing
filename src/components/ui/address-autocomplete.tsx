@@ -3,6 +3,7 @@
 import { useEffect, useState, useRef } from "react";
 import { Loader2 } from "lucide-react";
 import { useDebouncedCallback } from "use-debounce";
+import { addressAutocompletion } from "@/utils/server/address-autocompletion";
 
 interface AddressAutocompleteProps {
   value?: string;
@@ -19,7 +20,7 @@ interface Prediction {
 export function AddressAutocomplete({
   value,
   onChange,
-  placeholder = "Enter your address",
+  placeholder = "Address",
   className,
 }: AddressAutocompleteProps) {
   const [predictions, setPredictions] = useState<Prediction[]>([]);
@@ -59,15 +60,9 @@ export function AddressAutocomplete({
 
     setLoading(true);
     try {
-      const response = await fetch("/api/address-autocomplete", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ input: searchText }),
-        signal,
-      });
-      if (!response.ok) throw new Error("Autocomplete API failed");
-      const data = await response.json();
-      setPredictions(data.predictions || []);
+      const result = await addressAutocompletion(searchText);
+      if (result.error) throw new Error(result.error);
+      setPredictions(result.predictions || []);
       setOpen(true);
     } catch (error: any) {
       if (error?.name !== "AbortError") {

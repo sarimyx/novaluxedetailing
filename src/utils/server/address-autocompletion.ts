@@ -1,15 +1,17 @@
-import { NextResponse } from "next/server";
+"use server";
 
-export async function POST(request: Request) {
+export async function addressAutocompletion(input: string): Promise<{
+  predictions?: any[];
+  error?: string;
+}> {
   try {
     const GOOGLE_MAPS_API_KEY = process.env.GOOGLE_MAPS_API_KEY;
     if (!GOOGLE_MAPS_API_KEY) {
-      return NextResponse.json({ error: "Missing API key" }, { status: 500 });
+      return { error: "Missing API key" };
     }
 
-    const { input } = await request.json();
     if (!input || typeof input !== "string" || input.trim().length === 0) {
-      return NextResponse.json({ predictions: [] });
+      return { predictions: [] };
     }
 
     const params = new URLSearchParams({
@@ -34,21 +36,17 @@ export async function POST(request: Request) {
       const errorBody = contentType.includes("application/json")
         ? await res.json()
         : await res.text();
-      return NextResponse.json(
-        { error: (errorBody as any)?.error_message || "API request failed" },
-        { status: res.status },
-      );
+      return {
+        error: (errorBody as any)?.error_message || "API request failed",
+      };
     }
 
     const data = await res.json();
-    return NextResponse.json(data);
+    return { predictions: data.predictions || [] };
   } catch (error) {
     if (process.env.NODE_ENV !== "production") {
       console.error("Error in places autocomplete:", error);
     }
-    return NextResponse.json(
-      { error: "Failed to fetch predictions" },
-      { status: 500 },
-    );
+    return { error: "Failed to fetch predictions" };
   }
 }

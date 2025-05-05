@@ -5,28 +5,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Star } from "lucide-react";
 import { formatDistanceToNow } from "date-fns";
 import { Identity } from "@/constants/identity";
-
-interface Reviewer {
-  profilePhotoUrl: string;
-  displayName: string;
-}
-
-interface Review {
-  reviewId: string;
-  reviewer: Reviewer;
-  starRating: number;
-  comment: string;
-  createTime: string;
-  updateTime: string;
-}
-
-interface ReviewsResponse {
-  success: boolean;
-  widget: string;
-  reviews: Review[];
-  totalReviewCount: number;
-  averageRating: number;
-}
+import { getReviews } from "@/utils/server/get-reviews";
+import { Review } from "@/types/reviews";
 
 export default function ReviewsClient() {
   const [reviews, setReviews] = useState<Review[]>([]);
@@ -36,10 +16,7 @@ export default function ReviewsClient() {
   useEffect(() => {
     const fetchReviews = async () => {
       try {
-        const response = await fetch("/api/reviews");
-        if (!response.ok) throw new Error("Failed to fetch reviews");
-
-        const data: ReviewsResponse = await response.json();
+        const data = await getReviews();
         setReviews(data.reviews);
       } catch (err) {
         setError("Failed to load reviews");

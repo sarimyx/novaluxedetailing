@@ -1,21 +1,23 @@
-import { NextResponse } from "next/server";
+"use server";
 
 let cachedData: any = null;
 let lastFetched: number | null = null;
 const TTL = 1000 * 60 * 10; // 10 minutes
 
-export async function GET() {
+import { ReviewsResponse } from "@/types/reviews";
+
+export async function getReviews(): Promise<ReviewsResponse> {
   const FEATURABLE_WIDGET_ID = process.env.FEATURABLE_WIDGET_ID;
 
   if (!FEATURABLE_WIDGET_ID) {
-    return NextResponse.json({ error: "Missing API key" }, { status: 500 });
+    throw new Error("Missing API key");
   }
 
   const now = Date.now();
 
   // Return cached version if within TTL
   if (cachedData && lastFetched && now - lastFetched < TTL) {
-    return NextResponse.json(cachedData);
+    return cachedData;
   }
 
   try {
@@ -36,11 +38,8 @@ export async function GET() {
     cachedData = data;
     lastFetched = now;
 
-    return NextResponse.json(data);
+    return data;
   } catch (err) {
-    return NextResponse.json(
-      { error: "Failed to fetch reviews" },
-      { status: 500 },
-    );
+    throw new Error("Failed to fetch reviews");
   }
 }

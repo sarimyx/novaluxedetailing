@@ -7,7 +7,7 @@ import {
 import { JWT } from "google-auth-library";
 import { v4 as uuidv4 } from "uuid";
 import { format } from "date-fns";
-import { AvailabilitySlot } from "./types";
+import { AvailabilitySlot } from "@/types/availability-slot";
 
 // Constants
 const FIXED_HEADERS = new Set(["year", "month", "day", "weekday"]);

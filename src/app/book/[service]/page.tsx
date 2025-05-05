@@ -1,18 +1,22 @@
 import { ContentLayout } from "@/components/admin-panel/content-layout";
-import { use } from "react";
 import BookingClientComponent from "./client";
 
-export default function Page({
-  params,
-}: {
-  params: Promise<{ service: string }> & { service: string };
+export default async function Page(props: {
+  params: Promise<{ service: string }>;
 }) {
-  const unwrappedParams = use(params);
+  const params = await props.params;
 
   return (
-    <ContentLayout title="Book" hideSidebar>
+    <ContentLayout
+      title={`Book ${params.service
+        .replace(/-/g, " ")
+        .split(" ")
+        .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(" ")}`}
+      hideSidebar
+    >
       <main>
-        <BookingClientComponent serviceId={unwrappedParams.service} />
+        <BookingClientComponent serviceId={params.service} />
       </main>
     </ContentLayout>
   );

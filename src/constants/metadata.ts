@@ -3,20 +3,29 @@ import { Metadata } from "next";
 export const SiteMetadata: Metadata = {
   metadataBase: new URL("https://novaluxedetailing.com"),
   title: {
-    default: "Nova Luxe Detailing",
-    template: "%s | Nova Luxe Detailing",
+    default:
+      "Nova Luxe Detailing | Premium Auto Detailing in Utah County & Nearby Cities | 3 Clicks to Book",
+    template:
+      "%s | Nova Luxe Detailing - Utah's Premium Auto Detailing Service",
   },
   description:
-    "Premium auto detailing services in Utah. We aim to give you the royal experience. Book your detail today, in less than 3 clicks.",
+    "Utah's Premier Mobile Detailing. Book a full service in 3 clicks: interior, exterior, or ceramic coating. We bring your car back to life.",
   keywords: [
     "auto detailing Utah",
-    "car detailing",
-    "ceramic coating",
-    "interior cleaning",
-    "mobile detailing",
-    "utah county auto detail",
+    "mobile detailing Utah County",
+    "ceramic coating Utah",
+    "interior detailing Provo",
+    "paint correction Utah",
+    "premium car detailing",
+    "mobile car wash",
+    "professional auto detailing",
+    "Utah County auto detail",
     "car cleaning utah",
     "Nova Luxe Detailing",
+    "luxury car detailing",
+    "Provo car detailing",
+    "Orem auto detailing",
+    "Salt Lake City auto detailing",
   ],
   alternates: {
     canonical: "https://novaluxedetailing.com",
@@ -24,7 +33,7 @@ export const SiteMetadata: Metadata = {
   openGraph: {
     title: "Nova Luxe Detailing",
     description:
-      "Premium auto detailing services in Utah. We aim to give you the royal experience. Book your detail today, in less than 3 clicks.",
+      "Expert mobile auto detailing in Utah County. 3 clicks to book a full interior, exterior, or full detail. Professional service that comes to you.",
     url: "https://novaluxedetailing.com",
     siteName: "Nova Luxe Detailing",
     images: [

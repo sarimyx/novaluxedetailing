@@ -4,21 +4,24 @@ import PackagesComponent from "@/components/packages/packages-component";
 import ReviewsComponent from "@/components/reviews/page";
 import Footer from "@/components/footer";
 import { SiteMetadata } from "@/constants/metadata";
+import { Metadata } from "next";
 
-export const metadata = {
+export const metadata: Metadata = {
   ...SiteMetadata,
-  title: `Book Your Detail | Nova Luxe Detailing | Utah's Premier Mobile Detailing`,
+  title: {
+    absolute: "Book Your Detail | Utah's Premier Mobile Detailing",
+  },
   description:
-    "We offer full interior, exterior, and ceramic coating options. Professional service that comes to you.",
+    "We offer full interior, exterior, and ceramic coating options...",
   openGraph: {
-    title: `Book Your Detail | Nova Luxe Detailing | Utah's Premier Mobile Detailing`,
+    ...SiteMetadata.openGraph,
+    title: "Book A Detail | Nova Luxe Detailing",
     description:
-      "We offer full interior, exterior, and ceramic coating options. Professional service that comes to you.",
-    url: `https://novaluxedetailing.com/book`,
-    siteName: "Nova Luxe Detailing",
+      "We offer full interior, exterior, and ceramic coating options...",
+    url: "https://novaluxedetailing.com/book",
     images: [
       {
-        url: `https://novaluxedetailing.com/package-covers/package-cover-interior-package.jpeg`,
+        url: "https://novaluxedetailing.com/gallery/NLD-Shot-5.jpeg",
         width: 1200,
         height: 630,
         alt: "Nova Luxe Detailing",

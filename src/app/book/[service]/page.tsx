@@ -15,8 +15,8 @@ export async function generateMetadata(
     title: `${readableService} | Nova Luxe Detailing`,
     description: `Book our ${readableService} service.`,
     openGraph: {
-      title: `Book ${readableService} | Nova Luxe Detailing`,
-      description: `Book a ${readableService} detail with Nova Luxe.`,
+      title: `${readableService} | Utah's Premium Mobile Auto Detailing Service`,
+      description: `Book our ${readableService} service in 3 clicks.`,
       url: `https://novaluxedetailing.com/book/packages/${service}`,
       images: [
         {

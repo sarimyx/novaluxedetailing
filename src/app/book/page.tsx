@@ -10,6 +10,21 @@ export const metadata = {
   title: `Book Your Detail | Nova Luxe Detailing | Utah's Premier Mobile Detailing`,
   description:
     "We offer full interior, exterior, and ceramic coating options. Professional service that comes to you.",
+  openGraph: {
+    title: `Book Your Detail | Nova Luxe Detailing | Utah's Premier Mobile Detailing`,
+    description:
+      "We offer full interior, exterior, and ceramic coating options. Professional service that comes to you.",
+    url: `https://novaluxedetailing.com/book`,
+    siteName: "Nova Luxe Detailing",
+    images: [
+      {
+        url: `https://novaluxedetailing.com/package-covers/package-cover-interior-package.jpeg`,
+        width: 1200,
+        height: 630,
+        alt: "Nova Luxe Detailing",
+      },
+    ],
+  },
 };
 
 export default function Page() {

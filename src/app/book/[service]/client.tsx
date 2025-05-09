@@ -238,8 +238,7 @@ export default function BookingClientComponent({
           <section className="space-y-2">
             <Link href="/#packages">
               <Badge>
-                {" "}
-                <ChevronLeft className="h-3 w-3" />{" "}
+                <ChevronLeft className="h-3 w-3" />
               </Badge>
             </Link>
             <div className="flex flex-wrap gap-2">

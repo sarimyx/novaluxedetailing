@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { Calendar, Car, CheckCircle2 } from "lucide-react";
+import { Calendar, Car, CheckCircle2, ChevronLeft } from "lucide-react";
 import { useSupabaseClient } from "@/utils/supabase-client";
 import { DateUtils } from "@/utils/date";
 import { Fonts } from "@/constants/fonts";
@@ -30,6 +30,7 @@ import {
   submitBooking,
 } from "@/utils/server/spreadsheet-management";
 import { sendDiscordNotification } from "@/utils/server/send-discord-notification";
+import Link from "next/link";
 
 export default function BookingClientComponent({
   serviceId,
@@ -235,6 +236,12 @@ export default function BookingClientComponent({
       {service && !loading && (
         <div className="space-y-4">
           <section className="space-y-2">
+            <Link href="/#packages">
+              <Badge>
+                {" "}
+                <ChevronLeft className="h-3 w-3" />{" "}
+              </Badge>
+            </Link>
             <div className="flex flex-wrap gap-2">
               <Image
                 src="/branding-kit/logo-wheel-transparent.png"

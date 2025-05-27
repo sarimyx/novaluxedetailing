@@ -46,8 +46,8 @@ export default function ReviewsClient() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {reviews
-        .filter((r) => r.starRating === 5)
-        .map((review) => (
+        ?.filter((r) => r.starRating === 5)
+        ?.map((review) => (
           <div
             key={review.reviewId}
             className="text-left bg-secondary/50 text-white p-6 rounded-xl transition-colors shadow-sm flex flex-col justify-between h-full"

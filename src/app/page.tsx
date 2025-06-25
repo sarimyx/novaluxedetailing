@@ -9,6 +9,7 @@ import { SiteMetadata } from "@/constants/metadata";
 import { Styling } from "@/constants/styling";
 import {
   ArrowDown,
+  Car,
   MapPin,
   MessageSquare,
   PhoneCall,
@@ -93,6 +94,17 @@ export default function Page() {
                 Serving{" "}
                 <strong className={Styling.GoldChromatic}>
                   Utah County & Nearby Cities
+                </strong>
+              </span>
+            </div>
+            <div className="flex items-center gap-1">
+              <Car className="text-orange-400" />
+              <span
+                className={`text-secondary-foreground ${Fonts.premium.className}`}
+              >
+                Fully Mobile -{" "}
+                <strong className={Styling.GoldChromatic}>
+                  We Come To You
                 </strong>
               </span>
             </div>

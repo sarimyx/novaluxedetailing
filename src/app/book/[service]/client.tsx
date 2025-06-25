@@ -31,6 +31,8 @@ import {
 } from "@/utils/server/spreadsheet-management";
 import { sendDiscordNotification } from "@/utils/server/send-discord-notification";
 import Link from "next/link";
+import { Identity } from "@/constants/identity";
+import { Separator } from "@/components/ui/separator";
 
 export default function BookingClientComponent({
   serviceId,
@@ -253,13 +255,17 @@ export default function BookingClientComponent({
                 {service.name}
               </h1>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center gap-2">
               <Badge variant="secondary">
                 ~ {service.estimated_hours} hours
               </Badge>
               <Badge variant="secondary" className="flex gap-1">
-                <CheckCircle2 className="h-3 w-3 text-secondary-foreground" />
+                <Car className="h-3 w-3 text-secondary-foreground" />
                 We come to you
+              </Badge>
+              <Badge variant="secondary" className="flex gap-1">
+                <CheckCircle2 className="h-3 w-3 text-secondary-foreground" />
+                Free reservation
               </Badge>
             </div>
           </section>
@@ -306,7 +312,7 @@ export default function BookingClientComponent({
                     let weekLabel = "LATER";
                     const diffTime = Math.ceil(
                       (date.getTime() - today.getTime()) /
-                        (1000 * 60 * 60 * 24),
+                      (1000 * 60 * 60 * 24),
                     );
 
                     if (diffTime <= 7) {
@@ -344,11 +350,54 @@ export default function BookingClientComponent({
                     </div>
                   ));
                 })()}
+                <Separator />
+
+                <p className="text-sm text-secondary-foreground">
+                  †Time estimates may vary based on the vehicle size and condition.
+                </p>
+
+                <p className="text-sm text-secondary-foreground">
+                  †Serving all of Utah + Salt Lake County, and surrounding areas. We provide fully mobile detailing services.
+                </p>
+
+                <p className="text-sm text-secondary-foreground">
+                  <strong>Questions?</strong> Text or call us at{" "}
+                  <a
+                    href={`sms:${Identity.companyPhoneNumber}`}
+                    className="underline text-yellow-500"
+                  >
+                    {Identity.companyPhoneNumberFormatted}
+                  </a>.
+                </p>
+
+                <div className="flex flex-wrap gap-2">
+                  <p className="text-sm text-secondary-foreground">
+                    <a
+                      href={`/#packages`}
+                      className="underline text-yellow-500"
+                    >
+                      View all services
+                    </a>
+                  </p>
+                  <p className="text-sm text-secondary-foreground">
+                    <a
+                      href={`/#reviews`}
+                      className="underline text-yellow-500"
+                    >
+                      See our reviews
+                    </a>
+                  </p>
+                </div>
               </div>
             )}
 
             {currentStep === 2 && selectedAvailability && (
               <div className="space-y-4">
+                <p className="text-xs font-light text-secondary-foreground">
+                  <strong className="uppercase font-semibold">{selectedAvailability.weekday},{" "}
+                    {DateUtils.monthFromIndex(selectedAvailability.month, true)}{" "}
+                    {selectedAvailability.day}</strong>
+                </p>
                 {(() => {
                   const groupedByTime: { [key: string]: string[] } = {
                     MORNING: [],
@@ -395,8 +444,8 @@ export default function BookingClientComponent({
                     setSelectedHour(null);
                   }}
                 >
-                  <p className="text-sm text-yellow-500 underline">
-                    Choose another day
+                  <p className="text-sm text-yellow-500">
+                    ← Change day
                   </p>
                 </button>
               </div>
